@@ -5,12 +5,12 @@ sf::Vector2f pos;
 
 Background::Background()
 {
-	CreateSprite("../../../res/assets/Images/spaceHeavy.png", 0, 0, 3840, 4380); 
+	CreateSprite("../../../res/assets/Images/spaceHeavyLess.png", 0, 0, 1920, 2160); 
 }
 
 void Background::Update(float delta)
 {
-	if (pos.y >= -21)
+	if (pos.y >= -10)
 	{
 		this->setPosition(960, -1080);
 	}

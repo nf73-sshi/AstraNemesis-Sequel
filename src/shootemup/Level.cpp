@@ -11,8 +11,7 @@ void Level::Init()
 	pPlayer->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
 
 	Background* pBG = new Background();
-	pBG->scale(0.5, 0.5);
-	pBG->setOrigin(1920, 0);
+	pBG->setOrigin(960, 0);
 	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
 
 	addEntity(pBG);
