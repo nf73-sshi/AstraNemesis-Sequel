@@ -6,8 +6,6 @@
 #include "Player.h"
 #include "Level.h"
 
-const int delta = 100;
-
 GameManager* GameManager::mInstance = nullptr;
 
 GameManager* GameManager::GetInstance()
@@ -24,11 +22,13 @@ void GameManager::RunGame()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Shoot Them Down!");
 
+    window.setFramerateLimit(240);
+
     sf::Clock clock;
 
-    Scene* s = new Level();
+    Scene* s1 = new Level();
 
-    s->Init();
+    s1->Init();
 
     while (window.isOpen())
     {
@@ -41,10 +41,10 @@ void GameManager::RunGame()
 
         float delta = clock.restart().asSeconds();
 
-        s->Update(delta); 
+        s1->Update(delta); 
 
         window.clear();
-        window.draw(*s);
+        window.draw(*s1);
         window.display();
     }
 

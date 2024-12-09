@@ -8,7 +8,7 @@ class Entity : public sf::Drawable, public sf::Transformable
 
 public:
 
-    void CreateSprite(const char* link);
+    void CreateSprite(const char* link, int x, int y, int sizeX, int sizeY);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

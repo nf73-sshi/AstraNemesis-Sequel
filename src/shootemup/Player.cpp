@@ -6,11 +6,12 @@ Player::Player(const char* name, int damage, float speed, float shootingDelay)
 	mDamage = damage;
 	mSpeed = speed;
 	mShootingDelay = shootingDelay;
-	CreateSprite("../../../res/assets/Images/vaisseau.png");
+	CreateSprite("../../../res/assets/Images/vaisseau.png", 0, 0, 64, 64);
 }
 
 void Player::Update(float delta)
 {
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         move(0.f, -mSpeed * delta);
@@ -27,4 +28,5 @@ void Player::Update(float delta)
     {
         move(mSpeed * delta, 0);
     }
+
 }

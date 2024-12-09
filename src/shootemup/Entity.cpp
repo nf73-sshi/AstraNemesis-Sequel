@@ -1,14 +1,15 @@
 #include "Entity.h"
+#include <iostream>
 
-void Entity::CreateSprite(const char* link)
+void Entity::CreateSprite(const char* link, int x, int y, int sizeX, int sizeY)
 {
 
     if (!texture.loadFromFile(link))
     {
-        // error...
+        std::cout << "Fichier non charge :" << link << std::endl;
     }
     sprite.setTexture(texture);
-    sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
+    sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
 
 }
 
