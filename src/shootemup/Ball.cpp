@@ -43,5 +43,7 @@ void Ball::DestroyBullet() {}
 
 void Ball::Update(float delta)
 {
-	this->move(0, -mSpeed * delta);
+	sf::Vector2f pos = getPosition();
+
+	this->move(0, delta * -mSpeed);
 }

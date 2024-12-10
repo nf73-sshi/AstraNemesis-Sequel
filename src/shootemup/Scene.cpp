@@ -18,3 +18,8 @@ void Scene::addEntity(Entity* e)
 {
 	arrayEntity.push_back(e);
 }
+
+void Scene::removeEntity(Entity* e)
+{
+	//arrayEntity.erase(e);
+}
