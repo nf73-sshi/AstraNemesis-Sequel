@@ -8,7 +8,7 @@ class Scene : public sf::Drawable
 	
 public:
 	virtual void Init() = 0;
-	void Update(float deltatime);
+	virtual void Update(float delta);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void addEntity(Entity* e);
 };

@@ -1,5 +1,4 @@
 #include "Background.h"
-#include <iostream>
 
 sf::Vector2f pos;
 
@@ -16,8 +15,6 @@ void Background::Update(float delta)
 	}
 
 	pos = this->getPosition();
-	
-	std::cout << "restaring in : " << -1 * pos.y << std::endl;
 
 	this->move(0, 100 * delta);
 

@@ -2,8 +2,10 @@
 #include "Scene.h"
 class Level : public Scene
 {
-	public:
-	void Init();
+	float mCurrentTimer;
 
+public:
+	void Init();
+	void Update(float delta) override;
 };
 

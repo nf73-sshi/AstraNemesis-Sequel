@@ -1,9 +1,9 @@
 #include "Scene.h"
 
-void Scene::Update(float deltatime)
+void Scene::Update(float delta)
 {
 	for (int i = 0; i < arrayEntity.size(); ++i) {
-		arrayEntity[i]->Update(deltatime);
+		arrayEntity[i]->Update(delta);
 	}
 }
 
