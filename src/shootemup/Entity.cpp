@@ -8,6 +8,7 @@ void Entity::CreateSprite(const char* link, int x, int y, int sizeX, int sizeY)
     {
         std::cout << "Fichier non charge :" << link << std::endl;
     }
+
     sprite.setTexture(texture);
     sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
 
