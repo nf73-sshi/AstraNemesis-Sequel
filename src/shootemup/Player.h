@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "Ball.h"
 
 class Player : public Entity
 {
@@ -11,7 +12,7 @@ class Player : public Entity
 public:
 	Player(const char* name, int damage, float speed, float shootingDelay);
 
-	void Shoot() {};
+	void Shoot();
 
 	void Update(float delta) override;
 

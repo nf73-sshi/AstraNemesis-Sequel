@@ -11,5 +11,5 @@ public:
 	virtual void Update(float delta);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void addEntity(Entity* e);
+	void removeEntity(Entity* e);
 };
-
