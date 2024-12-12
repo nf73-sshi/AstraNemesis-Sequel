@@ -13,3 +13,4 @@ public:
 	void addEntity(Entity* e);
 	void removeEntity(Entity* e);
 };
+
