@@ -33,4 +33,18 @@ void Player::Update(float delta)
     {
         this->move(mSpeed * delta, 0);
     }
+
+
+
+    if (this->getPosition().x < 32.f)
+        this->setPosition(32, this->getPosition().y);
+
+    if (this->getPosition().x > 1888.f)
+        this->setPosition(1888, this->getPosition().y);
+
+    if (this->getPosition().y < 32.f)
+        this->setPosition(this->getPosition().x, 32) ;
+
+    if (this->getPosition().y > 1048.f)
+        this->setPosition(this->getPosition().x, 1048);
 }
