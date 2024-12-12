@@ -21,10 +21,10 @@ void Level::Init()
 	pPlayer->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
 	mCurrentPlayer = pPlayer;
 
-	Enemy1* pBoss = new Enemy1("Classic mob", 1, 40, 0.5f);
+	Enemy1* pBoss = new Enemy1("Classic mob", 1, 500, 0.5f);
 	pBoss->setOrigin(266.5f, 127.5f);
 	pBoss->scale(2, 1);
-	pBoss->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.15);
+	pBoss->setPosition(WINDOW_WIDTH * 0.5, 127.5);
 
 	Background* pBG = new Background();
 	pBG->setOrigin(960, 0);
@@ -53,13 +53,11 @@ void Level::Update(float delta)
 
 	mCurrentTimer += delta;
 	var += delta;
-	std::cout << "x = " << playerPos.x << std::endl;
-	std::cout << "y = " << playerPos.y << std::endl;
 }
 
 
 void Level::GetPosition(Entity* pPlayer)
 {
-	playerPos = pPlayer->getPosition();
+	playerPos = pPlayer->getPosition(); 
 }
 

@@ -1,8 +1,9 @@
 #pragma once
 #include "Entity.h"
 #include "Ball.h"
+#include "Character.h"
 
-class Player : public Entity
+class Player : public Character
 {
 	const char* mName;
 	int mDamage;
