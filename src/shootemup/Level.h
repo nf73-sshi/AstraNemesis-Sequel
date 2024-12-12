@@ -4,7 +4,7 @@ class Level : public Scene
 {
 	float mCurrentTimer;
 	float var;
-	sf::Vector2f pos;
+	sf::Vector2f playerPos;
 	Entity* mCurrentPlayer;
 
 public:
