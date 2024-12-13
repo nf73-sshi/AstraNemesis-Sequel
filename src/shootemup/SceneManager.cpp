@@ -1,14 +1,19 @@
 #include "SceneManager.h"
 
 
-int SceneManager::GetScene()
+Scene* SceneManager::GetCurrentScene()
 {
-	return mScene;
+	return mCurrentScene;
 }
 
-void SceneManager::SetScene(int scene)
+void SceneManager::ChangeScene(std::string id)
 {
-	mScene = scene;
+	mCurrentScene = map[id];
+}
+
+void SceneManager::AddScene(std::string id, Scene* pScene)
+{
+	map[id] = pScene;
 }
 
 

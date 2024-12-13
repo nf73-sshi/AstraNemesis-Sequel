@@ -1,12 +1,13 @@
 #pragma once
 #include "Entity.h"
+#include "Collide.h"
 
-class Ball : public Entity
+class Ball : public Entity, public Collide
 {
 	int mDamage;
 	float mSpeed;
 	float mDirection;
-
+	float mCurrentTime;
 public:
 	Ball(int damage, float speed, float direction);
 
@@ -20,5 +21,9 @@ public:
 	void DestroyBullet();
 
 	void Update(float delta) override;
+
+	// Hérité via Collide
+	Hitbox GetHitbox() override;
+	void OnCollide(Entity*) override;
 };
 

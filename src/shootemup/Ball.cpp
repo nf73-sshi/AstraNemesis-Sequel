@@ -1,10 +1,12 @@
 #include "Ball.h"
+#include <iostream>
 
 Ball::Ball(int damage, float speed, float direction)
 {
 	mDamage = damage;
 	mSpeed = speed;
 	mDirection = direction;
+	mCurrentTime = 0;
 	CreateSprite("../../../res/assets/Images/bulletsTile.png", 167, 297, 17, 17);
 }
 
@@ -46,4 +48,18 @@ void Ball::Update(float delta)
 	sf::Vector2f pos = getPosition();
 
 	this->move(0, delta * -mSpeed);
+	mCurrentTime += delta;
+}
+
+Hitbox Ball::GetHitbox()
+{
+	Hitbox h;
+	h.position = getPosition();
+	h.radius = 9;
+	return h; 
+}
+
+void Ball::OnCollide(Entity*)
+{
+	std::cout << "BOOM" << std::endl;
 }

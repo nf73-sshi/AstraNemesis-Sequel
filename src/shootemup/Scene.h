@@ -4,6 +4,8 @@
 
 class Scene : public sf::Drawable
 {
+
+protected:
 	std::vector<Entity*> arrayEntity; 
 	
 public:

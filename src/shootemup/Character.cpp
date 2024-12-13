@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character(const char* name, int damage, float speed, float shootingDelay)
+Character::Character(const char* name, int hp, int damage, float speed, float shootingDelay) : Health(hp)
 {
 	mName = name;
 	mSpeed = speed;
