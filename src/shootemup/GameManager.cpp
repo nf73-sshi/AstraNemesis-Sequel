@@ -2,6 +2,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "GameManager.h"
+#include "SceneManager.h"
+#include "Scene.h"
 #include "Entity.h"
 #include "Player.h"
 #include "Level.h"
@@ -18,21 +20,19 @@ GameManager* GameManager::GetInstance()
 	return mInstance;
 }
 
-//void GameManager::FullScreen(sf::RenderWindow* window, bool &isFullScreen)
-//{
-//	if (isFullScreen)
-//	{
-//		window->create(sf::VideoMode(1920, 1080), "SFML WORK!", sf::Style::Default);
-//
-//		isFullScreen = false;
-//	}
-//	else
-//	{
-//		window->create(sf::VideoMode(1920, 1080), "SFML WORK!", sf::Style::Fullscreen);
-//
-//		isFullScreen = true;
-//	}
-//}
+void GameManager::Initiate()
+{
+	mSceneManager.AddScene("Lvl1", new Level());
+	mSceneManager.ChangeScene("Lvl1");
+	mCurrentScene = mSceneManager.GetCurrentScene();
+}
+
+void GameManager::Update()
+{
+	mCurrentScene = mSceneManager.GetCurrentScene();
+
+
+}
 
 void GameManager::RunGame()
 {
@@ -41,11 +41,13 @@ void GameManager::RunGame()
 
 	window.setFramerateLimit(240);
 
+	mCurrentScene = nullptr;
+
+	Initiate(); 
+
 	sf::Clock clock;
 
-	Scene* s1 = new Level();
-
-	s1->Init();
+	mCurrentScene->Init();
 
 	while (window.isOpen())
 	{
@@ -59,10 +61,12 @@ void GameManager::RunGame()
 		
 		float delta = clock.restart().asSeconds();
 
-		s1->Update(delta);
+
+		Update();
+		mCurrentScene->Update(delta);
 
 		window.clear();
-		window.draw(*s1);
+		window.draw(*mCurrentScene);
 		window.display();
 
 
@@ -85,6 +89,11 @@ void GameManager::RunGame()
 			}
 		}
 	}
+}
+
+Scene* GameManager::GetCurrentScene()
+{
+	return mCurrentScene;
 }
 
 		

@@ -1,7 +1,7 @@
 #include "Enemy1.h"
 #include <iostream>
 
-Enemy1::Enemy1(const char* name, int damage, float speed, float shootingDelay) : Character(name, damage, speed, shootingDelay)
+Enemy1::Enemy1(const char* name, int hp, int damage, float speed, float shootingDelay) : Character(name, hp, damage, speed, shootingDelay)
 {
 	mTimer = 0;
 	mTimer2 = 0;
@@ -15,9 +15,6 @@ Enemy1::Enemy1(const char* name, int damage, float speed, float shootingDelay) :
 void Enemy1::Update(float delta)  
 {
 	mPos = GetPosition();
-
-	std::cout << mTimer << std::endl; 
-	std::cout << mVelocityX << std::endl;
 	mTimer += delta; 
 
 	if (mTimer <= 2)
@@ -57,5 +54,19 @@ void Enemy1::Pattern2(float delta)
 		mTimer2 = 0;
 	}
 
+}
+
+Hitbox Enemy1::GetHitbox()
+{
+	Hitbox h;
+	h.position = getPosition();
+	h.radius = 127.5f;
+	return h;
+}
+
+void Enemy1::OnCollide(Entity*)
+{
+	mHP--;
+	std::cout << mHP << std::endl;
 }
 
