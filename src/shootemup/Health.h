@@ -6,6 +6,7 @@ class Health
 protected:
 	int mHP;
 	int mHPMax;
+	bool mIsDead;
 
 public:
 	Health(int hpMax);

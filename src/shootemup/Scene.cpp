@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Collide.h"
+
 void Scene::Update(float delta)
 {
 	for (int i = 0; i < arrayEntity.size(); ++i) {
@@ -24,7 +25,8 @@ void Scene::Update(float delta)
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (int i = 0; i < arrayEntity.size(); ++i) {
+	for (int i = 0; i < arrayEntity.size(); ++i)
+	{
 		target.draw(*(arrayEntity[i]), states);
 	}
 }

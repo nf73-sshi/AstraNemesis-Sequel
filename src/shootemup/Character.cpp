@@ -1,4 +1,5 @@
 #include "Character.h"
+#include <iostream>
 
 Character::Character(const char* name, int hp, int damage, float speed, float shootingDelay) : Health(hp)
 {
@@ -6,6 +7,7 @@ Character::Character(const char* name, int hp, int damage, float speed, float sh
 	mSpeed = speed;
 	mDamage = damage;
 	mShootingDelay = shootingDelay;
+	mTimerShoot = 0;
 }
 
 sf::Vector2f Character::GetPosition()
@@ -17,6 +19,12 @@ sf::Vector2f Character::GetPosition()
 
 void Character::Update(float delta)
 {
+	return;
+}
+
+void Character::Shoot()
+{
+	std::cout << "Bug de tir" << std::endl;
 	return;
 }
 
