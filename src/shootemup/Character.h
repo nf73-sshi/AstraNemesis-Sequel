@@ -10,6 +10,7 @@ protected:
 	const char* mName;
 	float mSpeed;
 	int mDamage;
+	float mTimerShoot;
 	float mShootingDelay;
 
 public:
@@ -22,6 +23,8 @@ public:
 	int GetDamage();
 
 	float GetShootingDelay();
+
+	virtual void Shoot();
 
 	virtual void Update(float delta);
 };

@@ -14,7 +14,7 @@ class Collide
 {
 public:
 	virtual Hitbox GetHitbox() = 0;
-	virtual void OnCollide(Entity*) = 0;
+	virtual void OnCollide(Entity* e) = 0;
 	bool CheckCollision(Collide* other);
 };
 

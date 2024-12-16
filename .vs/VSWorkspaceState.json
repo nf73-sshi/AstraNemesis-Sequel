@@ -1,4 +1,10 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\bin",
+    "\\src",
+    "\\src\\shootemup"
+  ],
+  "SelectedNode": "\\bin\\make.bat",
   "PreviewInSolutionExplorer": false
 }

@@ -4,6 +4,7 @@ Health::Health(int hpMax)
 {
 	mHPMax = hpMax;
 	mHP = mHPMax;
+	mIsDead = false;
 }
 
 int Health::GetHP()
