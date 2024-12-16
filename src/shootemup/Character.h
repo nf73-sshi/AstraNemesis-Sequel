@@ -9,6 +9,7 @@ protected:
 	sf::Vector2f mPos; 
 	const char* mName;
 	float mSpeed;
+	float mScaleBall;
 	int mDamage;
 	float mTimerShoot;
 	float mShootingDelay;

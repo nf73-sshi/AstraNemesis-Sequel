@@ -6,6 +6,7 @@ Character::Character(const char* name, int hp, int damage, float speed, float sh
 	mName = name;
 	mSpeed = speed;
 	mDamage = damage;
+	mScaleBall = 1;
 	mShootingDelay = shootingDelay;
 	mTimerShoot = 0;
 }

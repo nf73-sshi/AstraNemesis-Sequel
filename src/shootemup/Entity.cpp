@@ -3,7 +3,7 @@
 
 void Entity::CreateSprite(const char* link, int x, int y, int sizeX, int sizeY)
 {
-
+    mDestroy = false;
     if (!texture.loadFromFile(link))
     {
         std::cout << "Fichier non charge :" << link << std::endl;
@@ -12,6 +12,11 @@ void Entity::CreateSprite(const char* link, int x, int y, int sizeX, int sizeY)
     sprite.setTexture(texture);
     sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
 
+}
+
+bool Entity::GetMDestroy() 
+{
+    return mDestroy;
 }
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const

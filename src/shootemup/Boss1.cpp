@@ -7,9 +7,13 @@
 
 Boss1::Boss1(const char* name, int hp, int damage, float speed, float shootingDelay) : Character(name, hp, damage, speed, shootingDelay)
 {
+	srand(time(0));
+	mRandomizer = 1;
 	mTimerShoot = 0;
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
+	mTimerPattern3 = 0;
+	mScaleBall = 1;
 	mSpeed = speed;
 	mVelocityX = mSpeed;
 	mVelocityY =mSpeed * 2.5;
@@ -29,17 +33,29 @@ void Boss1::Update(float delta)
 		Shoot();
 	}
 
-	if(mTimerPattern1 > 2)
-		Pattern2(delta);
+	if (mTimerPattern1 > 2)
+	{
+		if(mRandomizer == 1)
+			Pattern2(delta);
+		if (mRandomizer == 2)
+			Pattern3(delta);
+	}
 
+}
+
+void Boss1::Randomize()
+{
+	mRandomizer = rand() % 2 + 1;
+	std::cout << "Random = " << mRandomizer << std::endl;
 }
 
 void Boss1::Shoot()
 {
-	if (mTimerShoot > mShootingDelay) {
-		EnemyBall* b = new EnemyBall(1, 1, 2, 0, 1000);
+	if (mTimerShoot > mShootingDelay)
+	{
+		EnemyBall* b = new EnemyBall(1, 1, mScaleBall, 0, 1000);
 
-		b->setOrigin(9, 9);
+		b->setOrigin(9.f, 9.f);
 		b->setPosition(getPosition());
 		GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
 		mTimerShoot = 0;
@@ -63,20 +79,46 @@ void Boss1::Pattern2(float delta)
 {
 	mTimerPattern2 += delta;
 
-	if(mTimerPattern2 < 0.75)
-		this->move(0, mVelocityY * delta);
-	if (mTimerPattern2 >= 0.75)
-		this->move(0, -mVelocityY * delta);
-
-	if (mPos.y < 127.5)
-		this->setPosition(mPos.x, 127.5);
-
-	if (mTimerPattern2 > 1.5)
+	if (mTimerPattern2 >= 0.5)
 	{
+		for (int i = -5; i < 5; i++)
+		{
+			EnemyBall* b = new EnemyBall(1, 1, mScaleBall * 2, i * 100.f, 500);
+
+			b->setOrigin(9.f, 9.f);
+			b->setPosition(getPosition());
+			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+
+		}
+
 		mTimerPattern1 = 0;
 		mTimerPattern2 = 0;
+		Randomize();
 	}
 
+
+}
+
+void Boss1::Pattern3(float delta)
+{
+	mTimerPattern3 += delta;
+
+	if (mTimerPattern3 >= 1)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			EnemyBall* b = new EnemyBall(1, 1, mScaleBall * 10, 0, 1000);
+
+			b->setOrigin(9.f, 9.f);
+			b->setPosition(getPosition());
+			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+
+		}
+
+		mTimerPattern1 = 0;
+		mTimerPattern3 = 0;
+		Randomize();
+	}
 }
 
 Hitbox Boss1::GetHitbox()
@@ -93,8 +135,11 @@ void Boss1::OnCollide(Entity* e)
 	if (typeid(*e) == typeid(AllyBall))
 	{
 		mHP--;
-		//std::cout << "Ouch ! :" << mHP << " Restants pour le boss" << std::endl;
+		std::cout << "Ouch ! :" << mHP << " Restants pour le boss" << std::endl;
 	}
+
+	if (IsDead() == true)
+		mDestroy = true;
 
 }
 

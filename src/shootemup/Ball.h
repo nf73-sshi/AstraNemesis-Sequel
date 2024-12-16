@@ -33,6 +33,6 @@ public:
 
 	// Hérité via Collide
 	Hitbox GetHitbox() override;
-	void OnCollide(Entity*) override;
+	virtual void OnCollide(Entity*);
 };
 

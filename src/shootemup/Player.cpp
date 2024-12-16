@@ -10,13 +10,10 @@ Player::Player(const char* name, int hp, int damage, float speed, float shooting
 {
     mTimerInvincible = 0;
     mIsInvincible = false;
-    mPlayerHitbox.setRadius(100.f);
-    mPlayerHitbox.setOrigin(10, 10);
-    mPlayerHitbox.setFillColor(sf::Color::Yellow);
     mName = name; 
+    mScaleBall = 1;
     mDamage = damage;  
     mSpeed = speed; 
-    mShootingDelay = shootingDelay; 
 	CreateSprite("../../../res/assets/Images/vaisseau.png", 0, 0, 64, 64);
     mTimerShoot = 0;
 }
@@ -45,10 +42,10 @@ void Player::Move(float delta)
 void Player::Shoot()
 {
     if (mTimerShoot > mShootingDelay) {
-        AllyBall* b = new AllyBall(10, 1, 1, 0, -1000);
+        AllyBall* b = new AllyBall(10, 1, mScaleBall, 0, -1000);
 
-        b->setOrigin(9, 9);
-        b->setPosition(getPosition());
+        b->setOrigin(9.f, 9.f);
+        b->setPosition(this->getPosition());
         GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
         mTimerShoot = 0;
     }
@@ -72,35 +69,33 @@ void Player::ScreenCollision()
 
 }
 
-void Player::BeInvincible()
-{
-    mIsInvincible = true;
-}
-
 void Player::ResetInvincible(float delta)
 {
-    mTimerInvincible += delta; 
+   /* mTimerInvincible += delta;
 
-    if (mTimerInvincible >= 2) 
+    if (mTimerInvincible >= 0.5)
     {
-        mIsInvincible = false; 
-        mTimerInvincible = 0; 
-    }
+        mIsInvincible = false;
+        mTimerInvincible = 0;
+    }*/
 }
 
 void Player::Update(float delta)
 {
     mPos = GetPosition();
 
+  
     mTimerShoot += delta;
-
-    if(mIsInvincible == true)
-        ResetInvincible(delta); 
+    mTimerInvincible += delta;
 
     Move(delta);
     ScreenCollision(); 
     Shoot();
+    //ResetInvincible(delta);
 
+    if (!mIsInvincible)
+        mTimerInvincible = 0;
+        
 }
 
 Hitbox Player::GetHitbox()
@@ -115,9 +110,6 @@ Hitbox Player::GetHitbox()
 void Player::OnCollide(Entity* e) 
 {
     if (mIsDead == true)
-        return;
-
-    if (mIsInvincible == true)
         return;
 
     if (typeid(*e) == typeid(EnemyBall))
@@ -137,6 +129,7 @@ void Player::OnCollide(Entity* e)
     if (IsDead())
     {
         mIsDead = true;
+        mDestroy = true;
         std::cout << "T'es mort !" << std::endl;
     }
 
