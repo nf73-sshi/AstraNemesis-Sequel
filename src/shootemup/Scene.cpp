@@ -3,8 +3,9 @@
 
 void Scene::Update(float delta)
 {
-	for (int i = 0; i < arrayEntity.size(); ++i) {
-		arrayEntity[i]->Update(delta);
+	for (int i = 0; i < arrayEntity.size(); i++)
+	{
+		arrayEntity[i]->Update(delta); 
 		Collide* c = dynamic_cast<Collide*>(arrayEntity[i]);
 		if (c)
 		{
@@ -16,9 +17,18 @@ void Scene::Update(float delta)
 					if (c->CheckCollision(other))
 					{
 						c->OnCollide(arrayEntity[j]);
+						other->OnCollide(arrayEntity[i]);
 					}
 				}
 			}
+		}
+	}
+	for (auto it = arrayEntity.begin(); it != arrayEntity.end();) {
+		if ((*it)->GetMDestroy()) {
+			it = arrayEntity.erase(it);
+		}
+		else {
+			++it;
 		}
 	}
 }
@@ -36,7 +46,3 @@ void Scene::addEntity(Entity* e)
 	arrayEntity.push_back(e);
 }
 
-void Scene::removeEntity(Entity* e)
-{
-	//arrayEntity.erase(e);
-}

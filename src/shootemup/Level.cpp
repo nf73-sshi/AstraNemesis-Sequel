@@ -15,13 +15,13 @@ void Level::Init()
 	playerPos.y = 0;
 	mCurrentTimer = 0;
 
-	Player* pPlayer = new Player("Ship", 3, 69, 750, 0.25);
+	Player* pPlayer = new Player("Ship", 3, 69, 750, 1);
 	pPlayer->setOrigin(32, 32);
 	pPlayer->scale(1.5, 1.5);
 	pPlayer->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
 	mCurrentPlayer = pPlayer;
 
-	Boss1* pBoss = new Boss1("Boss 1", 1000, 1, 500, 0.25);
+	Boss1* pBoss = new Boss1("Boss 1", 50, 1, 500, 0.25);
 	pBoss->setOrigin(266.5f, 127.5f);
 	pBoss->scale(2, 1);
 	pBoss->setPosition(WINDOW_WIDTH * 0.5, 127.5);
@@ -33,7 +33,6 @@ void Level::Init()
 	addEntity(pBG);
 	addEntity(pPlayer);
 	addEntity(pBoss); 
-	 
 }
 
 void Level::Update(float delta)

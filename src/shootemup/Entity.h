@@ -3,12 +3,17 @@
 
 class Entity : public sf::Drawable, public sf::Transformable
 {
+
+protected:
     sf::Texture texture;
     sf::Sprite sprite;
+    bool mDestroy;
 
 public:
 
     void CreateSprite(const char* link, int x, int y, int sizeX, int sizeY);
+
+    bool GetMDestroy();
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

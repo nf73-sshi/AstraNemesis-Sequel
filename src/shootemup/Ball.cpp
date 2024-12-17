@@ -57,16 +57,14 @@ void Ball::SetDirection(float xFactor, float yFactor)
 
 void Ball::Update(float delta)
 {
-
 	sf::Vector2f pos = getPosition();
 
-	this->move(mXFactor * delta * mSpeed, mYFactor * delta * mSpeed);
-	mCurrentTime += delta;
+	this->move(mXFactor * delta * mSpeed, mYFactor * delta * mSpeed); 
+	mCurrentTime += delta; 
 
-	/*if (mIsCollision)
-	{
-		mCurrentScene->removeEntity(this);
-	}*/
+	if (getPosition().x < 0.f || getPosition().x > 1920.f || getPosition().y < 0.f || getPosition().y > 1080.f)
+		mDestroy = true;
+
 }
 
 Hitbox Ball::GetHitbox()

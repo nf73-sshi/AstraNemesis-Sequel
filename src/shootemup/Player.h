@@ -5,7 +5,6 @@
 
 class Player : public Character, public Collide
 {
-	sf::CircleShape mPlayerHitbox;
 	bool mIsInvincible;
 	float mTimerInvincible;
 
@@ -17,8 +16,6 @@ public:
 	void Shoot() override;
 
 	void ScreenCollision();
-
-	void BeInvincible();
 
 	void ResetInvincible(float delta);
 
