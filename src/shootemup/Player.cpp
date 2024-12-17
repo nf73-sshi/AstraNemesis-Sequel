@@ -41,9 +41,6 @@ void Player::Move(float delta)
 
 void Player::Shoot()
 {
-    if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::S)))
-        return;
-
     if (mTimerShoot > mShootingDelay) {
         AllyBall* b = new AllyBall(mDamage, 1, mScaleBall, 0, -1000);
 

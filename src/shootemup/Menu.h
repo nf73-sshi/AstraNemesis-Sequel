@@ -1,28 +1,27 @@
 #pragma once
 #include "Scene.h"
+#include "Button.h"
+#include "Title.h"
 
-class PlayButton : public Entity
+class PlayButton : public Button
 {
-	sf::Vector2f mPos;
-	float mVelocity;
+
 public:
 	PlayButton();
 	void Update(float delta) override;
 };
 
-class ShopButton : public Entity
+class ShopButton : public Button
 {
-	sf::Vector2f mPos; 
-	float mVelocity;
+
 public:
 	ShopButton();
 	void Update(float delta) override;
 };
 
-class QuitButton : public Entity
+class QuitButton : public Button
 {
-	sf::Vector2f mPos; 
-	float mVelocity;
+
 public:
 	QuitButton();
 	void Update(float delta) override;
@@ -31,7 +30,6 @@ public:
 
 class Menu : public Scene
 {
-	sf::Vector2f mousePos;
 
 public:
 	void Init();

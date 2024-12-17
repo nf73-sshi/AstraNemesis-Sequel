@@ -25,21 +25,21 @@ void GameManager::Initiate()
 {
 	mSceneManager.AddScene("Menu", new Menu());
 	mSceneManager.AddScene("Lvl1", new Level1());
-	mSceneManager.ChangeScene("Lvl1");
+	mSceneManager.ChangeScene("Menu");
 	mCurrentScene = mSceneManager.GetCurrentScene();
 }
 
 void GameManager::Update()
 {
 	mCurrentScene = mSceneManager.GetCurrentScene();
-
-
 }
 
 void GameManager::RunGame()
 {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Shoot Them Down!", sf::Style::Fullscreen);
 	bool isFullScreen = true;
+	
+	mWindow = &window; 
 
 	window.setFramerateLimit(240);
 
@@ -101,6 +101,11 @@ Scene* GameManager::GetCurrentScene()
 SceneManager& GameManager::GetCurrentSceneManager()
 {
 	return mSceneManager;
+}
+
+sf::RenderWindow* GameManager::GetWindow()
+{
+	return mWindow;
 }
 
 		

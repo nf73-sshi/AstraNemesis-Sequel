@@ -15,6 +15,8 @@ public:
 
     bool GetMDestroy();
 
+    Entity* GetEntity();
+
     void SetMDestroy(bool value); 
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
