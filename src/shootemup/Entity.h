@@ -15,6 +15,8 @@ public:
 
     bool GetMDestroy();
 
+    void SetMDestroy(bool value); 
+
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     virtual void Update(float delta) = 0;
