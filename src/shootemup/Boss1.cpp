@@ -2,6 +2,7 @@
 #include "EnemyBall.h"
 #include "AllyBall.h"
 #include "Player.h"
+#include "GameManager.h"
 #include <iostream>
 #include <typeinfo>
 
@@ -18,7 +19,7 @@ Boss1::Boss1(const char* name, int hp, int damage, float speed, float shootingDe
 	mVelocityX = mSpeed;
 	mVelocityY =mSpeed * 2.5;
 
-	CreateSprite("../../../res/assets/Images/bosscaca.png", 0, 0, 533, 255);
+	CreateSprite("../../../res/assets/Images/Boss1.png", 0, 0, 533, 255);
 }
 
 void Boss1::Update(float delta)  
@@ -41,6 +42,10 @@ void Boss1::Update(float delta)
 			Pattern3(delta);
 	}
 
+	if (IsDead() == true)
+	{
+		mDestroy = true;
+	}
 }
 
 void Boss1::Randomize()
@@ -134,12 +139,16 @@ void Boss1::OnCollide(Entity* e)
 
 	if (typeid(*e) == typeid(AllyBall))
 	{
-		mHP--;
+		AddRemoveHP(- 1);
 		std::cout << "Ouch ! :" << mHP << " Restants pour le boss" << std::endl;
 	}
 
-	if (IsDead() == true)
+	if (IsDead())
+	{
 		mDestroy = true;
+		GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
+		GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
+	}
 
 }
 

@@ -1,4 +1,4 @@
-#include "Level.h"
+#include "Level1.h"
 #include "Player.h"
 #include "Background.h"
 #include "AllyBall.h"
@@ -9,13 +9,13 @@
 #define WINDOW_HEIGHT 1080
 
 
-void Level::Init()
+void Level1::Init()
 {
 	playerPos.x = 0;
 	playerPos.y = 0;
 	mCurrentTimer = 0;
 
-	Player* pPlayer = new Player("Ship", 3, 69, 750, 1);
+	Player* pPlayer = new Player("Ship", 3, 10, 750, 0.1);
 	pPlayer->setOrigin(32, 32);
 	pPlayer->scale(1.5, 1.5);
 	pPlayer->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
@@ -35,7 +35,7 @@ void Level::Init()
 	addEntity(pBoss); 
 }
 
-void Level::Update(float delta)
+void Level1::Update(float delta)
 {
 	GetPosition(mCurrentPlayer);
 
@@ -46,7 +46,7 @@ void Level::Update(float delta)
 }
 
 
-void Level::GetPosition(Entity* pPlayer)
+void Level1::GetPosition(Entity* pPlayer)
 {
 	playerPos = pPlayer->getPosition(); 
 }

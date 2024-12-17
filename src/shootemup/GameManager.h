@@ -24,7 +24,7 @@ public:
 
 	Scene* GetCurrentScene();
 
-
+	SceneManager& GetCurrentSceneManager();
 
 };
 

@@ -6,7 +6,7 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "Player.h"
-#include "Level.h"
+#include "Level1.h"
 #include "Menu.h"
 
 GameManager* GameManager::mInstance = nullptr;
@@ -24,8 +24,8 @@ GameManager* GameManager::GetInstance()
 void GameManager::Initiate()
 {
 	mSceneManager.AddScene("Menu", new Menu());
-	mSceneManager.AddScene("Lvl1", new Level());
-	mSceneManager.ChangeScene("Menu");
+	mSceneManager.AddScene("Lvl1", new Level1());
+	mSceneManager.ChangeScene("Lvl1");
 	mCurrentScene = mSceneManager.GetCurrentScene();
 }
 
@@ -96,6 +96,11 @@ void GameManager::RunGame()
 Scene* GameManager::GetCurrentScene()
 {
 	return mCurrentScene;
+}
+
+SceneManager& GameManager::GetCurrentSceneManager()
+{
+	return mSceneManager;
 }
 
 		

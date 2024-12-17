@@ -19,6 +19,11 @@ bool Entity::GetMDestroy()
     return mDestroy;
 }
 
+void Entity::SetMDestroy(bool value)
+{
+    mDestroy = value;
+}
+
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform.combine(getTransform());

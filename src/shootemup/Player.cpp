@@ -27,12 +27,12 @@ void Player::Move(float delta)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         this->move(0.f, mSpeed * delta);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    } 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) 
     {
         this->move(-mSpeed * delta, 0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
     {
         this->move(mSpeed * delta, 0);
     }
@@ -41,8 +41,11 @@ void Player::Move(float delta)
 
 void Player::Shoot()
 {
+    if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::S)))
+        return;
+
     if (mTimerShoot > mShootingDelay) {
-        AllyBall* b = new AllyBall(10, 1, mScaleBall, 0, -1000);
+        AllyBall* b = new AllyBall(mDamage, 1, mScaleBall, 0, -1000);
 
         b->setOrigin(9.f, 9.f);
         b->setPosition(this->getPosition());
