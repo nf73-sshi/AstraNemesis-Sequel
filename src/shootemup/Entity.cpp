@@ -19,6 +19,11 @@ bool Entity::GetMDestroy()
     return mDestroy;
 }
 
+Entity* Entity::GetEntity()
+{
+    return this;
+}
+
 void Entity::SetMDestroy(bool value)
 {
     mDestroy = value;

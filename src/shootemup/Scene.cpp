@@ -3,6 +3,8 @@
 
 void Scene::Update(float delta)
 {
+	mousePos = sf::Mouse::getPosition();
+
 	for (int i = 0; i < arrayEntity.size(); i++)
 	{
 		arrayEntity[i]->Update(delta); 
@@ -23,14 +25,26 @@ void Scene::Update(float delta)
 			}
 		}
 	}
-	for (auto it = arrayEntity.begin(); it != arrayEntity.end();) {
-		if ((*it)->GetMDestroy()) {
+	for (auto it = arrayEntity.begin(); it != arrayEntity.end();)
+	{
+		if ((*it)->GetMDestroy())
+		{
 			it = arrayEntity.erase(it);
 		}
-		else {
+		else 
+		{
 			++it;
 		}
 	}
+}
+
+void Scene::Destroy()
+{
+	/*for (auto it = arrayEntity.begin(); it != arrayEntity.end();)
+	{
+		it = arrayEntity.erase(it);
+		++it;
+	}*/
 }
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const

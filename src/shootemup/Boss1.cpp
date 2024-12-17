@@ -10,6 +10,7 @@ Boss1::Boss1(const char* name, int hp, int damage, float speed, float shootingDe
 {
 	srand(time(0));
 	mRandomizer = 1;
+	mTimerInactive = 0;
 	mTimerShoot = 0;
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
@@ -24,6 +25,12 @@ Boss1::Boss1(const char* name, int hp, int damage, float speed, float shootingDe
 
 void Boss1::Update(float delta)  
 {
+	if (mTimerInactive < 2)
+	{
+		mTimerInactive += delta;
+		return;
+	}
+
 	mPos = GetPosition();
 	mTimerShoot += delta;
 	mTimerPattern1 += delta; 
@@ -139,13 +146,14 @@ void Boss1::OnCollide(Entity* e)
 
 	if (typeid(*e) == typeid(AllyBall))
 	{
-		AddRemoveHP(- 1);
+		AddRemoveHP(-1);
 		std::cout << "Ouch ! :" << mHP << " Restants pour le boss" << std::endl;
 	}
 
 	if (IsDead())
 	{
 		mDestroy = true;
+		GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Destroy();
 		GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
 		GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
 	}

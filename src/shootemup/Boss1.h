@@ -7,6 +7,7 @@ class Boss1 : public Character, public Collide
 	int mRandomizer;
 	float mVelocityX;
 	float mVelocityY;
+	float mTimerInactive;
 	float mTimerPattern1;
 	float mTimerPattern2;
 	float mTimerPattern3;

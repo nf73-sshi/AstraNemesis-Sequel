@@ -10,6 +10,7 @@ protected:
 	static GameManager* mInstance;
 	SceneManager mSceneManager;
 	Scene* mCurrentScene;
+	sf::RenderWindow* mWindow;
 
 public:
 	static GameManager* GetInstance();
@@ -26,5 +27,6 @@ public:
 
 	SceneManager& GetCurrentSceneManager();
 
+	sf::RenderWindow* GetWindow();
 };
 
