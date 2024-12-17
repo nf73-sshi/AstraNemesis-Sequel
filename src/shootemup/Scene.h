@@ -11,6 +11,7 @@ protected:
 	sf::RenderWindow* mWindow;
 	
 public:
+	~Scene();
 	virtual void Init() = 0;
 	void Destroy();
 	virtual void Update(float delta);

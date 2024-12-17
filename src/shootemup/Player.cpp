@@ -6,14 +6,12 @@
 #include <typeinfo>
 #include <iostream>
 
-Player::Player(const char* name, int hp, int damage, float speed, float shootingDelay) : Character(name, hp, damage, speed, shootingDelay)
+Player::Player() : Character("Ship", 10, 10, 750, 0.1)
 {
+    mTimerInactive = 0;
     mTimerInvincible = 0;
     mIsInvincible = false;
-    mName = name; 
     mScaleBall = 1;
-    mDamage = damage;  
-    mSpeed = speed; 
 	CreateSprite("../../../res/assets/Images/vaisseau.png", 0, 0, 64, 64);
     mTimerShoot = 0;
 }
@@ -41,6 +39,9 @@ void Player::Move(float delta)
 
 void Player::Shoot()
 {
+    if (mTimerInactive < 2)
+        return;
+
     if (mTimerShoot > mShootingDelay) {
         AllyBall* b = new AllyBall(mDamage, 1, mScaleBall, 0, -1000);
 
@@ -69,16 +70,25 @@ void Player::ScreenCollision()
 
 }
 
+void Player::InvincibleAnim(float delta)
+{
+    this->sprite.setColor(sf::Color(132, 255, 255, 200));
+}
+
 void Player::ResetInvincible(float delta)
 {
-   /* mTimerInvincible += delta;
+    InvincibleAnim(delta);
 
-    if (mTimerInvincible >= 0.5)
-    {
-        mIsInvincible = false;
-        mTimerInvincible = 0;
-    }*/
+    mTimerInvincible += delta;
+
+    if (mTimerInvincible < 1)
+        return;
+
+    mIsInvincible = false;
+    mTimerInvincible = 0;
+    this->sprite.setColor(sf::Color(255, 255, 255, 255));
 }
+
 
 void Player::Update(float delta)
 {
@@ -86,15 +96,19 @@ void Player::Update(float delta)
 
   
     mTimerShoot += delta;
-    mTimerInvincible += delta;
+
+    if (mTimerInactive < 2)
+    {
+        mTimerInactive += delta;
+    }
+
+    if(mIsInvincible == true)
+        ResetInvincible(delta);
 
     Move(delta);
     ScreenCollision(); 
     Shoot();
-    //ResetInvincible(delta);
 
-    if (!mIsInvincible)
-        mTimerInvincible = 0;
         
 }
 
@@ -112,18 +126,21 @@ void Player::OnCollide(Entity* e)
     if (mIsDead == true)
         return;
 
+    if (mIsInvincible == true)
+        return;
+
     if (typeid(*e) == typeid(EnemyBall))
     {
         mIsInvincible = true;
         AddRemoveHP(-1);
-        std::cout << "Une boule te fracasse ! : " << mHP << " PV Restants pour toi" << std::endl;
+        std::cout << mHP << " PV Restants pour toi" << std::endl;
     }
 
     if (typeid(*e) == typeid(Boss1)) 
     {
         mIsInvincible = true;
         AddRemoveHP(-1);
-        std::cout << "Le boss te fracasse ! : " << mHP << " PV Restants pour toi" << std::endl;
+        std::cout << mHP << " PV Restants pour toi" << std::endl;
     }
 
     if (IsDead())

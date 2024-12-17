@@ -6,7 +6,7 @@
 #include <iostream>
 #include <typeinfo>
 
-Boss1::Boss1(const char* name, int hp, int damage, float speed, float shootingDelay) : Character(name, hp, damage, speed, shootingDelay)
+Boss1::Boss1() : Character("Boss 1", 50, 1, 500, 0.25)
 {
 	srand(time(0));
 	mRandomizer = 1;
@@ -16,7 +16,6 @@ Boss1::Boss1(const char* name, int hp, int damage, float speed, float shootingDe
 	mTimerPattern2 = 0;
 	mTimerPattern3 = 0;
 	mScaleBall = 1;
-	mSpeed = speed;
 	mVelocityX = mSpeed;
 	mVelocityY =mSpeed * 2.5;
 
@@ -57,8 +56,7 @@ void Boss1::Update(float delta)
 
 void Boss1::Randomize()
 {
-	mRandomizer = rand() % 2 + 1;
-	std::cout << "Random = " << mRandomizer << std::endl;
+	mRandomizer = 1 + rand() % 2;
 }
 
 void Boss1::Shoot()
@@ -147,15 +145,12 @@ void Boss1::OnCollide(Entity* e)
 	if (typeid(*e) == typeid(AllyBall))
 	{
 		AddRemoveHP(-1);
-		std::cout << "Ouch ! :" << mHP << " Restants pour le boss" << std::endl;
+		std::cout << mHP << " Restants pour le boss" << std::endl;
 	}
 
 	if (IsDead())
 	{
 		mDestroy = true;
-		GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Destroy();
-		GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
-		GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
 	}
 
 }
