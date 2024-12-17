@@ -7,9 +7,10 @@ class Player : public Character, public Collide
 {
 	bool mIsInvincible;
 	float mTimerInvincible;
+	float mTimerInactive;
 
 public:
-	Player(const char* name, int hp, int damage, float speed, float shootingDelay);
+	Player();
 
 	void Move(float delta);
 
@@ -17,7 +18,10 @@ public:
 
 	void ScreenCollision();
 
+	void InvincibleAnim(float delta);
+
 	void ResetInvincible(float delta);
+
 
 	void Update(float delta) override;
 

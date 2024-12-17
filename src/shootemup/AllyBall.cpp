@@ -9,7 +9,9 @@ AllyBall::AllyBall(int damage, float speed, float scale, float xFactor, float yF
 void AllyBall::OnCollide(Entity* e)
 {
 	if (typeid(*e) == typeid(Boss1))
+	{
 		mDestroy = true;
-
+	}
+		
 	return;
 }

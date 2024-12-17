@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Collide.h"
+#include <iostream>
 
 void Scene::Update(float delta)
 {
@@ -29,6 +30,7 @@ void Scene::Update(float delta)
 	{
 		if ((*it)->GetMDestroy())
 		{
+			delete* it;
 			it = arrayEntity.erase(it);
 		}
 		else 
@@ -38,13 +40,19 @@ void Scene::Update(float delta)
 	}
 }
 
+Scene::~Scene()
+{
+	Destroy();
+}
+
 void Scene::Destroy()
 {
-	/*for (auto it = arrayEntity.begin(); it != arrayEntity.end();)
+	for (Entity* e: arrayEntity)
 	{
-		it = arrayEntity.erase(it);
-		++it;
-	}*/
+		delete e;
+	}
+	arrayEntity.clear();
+	std::cout << "Scene explosee !\n";
 }
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const

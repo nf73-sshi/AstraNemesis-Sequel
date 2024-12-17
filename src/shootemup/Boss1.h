@@ -13,7 +13,7 @@ class Boss1 : public Character, public Collide
 	float mTimerPattern3;
 
 public:
-	Boss1(const char* name, int hp, int damage, float speed, float shootingDelay);
+	Boss1();
 
 	void Update(float delta) override;
 

@@ -22,9 +22,8 @@ void PlayButton::Update(float delta)
 	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Destroy();
 			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Lvl1"); 
-			GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init(); 
+			GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
 		}
 	}
 
