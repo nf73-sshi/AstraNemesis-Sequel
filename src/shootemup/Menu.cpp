@@ -101,7 +101,6 @@ void QuitButton::Update(float delta)
 
 void Menu::Init()
 {
-	mWindow = GameManager::GetInstance()->GetWindow();
 
 	const float size = 1.5f;
 
@@ -140,6 +139,7 @@ void Menu::Init()
 
 void Menu::Update(float delta)
 {
+	mWindow = GameManager::GetInstance()->GetWindow();
 	mousePos = sf::Mouse::getPosition(*mWindow); 
 
 	mTimer += delta;

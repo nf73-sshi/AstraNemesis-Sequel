@@ -4,6 +4,7 @@
 #include "UI.h"
 #include "HealthBar.h"
 #include "Boss1.h"
+#include "Mob1.h"
 #include <iostream>
 
 #define WINDOW_WIDTH 1920
@@ -19,7 +20,7 @@ void Level1::Init()
 	Player* pPlayer = new Player();
 	pPlayer->setOrigin(32, 32);
 	pPlayer->scale(1.5, 1.5);
-	pPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.5);
+	pPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.7);
 	mCurrentPlayer = pPlayer;
 
 	Boss1* pBoss = new Boss1();
@@ -40,12 +41,11 @@ void Level1::Init()
 	pPlayerHB->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT * 0.2);
 
 	addEntity(pBG);
-	addEntity(pUI);
 	addEntity(pPlayerHB);
 
 	addEntity(pPlayer);
 	addEntity(pBoss); 
-
+	addEntity(pUI);
 }
 
 void Level1::Update(float delta)

@@ -15,6 +15,8 @@ public:
 
     bool GetMDestroy();
 
+    virtual int GetDamage();
+
     Entity* GetEntity();
 
     void SetMDestroy(bool value); 

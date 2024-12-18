@@ -140,10 +140,6 @@ void Player::ResetInvincible(float delta)
 
 void Player::Update(float delta)
 {
-    std::cout << "recharge skill2 :" << mReloadSkill2 << std::endl;
-    std::cout << "Duree skill2:" << mDurSKill2 << std::endl;
-    std::cout << "est activee ? :" << mSkill2Used << std::endl;
-
     mPos = GetPosition();
     
     if (mReloadSkill2 > 0)
@@ -207,6 +203,8 @@ void Player::OnCollide(Entity* e)
         mIsDead = true;
         mDestroy = true;
         std::cout << "T'es mort !" << std::endl;
+        GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
+        GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
     }
 
 }

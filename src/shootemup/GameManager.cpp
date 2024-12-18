@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Level1.h"
 #include "Menu.h"
+#include "GameOver.h"
 
 GameManager* GameManager::mInstance = nullptr;
 
@@ -24,6 +25,7 @@ GameManager* GameManager::GetInstance()
 void GameManager::Initiate()
 {
 	mSceneManager.AddScene("Menu", new Menu());
+	mSceneManager.AddScene("GameOver", new GameOver());
 	mSceneManager.AddScene("Lvl1", new Level1());
 	mSceneManager.ChangeScene("Menu");
 	mCurrentScene = mSceneManager.GetCurrentScene();
