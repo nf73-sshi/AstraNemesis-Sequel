@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-class Level : public Scene
+class Level1 : public Scene
 {
 	float mCurrentTimer;
 	float var;

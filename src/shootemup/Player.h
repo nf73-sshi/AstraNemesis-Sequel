@@ -3,20 +3,33 @@
 #include "Ball.h"
 #include "Character.h"
 
-class Player : public Character
+class Player : public Character, public Collide
 {
-	const char* mName;
-	int mDamage;
-	float mSpeed;
-	float mShootingDelay;
+	bool mIsInvincible;
+	float mTimerInvincible;
+	float mTimerInactive;
 
 public:
-	Player(const char* name, int damage, float speed, float shootingDelay);
+	Player();
 
-	void Shoot();
+	void Move(float delta);
+
+	void Shoot() override;
+
+	void ScreenCollision();
+
+	void InvincibleAnim(float delta);
+
+	void ResetInvincible(float delta);
+
 
 	void Update(float delta) override;
 
+
+	// Hérité via Collide
+	Hitbox GetHitbox() override;
+
+	void OnCollide(Entity* e) override;
 
 };
 

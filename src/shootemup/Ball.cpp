@@ -1,11 +1,17 @@
 #include "Ball.h"
+#include <iostream>
 
-Ball::Ball(int damage, float speed, float direction)
+Ball::Ball(int damage, float speed, float scale, float xFactor, float yFactor)
 {
+	mCurrentScene = GameManager::GetInstance()->GetCurrentScene();
 	mDamage = damage;
 	mSpeed = speed;
-	mDirection = direction;
-	CreateSprite("../../../res/assets/Images/bulletsTile.png", 167, 297, 17, 17);
+	mScale = scale;
+	this->setScale(mScale, mScale); 
+	mXFactor = xFactor;
+	mYFactor = yFactor;
+	mCurrentTime = 0;
+	mCurrentTime = 0;
 }
 
 int Ball::GetDamage()
@@ -18,9 +24,19 @@ float Ball::GetSpeed()
 	return mSpeed;
 }
 
-float Ball::GetDirection()
+float Ball::GetXFactor()
 {
-	return mDirection;
+	return mXFactor;
+}
+
+float Ball::GetYFactor()
+{
+	return mYFactor;
+}
+
+void Ball::SetSize(float size) 
+{
+	mScale = size;
 }
 
 void Ball::SetDamage(int damage)
@@ -33,17 +49,33 @@ void Ball::SetSpeed(float speed)
 	mSpeed = speed;
 }
 
-void Ball::SetDirection(float direction)
+void Ball::SetDirection(float xFactor, float yFactor)
 {
-	mDirection = direction;
+	mXFactor = xFactor;
+	mYFactor = yFactor;
 }
-
-void Ball::SpawnBullet() {}
-void Ball::DestroyBullet() {}
 
 void Ball::Update(float delta)
 {
 	sf::Vector2f pos = getPosition();
 
-	this->move(0, delta * -mSpeed);
+	this->move(mXFactor * delta * mSpeed, mYFactor * delta * mSpeed); 
+	mCurrentTime += delta; 
+
+	if (getPosition().x < 0.f || getPosition().x > 1920.f || getPosition().y < 0.f || getPosition().y > 1080.f)
+		mDestroy = true;
+
+}
+
+Hitbox Ball::GetHitbox()
+{
+	Hitbox h;
+	h.position = getPosition();
+	h.radius = 8.5f * mScale;
+	return h; 
+}
+
+void Ball::OnCollide(Entity*)
+{
+	return;
 }

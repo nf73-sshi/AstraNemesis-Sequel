@@ -1,27 +1,27 @@
-#include "Level.h"
+#include "Level1.h"
 #include "Player.h"
 #include "Background.h"
-#include "Ball.h"
-#include "Enemy1.h"
+#include "AllyBall.h"
+#include "Boss1.h"
 #include <iostream>
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
 
-void Level::Init()
+void Level1::Init()
 {
 	playerPos.x = 0;
 	playerPos.y = 0;
 	mCurrentTimer = 0;
 
-	Player* pPlayer = new Player("Ship", 69, 500, 1);
+	Player* pPlayer = new Player();
 	pPlayer->setOrigin(32, 32);
 	pPlayer->scale(1.5, 1.5);
 	pPlayer->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
 	mCurrentPlayer = pPlayer;
 
-	Enemy1* pBoss = new Enemy1("Classic mob", 1, 500, 0.5f);
+	Boss1* pBoss = new Boss1();
 	pBoss->setOrigin(266.5f, 127.5f);
 	pBoss->scale(2, 1);
 	pBoss->setPosition(WINDOW_WIDTH * 0.5, 127.5);
@@ -33,30 +33,20 @@ void Level::Init()
 	addEntity(pBG);
 	addEntity(pPlayer);
 	addEntity(pBoss); 
-	 
 }
 
-void Level::Update(float delta)
+void Level1::Update(float delta)
 {
 	GetPosition(mCurrentPlayer);
 
 	Scene::Update(delta);
-
-	if (mCurrentTimer > 0.1) {
-		Ball* b = new Ball(1, 2000, 0);
-
-		b->setOrigin(8.5, 8.5);
-		b->setPosition(playerPos.x, playerPos.y); 
-		addEntity(b);
-		mCurrentTimer = 0;
-	}
 
 	mCurrentTimer += delta;
 	var += delta;
 }
 
 
-void Level::GetPosition(Entity* pPlayer)
+void Level1::GetPosition(Entity* pPlayer)
 {
 	playerPos = pPlayer->getPosition(); 
 }
