@@ -79,7 +79,7 @@ void Boss1::Pattern1(float delta)
 	if (mPos.x < 533)
 		mVelocityX = mSpeed;
 
-	if (mPos.x > 1387)
+	if (mPos.x > 1087)
 		mVelocityX = -mSpeed;
 
 	this->move(mVelocityX * delta, 0);

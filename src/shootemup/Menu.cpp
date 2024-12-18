@@ -7,10 +7,8 @@
 #define WINDOW_HEIGHT 1080 
 
 float mTimer = 0;
-const int min = 100;
-const int rdm = 567;
 
-PlayButton::PlayButton()
+PlayButton::PlayButton() : Button() 
 {
 	CreateSprite("../../../res/assets/Menu/playButton.png", 0, 0, 200, 120);
 }
@@ -19,28 +17,29 @@ void PlayButton::Update(float delta)
 {
 	Button::Update(delta);
 
-	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) {
+	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) { 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Lvl1"); 
+			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Lvl1");
 			GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
 		}
 	}
 
-	if (mPos.x < 150) 
+	if (mPos.x < 150)
 		mVelocity = min + rand() % rdm;
 
 	if (mPos.x > 1770)
-		mVelocity = - (min + rand() % rdm);
-
+		mVelocity = -(min + rand() % rdm);
+	
 	this->move(mVelocity * delta, 0);
+
 
 	return;
 }
 
 
 
-ShopButton::ShopButton()
+ShopButton::ShopButton() : Button()
 {
 	CreateSprite("../../../res/assets/Menu/shopButton.png", 0, 0, 200, 120);
 }
@@ -48,6 +47,8 @@ ShopButton::ShopButton()
 void ShopButton::Update(float delta)
 {
 	Button::Update(delta);
+
+	sprite.setColor(sf::Color(255, 255, 255, 100));
 
 	if (mTimer < 1)
 		return;
@@ -66,7 +67,7 @@ void ShopButton::Update(float delta)
 
 
 
-QuitButton::QuitButton()
+QuitButton::QuitButton() : Button() 
 {
 	CreateSprite("../../../res/assets/Menu/quitButton.png", 0, 0, 200, 120);
 }

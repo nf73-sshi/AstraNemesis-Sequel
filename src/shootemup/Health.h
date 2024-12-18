@@ -1,4 +1,6 @@
 #pragma once
+#include "SFML/Graphics.hpp"
+#include "Entity.h"
 
 class Health
 {
@@ -16,8 +18,6 @@ public:
 	void SetHP(int value);
 	void AddRemoveHP(int value);
 	bool IsDead();
-
-
 
 };
 
