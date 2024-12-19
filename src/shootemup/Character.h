@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Health.h"
 
-class Character : public Entity, public Health
+class Character : public Health, public Entity
 {
 
 protected:
@@ -14,6 +14,10 @@ protected:
 	float mTimerShoot;
 	float mTimerInactive;
 	float mShootingDelay;
+<<<<<<< Updated upstream
+=======
+	float mTimerDelay;
+>>>>>>> Stashed changes
 
 	float mTimerDelay;
 

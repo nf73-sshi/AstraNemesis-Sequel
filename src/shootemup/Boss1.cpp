@@ -6,23 +6,20 @@
 #include "GameManager.h"
 #include <iostream>
 #include <typeinfo>
-
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
-int x = 0;
-
-Boss1::Boss1() : Character("Boss 1", 1000, 1, 400, 0.25)
+Boss1::Boss1() : Character("Boss 1", 1000, 1, 400, 0.35)
 {
 	srand(time(0));
-	mRandomizer = 1;
+	mRandomizer = 0;
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
 	mTimerPattern3 = 0;
 	mTimerPattern4 = 0;
+	mScaleBall = 1.5;
 	mVelocityX = mSpeed;
 	mVelocityY =mSpeed * 2.5;
-
 	CreateSprite("../../../res/assets/Images/Boss1.png", 0, 0, 533, 255);
 }
 
@@ -51,9 +48,9 @@ void Boss1::Update(float delta)
 		if(mRandomizer < 50)
 			Pattern2(delta);
 		if (mRandomizer >= 50 && mRandomizer < 85)
-			Pattern4(delta); 
-		if (mRandomizer >= 85)
 			Pattern3(delta); 
+		if (mRandomizer >= 85)
+			Pattern4(delta);
 	}
 
 	if (IsDead() == true)
@@ -71,9 +68,8 @@ void Boss1::Shoot()
 {
 	if (mTimerShoot > mShootingDelay)
 	{
-
-		EnemyBall* b = new EnemyBall(1, 1, mScaleBall, 0, 1000);
-
+		EnemyBall* b = new EnemyBall(1, 1, mScaleBall, 0, 800);
+    
 		b->setOrigin(9.f, 9.f);
 		b->setPosition(getPosition());
 		GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
@@ -102,7 +98,7 @@ void Boss1::Pattern2(float delta)
 	{
 		for (int i = -6; i < 6; i++)
 		{
-			EnemyBall* b = new EnemyBall(1, 1, mScaleBall * 2, i * 100.f, 500);
+			EnemyBall* b = new EnemyBall(1, 1, 2.5, i * 100.f, 600);
 
 			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
@@ -112,6 +108,7 @@ void Boss1::Pattern2(float delta)
 
 		mTimerPattern1 = 0;
 		mTimerPattern2 = 0;
+		mTimerShoot = 0;
 		Randomize();
 	}
 
@@ -126,7 +123,7 @@ void Boss1::Pattern3(float delta)
 	{
 		for (int i = 0; i < 1; i++)
 		{
-			EnemyBall* b = new EnemyBall(1, 1, mScaleBall * 20, 0, 250);
+			EnemyBall* b = new EnemyBall(1, 1, 18, 0, 250);
 
 			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
@@ -136,6 +133,7 @@ void Boss1::Pattern3(float delta)
 
 		mTimerPattern1 = 0;
 		mTimerPattern3 = 0;
+		mTimerShoot = 0;
 		Randomize();
 	}
 }
@@ -151,14 +149,14 @@ void Boss1::Pattern4(float delta)
 			Mob1* b = new Mob1();
 			b->setOrigin(32, 32);
 			b->setScale(3, 3);
-			b->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.25);
+			b->setPosition(WINDOW_WIDTH * 0.3 + i* 500 , -192);
 			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
 		}
 
 		mTimerPattern1 = 0;
 		mTimerPattern4 = 0;
-		Randomize();
-
+		mTimerShoot = 0;
+		mRandomizer = rand() % 85;
 	}
 
 }
@@ -186,6 +184,7 @@ void Boss1::OnCollide(Entity* e)
 	if (IsDead())
 	{
 		mDestroy = true;
+		GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
 	}
 
 }

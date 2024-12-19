@@ -6,7 +6,7 @@
 #include <typeinfo>
 #include <iostream>
 
-Player::Player() : Character("Ship", 10, 10, 750, 0.2)
+Player::Player() : Character("Ship", 3, 10, 750, 0.2)
 {
     mTimerInactive = 0;
     mTimerInvincible = 0;
@@ -120,7 +120,7 @@ void Player::ScreenCollision()
 
 void Player::InvincibleAnim(float delta)
 {
-    this->sprite.setColor(sf::Color(132, 255, 255, 200));
+    this->sprite.setColor(sf::Color(132, 255, 255, 255));
 }
 
 void Player::ResetInvincible(float delta)
