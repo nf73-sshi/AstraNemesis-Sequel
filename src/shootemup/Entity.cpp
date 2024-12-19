@@ -29,6 +29,11 @@ float Entity::GetRatioHP()
     return 1;
 }
 
+bool Entity::IsDead()
+{
+    return false;
+}
+
 Entity* Entity::GetEntity()
 {
     return this;

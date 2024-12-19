@@ -6,7 +6,7 @@ HealthBar::HealthBar() : mHpBarFilled(sf::Vector2f(200.f, 30)), mHpBarEmpty(sf::
 {
 	mDestroy = false;
 	mHpBarFilled.setFillColor(sf::Color::Yellow);
-	mHpBarEmpty.setFillColor(sf::Color::Red);
+	mHpBarEmpty.setFillColor(sf::Color(162, 0, 255));
 }
 
 void HealthBar::Update(float delta)

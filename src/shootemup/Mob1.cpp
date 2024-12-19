@@ -21,7 +21,7 @@ void Mob1::Update(float delta)
 {
 	if (mTimerInactive < 1.5)
 	{
-		this->move(0, 300 * delta);
+		this->move(0, 310 * delta);
 		mTimerInactive += delta;
 		return;
 	}
@@ -34,7 +34,7 @@ void Mob1::Update(float delta)
 	Shoot();
 	Pattern1(delta);
 
-	if (IsDead() == true)
+	if (Health::IsDead() == true)
 	{
 		mDestroy = true;
 	}
@@ -90,17 +90,12 @@ Hitbox Mob1::GetHitbox()
 
 void Mob1::OnCollide(Entity* e)
 {
-	if (mTimerDelay < 0.1)
+	if (mTimerDelay < 0.01)
 		return;
 
 	if (typeid(*e) == typeid(AllyBall))
 	{
 		AddRemoveHP(- e->GetDamage());
 		mTimerDelay = 0;
-	}
-
-	if (IsDead())
-	{
-		mDestroy = true;
 	}
 }

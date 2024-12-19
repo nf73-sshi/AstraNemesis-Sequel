@@ -11,13 +11,13 @@ Character::Character(const char* name, int hp, int damage, float speed, float sh
 	mTimerDelay = 0;
 	mTimerInactive = 0;
 	mShootingDelay = shootingDelay;
-	mTimerShoot = 0;
+
+	mEndTimer = 0;
 }
 
 sf::Vector2f Character::GetPosition()
 {
 	mPos = this->getPosition();
-
 	return mPos;
 }
 

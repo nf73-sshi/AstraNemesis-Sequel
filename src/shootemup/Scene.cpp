@@ -42,17 +42,16 @@ void Scene::Update(float delta)
 
 Scene::~Scene()
 {
-	Destroy();
+	Clear();
 }
 
-void Scene::Destroy()
+void Scene::Clear()
 {
 	for (Entity* e: arrayEntity)
 	{
 		delete e;
 	}
 	arrayEntity.clear();
-	std::cout << "Scene explosee !\n";
 }
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const

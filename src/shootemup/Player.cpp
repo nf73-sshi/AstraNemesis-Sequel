@@ -10,7 +10,7 @@ Player::Player() : Character("Ship", 3, 10, 750, 0.2)
 {
     mTimerInactive = 0;
     mTimerInvincible = 0;
-    mReloadSkill2 = 3;
+    mReloadSkill2 = 10;
     mDurSKill2 = 3;
     mSkill2Used = false;
 
@@ -39,6 +39,11 @@ void Player::Move(float delta)
         this->move(mSpeed * delta, 0);
     }
 
+}
+
+void Player::SetLifeBar(HealthBar* pHB)
+{
+    mHB = pHB;
 }
 
 void Player::Shoot()
@@ -71,7 +76,7 @@ void Player::TriggerSkill2()
 
 void Player::UseSkill1(float delta)
 {
-
+    //NO
 }
 
 void Player::UseSkill2(float delta)
@@ -89,15 +94,16 @@ void Player::UseSkill2(float delta)
     }
     else
     {
-        mShootingDelay = 0.1;
+        mShootingDelay = 0.001;
         mDurSKill2 -= delta;
-        mReloadSkill2 = 5;
+        mReloadSkill2 = 10;
     }
     
 }
 
 void Player::UseSkill3(float delta)
 {
+    //NO
 }
 
 
@@ -141,17 +147,31 @@ void Player::ResetInvincible(float delta)
 void Player::Update(float delta)
 {
     mPos = GetPosition();
-    
-    if (mReloadSkill2 > 0)
-    {
-        mReloadSkill2 -= delta;
-    }
+
 
     mTimerShoot += delta;
 
     if (mTimerInactive < 2)
     {
         mTimerInactive += delta;
+    }
+
+
+    if (Health::IsDead())
+    {
+        mEndTimer += delta;
+        this->sprite.setColor(sf::Color(255, 255, 255, 0));
+        if (mEndTimer > 1)
+        {
+            mDestroy = true;
+            GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
+        }
+        return;
+    }
+
+    if (mReloadSkill2 > 0)
+    {
+        mReloadSkill2 -= delta;
     }
 
     if(mIsInvincible == true)
@@ -188,23 +208,13 @@ void Player::OnCollide(Entity* e)
     {
         mIsInvincible = true;
         AddRemoveHP(-1);
-        std::cout << mHP << " PV Restants pour toi" << std::endl;
+        mHB->UpdateBar(Health::GetRatioHP());
     }
 
     if (typeid(*e) == typeid(Boss1)) 
     {
         mIsInvincible = true;
         AddRemoveHP(-1);
-        std::cout << mHP << " PV Restants pour toi" << std::endl;
+        mHB->UpdateBar(Health::GetRatioHP());
     }
-
-    if (IsDead())
-    {
-        mIsDead = true;
-        mDestroy = true;
-        std::cout << "T'es mort !" << std::endl;
-        GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
-        GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
-    }
-
 }

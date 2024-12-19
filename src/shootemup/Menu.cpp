@@ -21,7 +21,6 @@ void PlayButton::Update(float delta)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Lvl1");
-			GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
 		}
 	}
 
@@ -48,7 +47,7 @@ void ShopButton::Update(float delta)
 {
 	Button::Update(delta);
 
-	sprite.setColor(sf::Color(255, 255, 255, 100));
+	sprite.setColor(sf::Color(255, 0, 0, 128));
 
 	if (mTimer < 1)
 		return;

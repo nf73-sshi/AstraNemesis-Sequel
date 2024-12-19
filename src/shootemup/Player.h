@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Ball.h"
 #include "Character.h"
+#include "HealthBar.h"
 #include "Skill.h"
 
 class Player : public Character, public Collide
@@ -14,7 +15,7 @@ protected:
 	//Skill mReloadBoost;
 	float mReloadSkill2;
 	float mDurSKill2;
-
+	HealthBar* mHB;
 	bool mSkill2Used;
 
 public:
@@ -22,8 +23,10 @@ public:
 
 	void Move(float delta);
 
+	void SetLifeBar(HealthBar* pHB);
+
 	void Shoot() override;
-	
+
 	void TriggerSkill2();
 
 	void UseSkill1(float delta); // Shield
