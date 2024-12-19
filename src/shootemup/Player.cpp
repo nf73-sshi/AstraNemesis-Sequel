@@ -6,11 +6,11 @@
 #include <typeinfo>
 #include <iostream>
 
-Player::Player() : Character("Ship", 3, 10, 750, 0.2)
+Player::Player() : Character("Ship", 5, 10, 750, 0.2)
 {
     mTimerInactive = 0;
     mTimerInvincible = 0;
-    mReloadSkill2 = 10;
+    mReloadSkill2 = 2;
     mDurSKill2 = 3;
     mSkill2Used = false;
 
@@ -65,7 +65,7 @@ void Player::Shoot()
 
 void Player::TriggerSkill2()
 {
-    if (mReloadSkill2 >= 0)
+    if (mReloadSkill2 > 0)
         return;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -94,7 +94,7 @@ void Player::UseSkill2(float delta)
     }
     else
     {
-        mShootingDelay = 0.001;
+        mShootingDelay = 0.1;
         mDurSKill2 -= delta;
         mReloadSkill2 = 10;
     }

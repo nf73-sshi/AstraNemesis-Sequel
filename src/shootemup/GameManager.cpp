@@ -4,6 +4,7 @@
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "Rules.h"
 #include "Entity.h"
 #include "Player.h"
 #include "Level1.h"
@@ -25,6 +26,7 @@ GameManager* GameManager::GetInstance()
 void GameManager::Initiate()
 {
 	mSceneManager.AddScene("Menu", new Menu());
+	mSceneManager.AddScene("Rules", new Rules());
 	mSceneManager.AddScene("GameOver", new GameOver());
 	mSceneManager.AddScene("Lvl1", new Level1());
 	mSceneManager.ChangeScene("Menu");
@@ -38,7 +40,7 @@ void GameManager::Update()
 
 void GameManager::RunGame()
 {
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Shoot Them Down!", sf::Style::Fullscreen);
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Astra Nemesis !", sf::Style::Fullscreen);
 	bool isFullScreen = true;
 	
 	mWindow = &window; 
@@ -85,12 +87,11 @@ void GameManager::RunGame()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
-			exit(420);
-			/*if (isFullScreen)
+			if (isFullScreen)
 			{
-				window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Titlebar);
+				window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Close);
 				isFullScreen = false;
-			}*/
+			}
 		}
 	}
 }
