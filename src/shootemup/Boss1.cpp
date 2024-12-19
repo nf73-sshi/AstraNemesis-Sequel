@@ -32,6 +32,18 @@ void Boss1::Update(float delta)
 		return;
 	}
 
+	if (Health::IsDead())
+	{
+		mEndTimer += delta;
+		this->sprite.setColor(sf::Color(255, 255, 255, 0));
+		if (mEndTimer > 2)
+		{
+			mDestroy = true;
+			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
+		}
+		return;
+	}
+
 	mPos = GetPosition();
 	mTimerDelay += delta;
 	mTimerShoot += delta;
@@ -45,23 +57,25 @@ void Boss1::Update(float delta)
 
 	if (mTimerPattern1 > 2)
 	{
-		if(mRandomizer < 50)
+		if(mRandomizer < 30)
 			Pattern2(delta);
-		if (mRandomizer >= 50 && mRandomizer < 85)
+		if (mRandomizer >= 30 && mRandomizer < 50)
 			Pattern3(delta); 
+		if (mRandomizer >= 50 && mRandomizer < 85)
+			Pattern5(delta);
 		if (mRandomizer >= 85)
 			Pattern4(delta);
-	}
-
-	if (IsDead() == true)
-	{
-		mDestroy = true;
 	}
 }
 
 void Boss1::Randomize()
 {
 	mRandomizer = rand() % 101;
+}
+
+void Boss1::SetLifeBar(HealthBar* pHB)
+{
+	mHB = pHB;
 }
 
 void Boss1::Shoot()
@@ -96,9 +110,9 @@ void Boss1::Pattern2(float delta)
 
 	if (mTimerPattern2 >= 0.5)
 	{
-		for (int i = -6; i < 6; i++)
+		for (int i = -5; i < 6; i++)
 		{
-			EnemyBall* b = new EnemyBall(1, 1, 2.5, i * 100.f, 600);
+			EnemyBall* b = new EnemyBall(1, 1, 2.5, i * 125.f, 600);
 
 			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
@@ -144,12 +158,12 @@ void Boss1::Pattern4(float delta)
 
 	if (mTimerPattern4 >= 0.5)
 	{
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			Mob1* b = new Mob1();
 			b->setOrigin(32, 32);
 			b->setScale(3, 3);
-			b->setPosition(WINDOW_WIDTH * 0.3 + i* 500 , -192);
+			b->setPosition(WINDOW_WIDTH * 0.1 + i* 500 , -192);
 			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
 		}
 
@@ -161,30 +175,41 @@ void Boss1::Pattern4(float delta)
 
 }
 
+void Boss1::Pattern5(float delta)
+{
+	for (int i = -1; i < 2; i++)
+	{
+		EnemyBall* b = new EnemyBall(1, 1, 4, i * 200, 750);
+
+		b->setOrigin(9.f, 9.f);
+		b->setPosition(getPosition());
+		GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+	}
+
+	mTimerPattern1 = 0;
+	mTimerShoot = 0;
+	Randomize();
+}
+
 Hitbox Boss1::GetHitbox()
 {
 	Hitbox h;
 	h.position = getPosition();
 	h.radius = 127.5f;
+	mH = &h;
 	return h;
 }
 
 void Boss1::OnCollide(Entity* e)
 {
-	if (mTimerDelay < 0.1)
+	if (mTimerDelay < 0.01)
 		return;
 
 	if (typeid(*e) == typeid(AllyBall))
 	{
 		AddRemoveHP(- e->GetDamage());
-		std::cout << mHP << " Restants pour le boss" << std::endl;
+		mHB->UpdateBar(Health::GetRatioHP());
 		mTimerDelay = 0;
-	}
-
-	if (IsDead())
-	{
-		mDestroy = true;
-		GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
 	}
 
 }

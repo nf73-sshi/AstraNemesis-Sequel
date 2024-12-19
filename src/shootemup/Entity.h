@@ -19,6 +19,8 @@ public:
 
     virtual float GetRatioHP();
 
+    virtual bool IsDead();
+
     Entity* GetEntity();
 
     void SetMDestroy(bool value); 

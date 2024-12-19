@@ -1,10 +1,13 @@
 #pragma once
 #include "Character.h"
 #include "Collide.h"
+#include "HealthBar.h"
 
 class Boss1 : public Character, public Collide
 {
 	int mRandomizer;
+	HealthBar* mHB;
+	Hitbox* mH;
 	float mVelocityX;
 	float mVelocityY;
 	float mTimerInactive;
@@ -22,6 +25,8 @@ public:
 
 	void Randomize();
 
+	void SetLifeBar(HealthBar* pHB);
+
 	void Pattern1(float delta);
 
 	void Pattern2(float delta);
@@ -29,6 +34,8 @@ public:
 	void Pattern3(float delta);
 
 	void Pattern4(float delta);
+
+	void Pattern5(float delta);
 
 	// Hérité via Collide
 	Hitbox GetHitbox() override;

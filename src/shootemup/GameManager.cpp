@@ -67,10 +67,10 @@ void GameManager::RunGame()
 
 
 		Update();
-		mCurrentScene->Update(delta);
+		mSceneManager.GetCurrentScene()->Update(delta);
 
 		window.clear();
-		window.draw(*mCurrentScene);
+		window.draw(*mSceneManager.GetCurrentScene());
 		window.display();
 
 
@@ -85,12 +85,12 @@ void GameManager::RunGame()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
-			if (isFullScreen)
+			exit(420);
+			/*if (isFullScreen)
 			{
-				window.create(sf::VideoMode(1920, 1080), "Shoot Them Down", sf::Style::Default);
-
+				window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Titlebar);
 				isFullScreen = false;
-			}
+			}*/
 		}
 	}
 }
