@@ -6,7 +6,7 @@
 #include <iostream>
 #include <typeinfo>
 
-Mob1::Mob1() : Character("Mob1", 30, 1, 300, 1)
+Mob1::Mob1() : Character("Mob1", 30, 1, 300, 0.5)
 {
 	mDestroy = false;
 	mVelocityX = mSpeed;
@@ -19,9 +19,9 @@ Mob1::Mob1() : Character("Mob1", 30, 1, 300, 1)
 
 void Mob1::Update(float delta)
 {
-
-	if (mTimerInactive < 1)
+	if (mTimerInactive < 1.5)
 	{
+		this->move(0, 300 * delta);
 		mTimerInactive += delta;
 		return;
 	}
@@ -54,10 +54,10 @@ void Mob1::Pattern1(float delta)
 		mTimerMove = 0;
 	}
 
-	if (mPos.x < 533)
+	if (mPos.x < 192)
 		mVelocityX = mSpeed;
 
-	if (mPos.x > 1087)
+	if (mPos.x > 1428)
 		mVelocityX = -mSpeed;
 
 	this->move(mVelocityX * delta, 0);
@@ -83,7 +83,7 @@ Hitbox Mob1::GetHitbox()
 {
 	Hitbox h;
 	h.position = getPosition();
-	h.radius = 80;
+	h.radius = 75;
 	return h;
 }
 

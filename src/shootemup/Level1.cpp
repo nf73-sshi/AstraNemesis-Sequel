@@ -31,6 +31,11 @@ void Level1::Init()
 	Background* pBG = new Background();
 	pBG->setOrigin(960, 0);
 	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
+	addEntity(pBG);
+	addEntity(pPlayerHB);
+
+	addEntity(pPlayer);
+	addEntity(pBoss); 
 
 	UI* pUI = new UI();
 	pUI->setOrigin(75, 270);
@@ -38,18 +43,28 @@ void Level1::Init()
 	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
 
 	HealthBar* pPlayerHB = new HealthBar();
-	pPlayerHB->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT * 0.2);
+	pPlayerHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
+	pPlayerHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
+
+	HealthBar* pBossHB = new HealthBar();
+	pBossHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, 30);
+	pBossHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, 30);
+
 
 	addEntity(pBG);
-	addEntity(pPlayerHB);
+
 
 	addEntity(pPlayer);
 	addEntity(pBoss); 
 	addEntity(pUI);
+
+	addEntity(pPlayerHB); 
+	addEntity(pBossHB);
 }
 
 void Level1::Update(float delta)
 {
+	
 	GetPosition(mCurrentPlayer);
 
 	Scene::Update(delta);

@@ -24,6 +24,11 @@ int Entity::GetDamage()
     return 0;
 }
 
+float Entity::GetRatioHP()
+{
+    return 1;
+}
+
 Entity* Entity::GetEntity()
 {
     return this;

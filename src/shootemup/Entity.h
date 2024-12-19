@@ -17,6 +17,8 @@ public:
 
     virtual int GetDamage();
 
+    virtual float GetRatioHP();
+
     Entity* GetEntity();
 
     void SetMDestroy(bool value); 
