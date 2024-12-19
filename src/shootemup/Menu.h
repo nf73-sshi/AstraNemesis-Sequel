@@ -15,8 +15,17 @@ class ShopButton : public Button
 {
 
 public:
-	ShopButton();
+	ShopButton(); 
 	void Update(float delta) override;
+};
+
+class RulesButton : public Button
+{
+
+public:
+	RulesButton();
+	void Update(float delta) override;
+
 };
 
 class QuitButton : public Button

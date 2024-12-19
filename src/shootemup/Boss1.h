@@ -8,6 +8,10 @@ class Boss1 : public Character, public Collide
 	int mRandomizer;
 	HealthBar* mHB;
 	Hitbox* mH;
+
+	float mAtkSpeed;
+	float mSpeedBoost;
+
 	float mVelocityX;
 	float mVelocityY;
 	float mTimerInactive;
@@ -15,6 +19,7 @@ class Boss1 : public Character, public Collide
 	float mTimerPattern2;
 	float mTimerPattern3;
 	float mTimerPattern4;
+	float mTimerPattern5;
 
 public:
 	Boss1();
