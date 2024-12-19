@@ -16,6 +16,8 @@ protected:
 	float mShootingDelay;
 	float mTimerDelay;
 
+	float mEndTimer;
+
 public:
 	Character(const char* name, int hp, int damage, float speed, float shootingDelay);
 

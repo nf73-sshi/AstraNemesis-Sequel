@@ -6,6 +6,9 @@ class Level1 : public Scene
 	float var;
 	sf::Vector2f playerPos;
 	Entity* mCurrentPlayer;
+	Entity* mCurrentBoss;
+
+	float mEndTimer;
 
 public:
 	void Init();
