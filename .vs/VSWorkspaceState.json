@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\shootemup"
   ],
+  "SelectedNode": "\\src\\shootemup\\EnemyBall.cpp",
   "PreviewInSolutionExplorer": false
 }
