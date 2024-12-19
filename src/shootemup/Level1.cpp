@@ -71,7 +71,7 @@ void Level1::Update(float delta)
 
 
 void Level1::GetPosition(Entity* pPlayer)
-{
+{ 
 	playerPos = pPlayer->getPosition(); 
 }
 
