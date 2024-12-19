@@ -62,7 +62,7 @@ void Ball::Update(float delta)
 	this->move(mXFactor * delta * mSpeed, mYFactor * delta * mSpeed); 
 	mCurrentTime += delta; 
 
-	if (getPosition().x < 0.f || getPosition().x > 1920.f || getPosition().y < 0.f || getPosition().y > 1080.f)
+	if (getPosition().x < 0.f || getPosition().x > 1620.f || getPosition().y < 0.f || getPosition().y > 1080.f)
 		mDestroy = true;
 
 }

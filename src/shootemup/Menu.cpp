@@ -132,7 +132,7 @@ void Menu::Init()
 	addEntity(pPlay);
 	addEntity(pShop);
 	addEntity(pQuit);
-	addEntity(pTitle); 
+	addEntity(pTitle);
 
 }
 

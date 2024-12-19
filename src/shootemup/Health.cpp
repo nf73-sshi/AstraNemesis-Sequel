@@ -17,6 +17,11 @@ int Health::GetHPMax()
 	return mHPMax;
 }
 
+float Health::GetRatioHP()
+{
+	return ((float) mHP / (float) mHPMax);
+}
+
 void Health::SetHP(int value)
 {
 	mHP = value;

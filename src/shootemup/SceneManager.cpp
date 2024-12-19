@@ -16,4 +16,9 @@ void SceneManager::AddScene(std::string id, Scene* pScene)
 	map[id] = pScene;
 }
 
+void SceneManager::RemoveScene(Scene* pCurrentScene)
+{
+	delete pCurrentScene;
+}
+
 

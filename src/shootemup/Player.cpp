@@ -6,7 +6,12 @@
 #include <typeinfo>
 #include <iostream>
 
+<<<<<<< Updated upstream
 Player::Player() : Character("Ship", 10, 10, 750, 0.1)
+=======
+
+Player::Player() : Character("Ship", 3, 10, 750, 0.2)
+>>>>>>> Stashed changes
 {
     mTimerInactive = 0;
     mTimerInvincible = 0;
@@ -72,7 +77,7 @@ void Player::ScreenCollision()
 
 void Player::InvincibleAnim(float delta)
 {
-    this->sprite.setColor(sf::Color(132, 255, 255, 200));
+    this->sprite.setColor(sf::Color(132, 255, 255, 255));
 }
 
 void Player::ResetInvincible(float delta)

@@ -15,6 +15,13 @@ public:
 
     bool GetMDestroy();
 
+<<<<<<< Updated upstream
+=======
+    virtual int GetDamage();
+
+    virtual float GetRatioHP();
+
+>>>>>>> Stashed changes
     Entity* GetEntity();
 
     void SetMDestroy(bool value); 

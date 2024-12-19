@@ -30,13 +30,40 @@ void Level1::Init()
 	pBG->setOrigin(960, 0);
 	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
 
+<<<<<<< Updated upstream
 	addEntity(pBG);
 	addEntity(pPlayer);
 	addEntity(pBoss); 
+=======
+	UI* pUI = new UI();
+	pUI->setOrigin(75, 270);
+	pUI->setScale(2, 2);
+	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
+
+	HealthBar* pPlayerHB = new HealthBar();
+	pPlayerHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
+	pPlayerHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
+
+	HealthBar* pBossHB = new HealthBar();
+	pBossHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, 30);
+	pBossHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, 30);
+
+
+	addEntity(pBG);
+
+
+	addEntity(pPlayer);
+	addEntity(pBoss); 
+	addEntity(pUI);
+
+	addEntity(pPlayerHB); 
+	addEntity(pBossHB);
+>>>>>>> Stashed changes
 }
 
 void Level1::Update(float delta)
 {
+	
 	GetPosition(mCurrentPlayer);
 
 	Scene::Update(delta);

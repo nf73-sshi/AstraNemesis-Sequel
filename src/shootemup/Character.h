@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Health.h"
 
-class Character : public Entity, public Health
+class Character : public Health, public Entity
 {
 
 protected:
@@ -13,6 +13,10 @@ protected:
 	int mDamage;
 	float mTimerShoot;
 	float mShootingDelay;
+<<<<<<< Updated upstream
+=======
+	float mTimerDelay;
+>>>>>>> Stashed changes
 
 public:
 	Character(const char* name, int hp, int damage, float speed, float shootingDelay);

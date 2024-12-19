@@ -1,4 +1,8 @@
 #pragma once
+<<<<<<< Updated upstream
+=======
+#include "SFML/Graphics.hpp"
+>>>>>>> Stashed changes
 
 class Health
 {
@@ -13,6 +17,7 @@ public:
 
 	int GetHP();
 	int GetHPMax();
+	float GetRatioHP();
 	void SetHP(int value);
 	void AddRemoveHP(int value);
 	bool IsDead();
