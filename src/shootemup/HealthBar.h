@@ -6,7 +6,7 @@ class HealthBar : public Entity
 protected:
 	sf::RectangleShape mHpBarFilled;
 	sf::RectangleShape mHpBarEmpty;
-
+  
 public:
 	HealthBar();
 

@@ -12,11 +12,14 @@ protected:
 	float mScaleBall;
 	int mDamage;
 	float mTimerShoot;
+	float mTimerInactive;
 	float mShootingDelay;
 <<<<<<< Updated upstream
 =======
 	float mTimerDelay;
 >>>>>>> Stashed changes
+
+	float mTimerDelay;
 
 public:
 	Character(const char* name, int hp, int damage, float speed, float shootingDelay);
@@ -32,5 +35,6 @@ public:
 	virtual void Shoot();
 
 	virtual void Update(float delta);
+
 };
 

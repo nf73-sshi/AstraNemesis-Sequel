@@ -19,8 +19,6 @@ bool Entity::GetMDestroy()
     return mDestroy;
 }
 
-<<<<<<< Updated upstream
-=======
 int Entity::GetDamage()
 {
     return 0;
@@ -31,7 +29,6 @@ float Entity::GetRatioHP()
     return 1;
 }
 
->>>>>>> Stashed changes
 Entity* Entity::GetEntity()
 {
     return this;

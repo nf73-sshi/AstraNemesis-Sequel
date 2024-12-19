@@ -15,6 +15,5 @@ protected:
 public:
 	Button();
 	virtual void Update(float delta);
-	void Interaction();
 };
 

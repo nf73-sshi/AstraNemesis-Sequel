@@ -19,7 +19,6 @@ Mob1::Mob1() : Character("Mob1", 30, 1, 300, 0.5)
 
 void Mob1::Update(float delta)
 {
-
 	if (mTimerInactive < 1.5)
 	{
 		this->move(0, 300 * delta);
