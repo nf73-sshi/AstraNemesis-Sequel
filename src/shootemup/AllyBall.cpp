@@ -16,12 +16,14 @@ void AllyBall::OnCollide(Entity* e)
 {
 	if (typeid(*e) == typeid(Boss1))
 	{
-		mDestroy = true;
+		if(e->IsDead() == false)
+			mDestroy = true;
 	}
 	
 	if (typeid(*e) == typeid(Mob1))
 	{
-		mDestroy = true;
+		if (e->IsDead() == false) 
+			mDestroy = true;
 	}
 
 	return;
