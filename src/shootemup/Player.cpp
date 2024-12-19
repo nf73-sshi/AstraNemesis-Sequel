@@ -6,10 +6,14 @@
 #include <typeinfo>
 #include <iostream>
 
-Player::Player() : Character("Ship", 10, 10, 750, 0.1)
+Player::Player() : Character("Ship", 10, 10, 750, 0.2)
 {
     mTimerInactive = 0;
     mTimerInvincible = 0;
+    mReloadSkill2 = 3;
+    mDurSKill2 = 3;
+    mSkill2Used = false;
+
     mIsInvincible = false;
     mScaleBall = 1;
 	CreateSprite("../../../res/assets/Images/vaisseau.png", 0, 0, 64, 64);
@@ -54,13 +58,57 @@ void Player::Shoot()
     return;
 }
 
+void Player::TriggerSkill2()
+{
+    if (mReloadSkill2 >= 0)
+        return;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        mSkill2Used = true;
+    }
+}
+
+void Player::UseSkill1(float delta)
+{
+
+}
+
+void Player::UseSkill2(float delta)
+{
+    if (mSkill2Used == false)
+    {
+        return;
+    }
+ 
+    if (mDurSKill2 <= 0)
+    {
+        mShootingDelay = 0.2;
+        mSkill2Used = false;
+        mDurSKill2 = 3;
+    }
+    else
+    {
+        mShootingDelay = 0.1;
+        mDurSKill2 -= delta;
+        mReloadSkill2 = 5;
+    }
+    
+}
+
+void Player::UseSkill3(float delta)
+{
+}
+
+
+
 void Player::ScreenCollision()
 {
     if (this->getPosition().x < 32.f)
         this->setPosition(32, this->getPosition().y); 
 
-    if (this->getPosition().x > 1888.f) 
-        this->setPosition(1888, this->getPosition().y); 
+    if (this->getPosition().x > 1588.f) 
+        this->setPosition(1588, this->getPosition().y); 
 
     if (this->getPosition().y < 32.f) 
         this->setPosition(this->getPosition().x, 32); 
@@ -93,8 +141,12 @@ void Player::ResetInvincible(float delta)
 void Player::Update(float delta)
 {
     mPos = GetPosition();
+    
+    if (mReloadSkill2 > 0)
+    {
+        mReloadSkill2 -= delta;
+    }
 
-  
     mTimerShoot += delta;
 
     if (mTimerInactive < 2)
@@ -105,10 +157,13 @@ void Player::Update(float delta)
     if(mIsInvincible == true)
         ResetInvincible(delta);
 
+    TriggerSkill2();
+
+    UseSkill2(delta);
+
     Move(delta);
     ScreenCollision(); 
     Shoot();
-
         
 }
 
@@ -148,6 +203,8 @@ void Player::OnCollide(Entity* e)
         mIsDead = true;
         mDestroy = true;
         std::cout << "T'es mort !" << std::endl;
+        GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
+        GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init();
     }
 
 }

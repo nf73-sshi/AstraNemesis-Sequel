@@ -19,6 +19,11 @@ bool Entity::GetMDestroy()
     return mDestroy;
 }
 
+int Entity::GetDamage()
+{
+    return 0;
+}
+
 Entity* Entity::GetEntity()
 {
     return this;
