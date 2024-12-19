@@ -14,11 +14,6 @@ protected:
 	float mTimerShoot;
 	float mTimerInactive;
 	float mShootingDelay;
-<<<<<<< Updated upstream
-=======
-	float mTimerDelay;
->>>>>>> Stashed changes
-
 	float mTimerDelay;
 
 public:
