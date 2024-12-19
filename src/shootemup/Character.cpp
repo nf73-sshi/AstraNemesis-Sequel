@@ -1,12 +1,15 @@
 #include "Character.h"
 #include <iostream>
 
-Character::Character(const char* name, int hp, int damage, float speed, float shootingDelay) : Health(hp)
+Character::Character(const char* name, int hp, int damage, float speed, float shootingDelay) : Health(hp) 
 {
 	mName = name;
 	mSpeed = speed;
 	mDamage = damage;
 	mScaleBall = 1;
+	mTimerShoot = 0;
+	mTimerDelay = 0;
+	mTimerInactive = 0;
 	mShootingDelay = shootingDelay;
 	mTimerShoot = 0;
 }

@@ -2,28 +2,30 @@
 #include "EnemyBall.h"
 #include "AllyBall.h"
 #include "Player.h"
+#include "Mob1.h"
 #include "GameManager.h"
 #include <iostream>
 #include <typeinfo>
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
 
-Boss1::Boss1() : Character("Boss 1", 50, 1, 500, 0.25)
+Boss1::Boss1() : Character("Boss 1", 1000, 1, 400, 0.35)
 {
 	srand(time(0));
-	mRandomizer = 1;
-	mTimerInactive = 0;
-	mTimerShoot = 0;
+	mRandomizer = 0;
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
 	mTimerPattern3 = 0;
-	mScaleBall = 1;
+	mTimerPattern4 = 0;
+	mScaleBall = 1.5;
 	mVelocityX = mSpeed;
 	mVelocityY =mSpeed * 2.5;
-
 	CreateSprite("../../../res/assets/Images/Boss1.png", 0, 0, 533, 255);
 }
 
 void Boss1::Update(float delta)  
 {
+
 	if (mTimerInactive < 2)
 	{
 		mTimerInactive += delta;
@@ -31,6 +33,7 @@ void Boss1::Update(float delta)
 	}
 
 	mPos = GetPosition();
+	mTimerDelay += delta;
 	mTimerShoot += delta;
 	mTimerPattern1 += delta; 
 
@@ -42,10 +45,12 @@ void Boss1::Update(float delta)
 
 	if (mTimerPattern1 > 2)
 	{
-		if(mRandomizer == 1)
+		if(mRandomizer < 50)
 			Pattern2(delta);
-		if (mRandomizer == 2)
-			Pattern3(delta);
+		if (mRandomizer >= 50 && mRandomizer < 85)
+			Pattern3(delta); 
+		if (mRandomizer >= 85)
+			Pattern4(delta);
 	}
 
 	if (IsDead() == true)
@@ -56,15 +61,15 @@ void Boss1::Update(float delta)
 
 void Boss1::Randomize()
 {
-	mRandomizer = 1 + rand() % 2;
+	mRandomizer = rand() % 101;
 }
 
 void Boss1::Shoot()
 {
 	if (mTimerShoot > mShootingDelay)
 	{
-		EnemyBall* b = new EnemyBall(1, 1, mScaleBall, 0, 1000);
-
+		EnemyBall* b = new EnemyBall(1, 1, mScaleBall, 0, 800);
+    
 		b->setOrigin(9.f, 9.f);
 		b->setPosition(getPosition());
 		GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
@@ -79,7 +84,7 @@ void Boss1::Pattern1(float delta)
 	if (mPos.x < 533)
 		mVelocityX = mSpeed;
 
-	if (mPos.x > 1387)
+	if (mPos.x > 1087)
 		mVelocityX = -mSpeed;
 
 	this->move(mVelocityX * delta, 0);
@@ -91,9 +96,9 @@ void Boss1::Pattern2(float delta)
 
 	if (mTimerPattern2 >= 0.5)
 	{
-		for (int i = -5; i < 5; i++)
+		for (int i = -6; i < 6; i++)
 		{
-			EnemyBall* b = new EnemyBall(1, 1, mScaleBall * 2, i * 100.f, 500);
+			EnemyBall* b = new EnemyBall(1, 1, 2.5, i * 100.f, 600);
 
 			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
@@ -103,6 +108,7 @@ void Boss1::Pattern2(float delta)
 
 		mTimerPattern1 = 0;
 		mTimerPattern2 = 0;
+		mTimerShoot = 0;
 		Randomize();
 	}
 
@@ -113,11 +119,11 @@ void Boss1::Pattern3(float delta)
 {
 	mTimerPattern3 += delta;
 
-	if (mTimerPattern3 >= 1)
+	if (mTimerPattern3 >= 0.75)
 	{
 		for (int i = 0; i < 1; i++)
 		{
-			EnemyBall* b = new EnemyBall(1, 1, mScaleBall * 10, 0, 1000);
+			EnemyBall* b = new EnemyBall(1, 1, 18, 0, 250);
 
 			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
@@ -127,8 +133,32 @@ void Boss1::Pattern3(float delta)
 
 		mTimerPattern1 = 0;
 		mTimerPattern3 = 0;
+		mTimerShoot = 0;
 		Randomize();
 	}
+}
+
+void Boss1::Pattern4(float delta)
+{
+	mTimerPattern4 += delta;
+
+	if (mTimerPattern4 >= 0.5)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			Mob1* b = new Mob1();
+			b->setOrigin(32, 32);
+			b->setScale(3, 3);
+			b->setPosition(WINDOW_WIDTH * 0.3 + i* 500 , -192);
+			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+		}
+
+		mTimerPattern1 = 0;
+		mTimerPattern4 = 0;
+		mTimerShoot = 0;
+		mRandomizer = rand() % 85;
+	}
+
 }
 
 Hitbox Boss1::GetHitbox()
@@ -141,16 +171,20 @@ Hitbox Boss1::GetHitbox()
 
 void Boss1::OnCollide(Entity* e)
 {
+	if (mTimerDelay < 0.1)
+		return;
 
 	if (typeid(*e) == typeid(AllyBall))
 	{
-		AddRemoveHP(-1);
+		AddRemoveHP(- e->GetDamage());
 		std::cout << mHP << " Restants pour le boss" << std::endl;
+		mTimerDelay = 0;
 	}
 
 	if (IsDead())
 	{
 		mDestroy = true;
+		GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
 	}
 
 }

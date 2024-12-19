@@ -14,7 +14,7 @@ public:
 	Scene* GetCurrentScene();
 	void ChangeScene(std::string id);
 	void AddScene(std::string id, Scene* pScene);
-
+	void RemoveScene(Scene* pScene);
 
 
 

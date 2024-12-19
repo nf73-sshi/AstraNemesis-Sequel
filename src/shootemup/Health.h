@@ -1,4 +1,5 @@
 #pragma once
+#include "SFML/Graphics.hpp"
 
 class Health
 {
@@ -13,11 +14,10 @@ public:
 
 	int GetHP();
 	int GetHPMax();
+	float GetRatioHP();
 	void SetHP(int value);
 	void AddRemoveHP(int value);
 	bool IsDead();
-
-
 
 };
 

@@ -11,21 +11,24 @@ class Boss1 : public Character, public Collide
 	float mTimerPattern1;
 	float mTimerPattern2;
 	float mTimerPattern3;
+	float mTimerPattern4;
 
 public:
 	Boss1();
 
 	void Update(float delta) override;
 
-	void Randomize();
-
 	void Shoot() override;
+
+	void Randomize();
 
 	void Pattern1(float delta);
 
 	void Pattern2(float delta);
 
 	void Pattern3(float delta);
+
+	void Pattern4(float delta);
 
 	// Hérité via Collide
 	Hitbox GetHitbox() override;
