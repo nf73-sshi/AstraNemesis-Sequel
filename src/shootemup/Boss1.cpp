@@ -9,7 +9,7 @@
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
-Boss1::Boss1() : Character("Boss 1", 1000, 1, 400, 0.35)
+Boss1::Boss1() : Character("Boss 1", 1500, 1, 400, 0.35)
 {
 	srand(time(0));
 	mRandomizer = 0;
@@ -17,6 +17,11 @@ Boss1::Boss1() : Character("Boss 1", 1000, 1, 400, 0.35)
 	mTimerPattern2 = 0;
 	mTimerPattern3 = 0;
 	mTimerPattern4 = 0;
+	mTimerPattern5 = 0;
+
+	mAtkSpeed = 2.f;
+	mSpeedBoost = 0;
+
 	mScaleBall = 1.5;
 	mVelocityX = mSpeed;
 	mVelocityY =mSpeed * 2.5;
@@ -30,6 +35,34 @@ void Boss1::Update(float delta)
 	{
 		mTimerInactive += delta;
 		return;
+	}
+
+	if (mHP <= mHPMax * 0.66 && mHP > mHPMax * 0.33)
+	{
+		this->sprite.setColor(sf::Color(255, 120, 120, 255));
+		mShootingDelay = 0.25;
+		mAtkSpeed = 1.5f;
+		mSpeedBoost = 100;
+
+		if (mRandomizer <= 30)
+		{
+			Pattern5(delta);
+			Randomize();
+		}
+	}
+
+	if (mHP <= mHPMax * 0.33)
+	{
+		this->sprite.setColor(sf::Color(255, 50, 50, 255));
+		mShootingDelay = 0.2;
+		mAtkSpeed = 1.f;
+		mSpeedBoost = 250;
+
+		if (mRandomizer <= 50)
+		{
+			Pattern5(delta);
+			Randomize();
+		}
 	}
 
 	if (Health::IsDead())
@@ -49,21 +82,19 @@ void Boss1::Update(float delta)
 	mTimerShoot += delta;
 	mTimerPattern1 += delta; 
 
-	if (mTimerPattern1 <= 2)
+	if (mTimerPattern1 <= mAtkSpeed)
 	{
 		Pattern1(delta);
 		Shoot();
 	}
 
-	if (mTimerPattern1 > 2)
+	if (mTimerPattern1 > mAtkSpeed)
 	{
-		if(mRandomizer < 30)
+		if(mRandomizer < 60)
 			Pattern2(delta);
-		if (mRandomizer >= 30 && mRandomizer < 50)
+		if (mRandomizer >= 60 && mRandomizer < 90)
 			Pattern3(delta); 
-		if (mRandomizer >= 50 && mRandomizer < 85)
-			Pattern5(delta);
-		if (mRandomizer >= 85)
+		if (mRandomizer >= 90)
 			Pattern4(delta);
 	}
 }
@@ -96,10 +127,10 @@ void Boss1::Shoot()
 void Boss1::Pattern1(float delta)
 {
 	if (mPos.x < 533)
-		mVelocityX = mSpeed;
+		mVelocityX = mSpeed + mSpeedBoost;
 
 	if (mPos.x > 1087)
-		mVelocityX = -mSpeed;
+		mVelocityX = -mSpeed - mSpeedBoost;
 
 	this->move(mVelocityX * delta, 0);
 }
@@ -163,32 +194,38 @@ void Boss1::Pattern4(float delta)
 			Mob1* b = new Mob1();
 			b->setOrigin(32, 32);
 			b->setScale(3, 3);
-			b->setPosition(WINDOW_WIDTH * 0.1 + i* 500 , -192);
+			b->setPosition(WINDOW_WIDTH * 0.12 + i* 500 , -192);
 			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
 		}
 
 		mTimerPattern1 = 0;
 		mTimerPattern4 = 0;
 		mTimerShoot = 0;
-		mRandomizer = rand() % 85;
+		mRandomizer = rand() % 90;
 	}
 
 }
 
 void Boss1::Pattern5(float delta)
 {
-	for (int i = -1; i < 2; i++)
+	mTimerPattern5 += delta;
+
+	if (mTimerPattern5 > 0.1)
 	{
-		EnemyBall* b = new EnemyBall(1, 1, 4, i * 200, 750);
+		for (int i = -1; i < 2; i++)
+		{
+			EnemyBall* b = new EnemyBall(1, 1, 4, i * 300, 750);
 
-		b->setOrigin(9.f, 9.f);
-		b->setPosition(getPosition());
-		GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+			b->setOrigin(9.f, 9.f);
+			b->setPosition(getPosition());
+			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+		}
+
+		mTimerPattern1 = 0;
+		mTimerPattern5 = 0;
+		mTimerShoot = 0;
 	}
-
-	mTimerPattern1 = 0;
-	mTimerShoot = 0;
-	Randomize();
+	
 }
 
 Hitbox Boss1::GetHitbox()

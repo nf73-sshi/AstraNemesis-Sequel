@@ -65,6 +65,37 @@ void ShopButton::Update(float delta)
 }
 
 
+RulesButton::RulesButton()
+{
+	CreateSprite("../../../res/assets/Menu/rulesButton.png", 0, 0, 200, 120);
+}
+
+void RulesButton::Update(float delta)
+{
+	Button::Update(delta);
+
+	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Rules");
+		}
+	}
+
+	if (mTimer < 1)
+		return;
+
+
+	if (mPos.x < 150)
+		mVelocity = min + rand() % rdm;
+
+	if (mPos.x > 1770)
+		mVelocity = -(min + rand() % rdm);
+
+	this->move(mVelocity * delta, 0);
+
+	return;
+}
+
 
 QuitButton::QuitButton() : Button() 
 {
@@ -112,10 +143,10 @@ void Menu::Init()
 	pPlay->setScale(size, size); 
 	pPlay->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
 
-	ShopButton* pShop = new ShopButton();
-	pShop->setOrigin(100, 60);
-	pShop->setScale(size,size); 
-	pShop->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.7);
+	RulesButton* pRules = new RulesButton();
+	pRules->setOrigin(100, 60);
+	pRules->setScale(size,size); 
+	pRules->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.7);
 
 	QuitButton* pQuit = new QuitButton();
 	pQuit->setOrigin(100, 60);
@@ -129,7 +160,7 @@ void Menu::Init()
 
 	addEntity(pBG);
 	addEntity(pPlay);
-	addEntity(pShop);
+	addEntity(pRules);
 	addEntity(pQuit);
 	addEntity(pTitle);
 
