@@ -126,10 +126,10 @@ void Boss1::Shoot()
 
 void Boss1::Pattern1(float delta)
 {
-	if (mPos.x < 533)
+	if (mPos.x < 100)
 		mVelocityX = mSpeed + mSpeedBoost;
 
-	if (mPos.x > 1087)
+	if (mPos.x > 1550)
 		mVelocityX = -mSpeed - mSpeedBoost;
 
 	this->move(mVelocityX * delta, 0);

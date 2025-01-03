@@ -9,12 +9,12 @@ Background::Background()
 
 void Background::Update(float delta)
 {
+	pos = this->getPosition();
+
 	if (pos.y >= -10)
 	{
 		this->setPosition(960, -1080);
 	}
-
-	pos = this->getPosition();
 
 	this->move(0, 100 * delta);
 

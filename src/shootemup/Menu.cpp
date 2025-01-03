@@ -136,7 +136,7 @@ void Menu::Init()
 
 	Background* pBG = new Background();
 	pBG->setOrigin(960, 0);
-	pBG->setPosition(WINDOW_WIDTH * 0.5, -WINDOW_HEIGHT);
+	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
 
 	PlayButton* pPlay = new PlayButton();
 	pPlay->setOrigin(100, 60);
@@ -169,10 +169,10 @@ void Menu::Init()
 
 void Menu::Update(float delta)
 {
-	mWindow = GameManager::GetInstance()->GetWindow();
-	mousePos = sf::Mouse::getPosition(*mWindow); 
+	mousePos = sf::Mouse::getPosition(); 
 
 	mTimer += delta;
+
 	Scene::Update(delta);
 }
 

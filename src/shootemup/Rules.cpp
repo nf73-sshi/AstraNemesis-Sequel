@@ -37,7 +37,7 @@ void Rules::Init()
 {
 	Background* pBG = new Background();
 	pBG->setOrigin(960, 0);
-	pBG->setPosition(WINDOW_WIDTH * 0.5, -WINDOW_HEIGHT);
+	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
 
 	HowToPlay* pHTP = new HowToPlay();
 	pHTP->setOrigin(192, 108);
