@@ -2,9 +2,7 @@
 #include "Background.h"
 #include "GameManager.h"
 #include <iostream>
-
-#define WINDOW_WIDTH 1920 
-#define WINDOW_HEIGHT 1080 
+#include "res.h"
 
 float mTimer = 0;
 
@@ -20,7 +18,7 @@ void PlayButton::Update(float delta)
 	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) { 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Lvl1");
+			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("LevelSelect");
 		}
 	}
 

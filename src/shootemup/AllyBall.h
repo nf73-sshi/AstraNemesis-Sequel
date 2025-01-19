@@ -2,7 +2,7 @@
 #include "Ball.h"
 
 
-class AllyBall : public Ball 
+class AllyBall : public Ball  
 {
 
 public:

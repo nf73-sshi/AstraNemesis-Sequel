@@ -1,40 +1,22 @@
 #include "Skill.h"
 
-Skill::Skill(float reloadTimer, float duration)
+Skill::Skill(int cost, float duration)
 {
-	mReloadTimer = reloadTimer;
+    mCost = cost;
+    mTimeElapsed = 0;
 	mDuration = duration;
 	mSkillUsed = false;
 }
 
-void Skill::TriggerSkill()
+float Skill::GetCost()
 {
-    if (mReloadTimer >= 0)
-        return;
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        mSkillUsed = true;
-    }
+    return mCost;
 }
 
-bool Skill::UseSkill(float delta, float skillDuration)
+bool Skill::UseSkill(int cost, int currentCharge) 
 {
-    if (mSkillUsed == false)
-    {
+    if(cost < currentCharge)
         return false;
-    }
 
-    if (mDuration <= 0)
-    {
-        mSkillUsed = false;
-        mDuration = skillDuration;
-        return false;
-    }
-    else
-    {
-        mDuration -= delta;
-        mReloadTimer = 15;
-    }
-
+    return true;
 }

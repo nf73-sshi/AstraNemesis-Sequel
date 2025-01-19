@@ -2,14 +2,10 @@
 #include "Character.h"
 #include "Collide.h"
 #include "HealthBar.h"
+#include "ABoss.h" 
 
-class Boss1 : public Character, public Collide
+class Boss1 : public ABoss 
 {
-	int mRandomizer;
-	HealthBar* mHB;
-	Hitbox* mH;
-
-	float mAtkSpeed;
 	float mSpeedBoost;
 
 	float mVelocityX;
@@ -27,10 +23,6 @@ public:
 	void Update(float delta) override;
 
 	void Shoot() override;
-
-	void Randomize();
-
-	void SetLifeBar(HealthBar* pHB);
 
 	void Pattern1(float delta);
 

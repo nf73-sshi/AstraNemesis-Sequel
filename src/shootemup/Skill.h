@@ -5,15 +5,22 @@ class Skill
 {
 
 protected:
-	float mReloadTimer;
+	int mCost;
+	float mTimeElapsed;
 	float mDuration;
 	bool mSkillUsed;
 
 public:
-	Skill(float reloadTimer, float duration);
+	Skill(int cost, float duration);
 
-	void TriggerSkill();
-	bool UseSkill(float delta, float skillDuration);
+	float GetCost();
+	float GetDuration();
+
+	bool GetIsUsed();
+
+	virtual void TriggerSkill() = 0;
+	bool UseSkill(int cost, int currentCharge); 
+	virtual void OnActivaction() = 0;
 
 };
 
