@@ -9,22 +9,18 @@
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
-Boss1::Boss1() : Character("Boss 1", 1500, 1, 400, 0.35)
+Boss1::Boss1() : ABoss("Boss1", 1500, 1, 400, 0.35, 2.f, 1.5f)
 {
-	srand(time(0));
-	mRandomizer = 0;
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
 	mTimerPattern3 = 0;
 	mTimerPattern4 = 0;
 	mTimerPattern5 = 0;
 
-	mAtkSpeed = 2.f;
 	mSpeedBoost = 0;
 
-	mScaleBall = 1.5;
 	mVelocityX = mSpeed;
-	mVelocityY =mSpeed * 2.5;
+	mVelocityY = mSpeed * 2.5;
 	CreateSprite("../../../res/assets/Images/Boss1.png", 0, 0, 533, 255);
 }
 
@@ -97,16 +93,6 @@ void Boss1::Update(float delta)
 		if (mRandomizer >= 90)
 			Pattern4(delta);
 	}
-}
-
-void Boss1::Randomize()
-{
-	mRandomizer = rand() % 101;
-}
-
-void Boss1::SetLifeBar(HealthBar* pHB)
-{
-	mHB = pHB;
 }
 
 void Boss1::Shoot()

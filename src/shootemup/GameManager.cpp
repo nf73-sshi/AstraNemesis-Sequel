@@ -9,7 +9,9 @@
 #include "Player.h"
 #include "Level1.h"
 #include "Menu.h"
+#include "LevelSelect.h"
 #include "GameOver.h"
+#include "res.h"
 
 GameManager* GameManager::mInstance = nullptr;
 
@@ -26,6 +28,7 @@ GameManager* GameManager::GetInstance()
 void GameManager::Initiate()
 {
 	mSceneManager.AddScene("Menu", new Menu());
+	mSceneManager.AddScene("LevelSelect", new LevelSelect());
 	mSceneManager.AddScene("Rules", new Rules());
 	mSceneManager.AddScene("GameOver", new GameOver());
 	mSceneManager.AddScene("Lvl1", new Level1());
@@ -109,6 +112,16 @@ SceneManager& GameManager::GetCurrentSceneManager()
 sf::RenderWindow* GameManager::GetWindow()
 {
 	return mWindow;
+}
+
+Player* GameManager::GetCurrentPlayer()
+{
+	return mCurrentPlayer;
+}
+
+void GameManager::SetCurrentPlayer(Player* pCurrentPlayer)
+{
+	mCurrentPlayer = pCurrentPlayer;
 }
 
 		

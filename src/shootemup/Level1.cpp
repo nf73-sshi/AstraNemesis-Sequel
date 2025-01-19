@@ -6,9 +6,7 @@
 #include "Boss1.h"
 #include "Mob1.h"
 #include <iostream>
-
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
+#include "res.h"
 
 
 void Level1::Init()
@@ -19,6 +17,9 @@ void Level1::Init()
 	mEndTimer = 0;
 
 	Player* pPlayer = new Player();
+
+	GameManager::GetInstance()->SetCurrentPlayer(pPlayer);
+
 	pPlayer->setOrigin(32, 32);
 	pPlayer->scale(1.5, 1.5);
 	pPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.7);

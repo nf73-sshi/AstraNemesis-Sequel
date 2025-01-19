@@ -1,20 +1,25 @@
 #pragma once
 #include "Scene.h"
+#include "Background.h"
+#include "GameManager.h"
 #include "Button.h"
 #include "BackButton.h"
 
-class HowToPlay : public Entity
+class Lvl1Button : public Button
 {
 
 public:
-	HowToPlay();
+	Lvl1Button();
 	void Update(float delta) override;
 };
 
-class Rules : public Scene
+
+class LevelSelect : public Scene
 {
 
 public:
 	void Init();
 	void Update(float delta) override;
+
 };
+

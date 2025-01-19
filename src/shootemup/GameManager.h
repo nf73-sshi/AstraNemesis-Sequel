@@ -1,6 +1,7 @@
 #pragma once
 
 class Scene;
+class Player;
 #include "SceneManager.h"
 
 class GameManager
@@ -11,6 +12,7 @@ protected:
 	SceneManager mSceneManager;
 	Scene* mCurrentScene;
 	sf::RenderWindow* mWindow;
+	Player* mCurrentPlayer;
 
 public:
 	static GameManager* GetInstance();
@@ -28,5 +30,8 @@ public:
 	SceneManager& GetCurrentSceneManager();
 
 	sf::RenderWindow* GetWindow();
+
+	Player* GetCurrentPlayer();
+	void SetCurrentPlayer(Player* pCurrentPlayer);
 };
 
