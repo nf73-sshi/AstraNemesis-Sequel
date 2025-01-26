@@ -9,7 +9,6 @@ class ABoss : public Character, public Collide
 protected:
 	int mRandomizer;
 	HealthBar* mHB;
-	Hitbox* mH;
 
 	float mScaleBall;
 	float mAtkSpeed;

@@ -11,6 +11,8 @@
 
 Boss1::Boss1() : ABoss("Boss1", 1500, 1, 400, 0.35, 2.f, 1.5f)
 {
+	mHitboxSize = 127.5f;
+
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
 	mTimerPattern3 = 0;
@@ -63,6 +65,8 @@ void Boss1::Update(float delta)
 
 	if (Health::IsDead())
 	{
+		mHitboxSize = 0;
+		GetHitbox();
 		mEndTimer += delta;
 		this->sprite.setColor(sf::Color(255, 255, 255, 0));
 		if (mEndTimer > 2)
@@ -218,8 +222,7 @@ Hitbox Boss1::GetHitbox()
 {
 	Hitbox h;
 	h.position = getPosition();
-	h.radius = 127.5f;
-	mH = &h;
+	h.radius = mHitboxSize;
 	return h;
 }
 

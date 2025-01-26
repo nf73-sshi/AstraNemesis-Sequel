@@ -11,10 +11,18 @@ protected:
 	float mSpeed;
 	float mScaleBall;
 	int mDamage;
+	float mShootingDelay;
+
+	float mHitboxSize;
+
 	float mTimerShoot;
 	float mTimerInactive;
-	float mShootingDelay;
 	float mTimerDelay;
+
+	float mDefaultSpeed;
+	float mDefaultScaleBall;
+	int mDefaultDamage;
+	float mDefaultSDelay;
 
 	float mEndTimer;
 
@@ -24,10 +32,17 @@ public:
 	sf::Vector2f GetPosition();
 
 	float GetSpeed();
+	void SetSpeed(float newSpeed);
 
 	int GetDamage();
 
 	float GetShootingDelay();
+	void SetShootingDelay(float newSDelay);
+
+	float GetDefaultSpeed();
+	float GetDefaultScaleBall();
+	int GetDefaultDamage();
+	float GetDefaultSDelay();
 
 	virtual void Shoot();
 

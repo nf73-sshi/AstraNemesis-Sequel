@@ -1,11 +1,18 @@
 #include "Skill.h"
 
-Skill::Skill(int cost, float duration)
+Skill::Skill(int lvl, int cost, float duration)
 {
+    mLvl = lvl;
     mCost = cost;
-    mTimeElapsed = 0;
+    mElapsedTime = 0;
 	mDuration = duration;
+    mSkillCanBeUsed = false;
 	mSkillUsed = false;
+}
+
+int Skill::GetLvl()
+{
+    return mLvl;
 }
 
 float Skill::GetCost()
@@ -13,10 +20,34 @@ float Skill::GetCost()
     return mCost;
 }
 
-bool Skill::UseSkill(int cost, int currentCharge) 
+float Skill::GetDuration()
 {
-    if(cost < currentCharge)
-        return false;
+    return mDuration;
+}
 
-    return true;
+float Skill::GetElapsedTime()
+{
+    return mElapsedTime;
+}
+
+bool Skill::GetIsCanBeUsed()
+{
+    return mSkillCanBeUsed;
+}
+
+bool Skill::GetIsUsed()
+{
+    return mSkillUsed;
+}
+
+bool Skill::CanUseSkill(int currentCharge) 
+{
+    if (currentCharge < mCost)
+    {
+        mSkillCanBeUsed = false;
+    }
+    else
+        mSkillCanBeUsed = true;
+
+    return mSkillCanBeUsed;
 }
