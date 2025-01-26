@@ -1,26 +1,34 @@
 #pragma once
 #include "Player.h"
+#include "GameManager.h"
 
 class Skill
 {
 
 protected:
+	int mLvl;
 	int mCost;
-	float mTimeElapsed;
+	float mElapsedTime;
 	float mDuration;
+	bool mSkillCanBeUsed;
 	bool mSkillUsed;
 
 public:
-	Skill(int cost, float duration);
+	Skill(int lvl, int cost, float duration);
 
+	int GetLvl();
 	float GetCost();
 	float GetDuration();
+	float GetElapsedTime();
 
+	bool GetIsCanBeUsed();
 	bool GetIsUsed();
+	bool CanUseSkill(int currentCharge);
 
-	virtual void TriggerSkill() = 0;
-	bool UseSkill(int cost, int currentCharge); 
-	virtual void OnActivaction() = 0;
+	virtual void Update(float delta, int* currentCharge) = 0;
+	virtual void TriggerSkill(float delta, int* currentCharge) = 0;
+	virtual void OnActivaction(float delta, int* currentCharge) = 0;
+	virtual void SetValues(int lvl) = 0;
 
 };
 

@@ -5,18 +5,20 @@
 #include "HealthBar.h"
 #include "Skill.h"
 
+class Skill; 
+
 class Player : public Character, public Collide
 {
-
+	int mCurrentMana;
+	int mMaxMana;
 protected:
 	bool mIsInvincible;
 	float mTimerInvincible;
 	float mTimerInactive;
-	//Skill mReloadBoost;
-	float mReloadSkill2;
-	float mDurSKill2;
+
 	HealthBar* mHB;
-	bool mSkill2Used;
+
+	Skill* s1;
 
 public:
 	Player();
@@ -26,12 +28,6 @@ public:
 	void SetLifeBar(HealthBar* pHB);
 
 	void Shoot() override;
-
-	void TriggerSkill2();
-
-	void UseSkill1(float delta); // Shield
-	void UseSkill2(float delta); // Boost de mReload
-	void UseSkill3(float delta); // Mega tirs
 
 	void ScreenCollision();
 

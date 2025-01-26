@@ -10,7 +10,12 @@ Character::Character(const char* name, int hp, int damage, float speed, float sh
 	mTimerShoot = 0;
 	mTimerDelay = 0;
 	mTimerInactive = 0;
-	mShootingDelay = shootingDelay;
+	mShootingDelay = shootingDelay; 
+
+	mDefaultSpeed = mSpeed;
+	mDefaultScaleBall = mScaleBall;
+	mDefaultDamage = mDamage;
+	mDefaultSDelay = mShootingDelay;
 
 	mEndTimer = 0;
 }
@@ -37,6 +42,11 @@ float Character::GetSpeed()
 	return mSpeed;
 }
 
+void Character::SetSpeed(float newSpeed)
+{
+	mSpeed = newSpeed;
+}
+
 int Character::GetDamage()
 {
 	return mDamage;
@@ -45,4 +55,29 @@ int Character::GetDamage()
 float Character::GetShootingDelay()
 {
 	return mShootingDelay;
+}
+
+void Character::SetShootingDelay(float newSDelay)
+{
+	mShootingDelay = newSDelay;
+}
+
+float Character::GetDefaultSpeed()
+{
+	return mDefaultSpeed;
+}
+
+float Character::GetDefaultScaleBall()
+{
+	return mDefaultScaleBall;
+}
+
+int Character::GetDefaultDamage()
+{
+	return mDefaultDamage;
+}
+
+float Character::GetDefaultSDelay()
+{
+	return mDefaultSDelay;
 }

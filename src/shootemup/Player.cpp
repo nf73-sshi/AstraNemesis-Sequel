@@ -5,19 +5,28 @@
 #include "EnemyBall.h"
 #include <typeinfo>
 #include <iostream>
+#include "SkillBallX2.h"
+#include "Skill.h"
 
-Player::Player() : Character("Ship", 5, 10, 750, 0.2)
+Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetPlayerMaxHP(), 
+      GameManager::GetInstance()->GetStats().GetPlayerDamage(),
+      GameManager::GetInstance()->GetStats().GetPlayerSpeed(),
+      GameManager::GetInstance()->GetStats().GetPlayerSDelay() )
 {
+    mHitboxSize = 8.f;
+
     mTimerInactive = 0;
     mTimerInvincible = 0;
-    mReloadSkill2 = 2;
-    mDurSKill2 = 3;
-    mSkill2Used = false;
-
     mIsInvincible = false;
     mScaleBall = 1;
 	CreateSprite("../../../res/assets/Images/vaisseau.png", 0, 0, 64, 64);
     mTimerShoot = 0;
+
+    mMaxMana = GameManager::GetInstance()->GetStats().GetPlayerMaxMana();
+    mCurrentMana = mMaxMana;
+
+    s1 = new SkillBallX2();
+
 }
 
 void Player::Move(float delta)
@@ -62,51 +71,6 @@ void Player::Shoot()
 
     return;
 }
-
-void Player::TriggerSkill2()
-{
-    if (mReloadSkill2 > 0)
-        return;
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        mSkill2Used = true;
-    }
-}
-
-void Player::UseSkill1(float delta)
-{
-    //NO
-}
-
-void Player::UseSkill2(float delta)
-{
-    if (mSkill2Used == false)
-    {
-        return;
-    }
- 
-    if (mDurSKill2 <= 0)
-    {
-        mShootingDelay = 0.2;
-        mSkill2Used = false;
-        mDurSKill2 = 3;
-    }
-    else
-    {
-        mShootingDelay = 0.1;
-        mDurSKill2 -= delta;
-        mReloadSkill2 = 10;
-    }
-    
-}
-
-void Player::UseSkill3(float delta)
-{
-    //NO
-}
-
-
 
 void Player::ScreenCollision()
 {
@@ -159,6 +123,8 @@ void Player::Update(float delta)
 
     if (Health::IsDead())
     {
+        mHitboxSize = 0;
+        GetHitbox();
         mEndTimer += delta;
         this->sprite.setColor(sf::Color(255, 255, 255, 0));
         if (mEndTimer > 1)
@@ -169,29 +135,18 @@ void Player::Update(float delta)
         return;
     }
 
-    if (mReloadSkill2 > 0)
-    {
-        mReloadSkill2 -= delta;
-    }
-
-    if(mIsInvincible == true)
-        ResetInvincible(delta);
-
-    TriggerSkill2();
-
-    UseSkill2(delta);
-
     Move(delta);
     ScreenCollision(); 
     Shoot();
-        
+
+    s1->Update(delta, &mCurrentMana);
 }
 
 Hitbox Player::GetHitbox()
 {
     Hitbox h;
     h.position = mPos;
-    h.radius = 8.f;
+    h.radius = mHitboxSize;
 
     return h;
 }

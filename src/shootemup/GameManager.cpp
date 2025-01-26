@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "res.h"
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "Scene.h"
@@ -11,7 +12,8 @@
 #include "Menu.h"
 #include "LevelSelect.h"
 #include "GameOver.h"
-#include "res.h"
+
+
 
 GameManager* GameManager::mInstance = nullptr;
 
@@ -112,6 +114,11 @@ SceneManager& GameManager::GetCurrentSceneManager()
 sf::RenderWindow* GameManager::GetWindow()
 {
 	return mWindow;
+}
+
+Stats& GameManager::GetStats()
+{
+	return mCurrentStats;  
 }
 
 Player* GameManager::GetCurrentPlayer()
