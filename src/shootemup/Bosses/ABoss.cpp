@@ -1,0 +1,50 @@
+#include "ABoss.h"
+#include "../Balls/AllyBall.h"
+#include "../HealthMana/HealthBar.h"
+#include "../PlayerMobs/Player.h"
+
+ABoss::ABoss(const char* name, int hp, int damage, float speed, float shootingDelay, float atkSpeed, float scaleBall) : Character(name, hp, damage, speed, shootingDelay)
+{
+	srand(time(0));
+	mAtkSpeed = atkSpeed;
+	mScaleBall = scaleBall;
+	mRandomizer = 0;
+}
+
+void ABoss::Update(float delta)
+{
+	mHB->UpdateBar(Health::GetRatioHP());
+}
+
+void ABoss::Randomize()
+{
+	mRandomizer = rand() % 101;
+}
+
+void ABoss::SetLifeBar(HealthBar* pHB)
+{
+	mHB = pHB;
+}
+
+void ABoss::OnCollide(Entity* e)
+{
+	if (mTimerDelay < 0.001f)
+		return;
+
+	if (typeid(*e) == typeid(AllyBall))
+	{
+		AddRemoveHP(-e->GetDamage());
+		mTimerDelay = 0;
+	}
+
+	if (typeid(*e) == typeid(Player))
+	{
+		Player* currentPlayer = GameManager::GetInstance()->GetCurrentPlayer();
+		
+		if (currentPlayer->GetIsInvincible() == true)
+			return;
+
+		currentPlayer->SetInvincible(true); 
+		currentPlayer->AddRemoveHP(-1);
+	}
+}
