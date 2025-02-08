@@ -1,0 +1,12 @@
+#pragma once
+#include "../Others/Entity.h"
+
+class Background : public Entity
+{
+
+public:
+	Background();
+	void Update(float delta) override;
+
+};
+
