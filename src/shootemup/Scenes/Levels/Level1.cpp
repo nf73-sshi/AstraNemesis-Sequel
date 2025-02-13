@@ -3,6 +3,7 @@
 #include "../../Sprites/Background.h"
 #include "../../Sprites/UI.h"
 #include "../../HealthMana/HealthBar.h"
+#include "../../HealthMana/ManaBar.h"
 #include "../../Bosses/Boss1.h"
 #include "../../PlayerMobs/Mob1.h"
 #include <iostream>
@@ -48,7 +49,12 @@ void Level1::Init()
 	HealthBar* pBossHB = new HealthBar();
 	pBossHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, 30);
 	pBossHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, 30);
-	pBoss->SetLifeBar(pBossHB); 
+	pBoss->SetLifeBar(pBossHB);
+
+	ManaBar* pManaB = new ManaBar();
+	pManaB->GetManaBarFilled()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
+	pManaB->GetManaBarEmpty()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
+	pPlayer->SetManaBar(pManaB);  
 
 	addEntity(pBG);
 
@@ -56,7 +62,8 @@ void Level1::Init()
 	addEntity(pBoss); 
 	addEntity(pUI);
 
-	addEntity(pPlayerHB); 
+	addEntity(pPlayerHB);
+	addEntity(pManaB);
 	addEntity(pBossHB);
 }
 

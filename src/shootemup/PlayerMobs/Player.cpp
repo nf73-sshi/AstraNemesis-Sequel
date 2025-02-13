@@ -83,6 +83,11 @@ void Player::SetLifeBar(HealthBar* pHB)
     mHB = pHB;
 }
 
+void Player::SetManaBar(ManaBar* pManaBar)
+{
+    mManaBar = pManaBar; 
+}
+
 void Player::Shoot()
 {
     if (mTimerInactive < 2)
@@ -164,7 +169,7 @@ void Player::Update(float delta)
     Shoot();
 
     mHB->UpdateBar(Health::GetRatioHP()); 
-    s1->Update(delta, &mCurrentMana);
+    s1->Update(delta, &(m.GetCurrentMana()) );
 }
 
 bool Player::GetIsInvincible()

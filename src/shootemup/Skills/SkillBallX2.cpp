@@ -34,7 +34,7 @@ void SkillBallX2::TriggerSkill(float delta, int* currentCharge)
 		mSkillCanBeUsed = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			// *currentCharge -= mCost;
+			*currentCharge -= mCost;
 			mSkillUsed = true;
 		}
 	}

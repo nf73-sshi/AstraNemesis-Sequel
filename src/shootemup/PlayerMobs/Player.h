@@ -3,9 +3,12 @@
 #include "../Balls/Ball.h"
 #include "../Others/Character.h"
 #include "../HealthMana/Mana.h"
+#include "../HealthMana/ManaBar.h"
 #include "../HealthMana/HealthBar.h"
 #include "../Skills/Skill.h"
 #include "../Important/res.h"
+
+class Mana; 
 
 class Skill; 
 
@@ -18,7 +21,10 @@ protected:
 	float mTimerInvincible;
 	float mTimerInactive;
 
+	Mana m;
+
 	HealthBar* mHB;
+	ManaBar* mManaBar;
 
 	Skill* s1;
 
@@ -28,6 +34,8 @@ public:
 	void Move(float delta);
 
 	void SetLifeBar(HealthBar* pHB);
+
+	void SetManaBar(ManaBar* pManaBar); 
 
 	void Shoot() override;
 
@@ -39,6 +47,8 @@ public:
 
 
 	void Update(float delta) override;
+
+	Mana* GetMana() { return &m; };
 
 	bool GetIsInvincible();
 	void SetInvincible(bool value); 
