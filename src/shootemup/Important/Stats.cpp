@@ -4,7 +4,7 @@ Stats::Stats()
 {
     mPlayerMaxMana = 10;
     mPlayerCurrentMana = (int) ((float) mPlayerMaxMana * 0.5f);
-    mPlayerManaReload = 8.f; 
+    mPlayerManaReload = 7.f; 
     mMoney = 0;
 
     mSkillBallX2Lvl = 1;
