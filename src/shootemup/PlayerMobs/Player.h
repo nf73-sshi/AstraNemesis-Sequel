@@ -21,8 +21,6 @@ protected:
 	float mTimerInvincible;
 	float mTimerInactive;
 
-	Mana m;
-
 	HealthBar* mHB;
 	ManaBar* mManaBar;
 
@@ -47,8 +45,6 @@ public:
 
 
 	void Update(float delta) override;
-
-	Mana* GetMana() { return &m; };
 
 	bool GetIsInvincible();
 	void SetInvincible(bool value); 

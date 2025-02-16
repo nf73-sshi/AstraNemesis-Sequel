@@ -9,7 +9,7 @@
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
-Boss1::Boss1() : ABoss("Boss1", 1500, 1, 400, 0.35, 2.f, 1.5f)
+Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 {
 	mHitboxSize = 127.5f;
 

@@ -25,9 +25,9 @@ public:
 	bool GetIsUsed();
 	bool CanUseSkill(int currentCharge);
 
-	virtual void Update(float delta, int* currentCharge) = 0;
-	virtual void TriggerSkill(float delta, int* currentCharge) = 0;
-	virtual void OnActivaction(float delta, int* currentCharge) = 0;
+	virtual void Update(float delta, Player* pPlayer) = 0;
+	virtual void TriggerSkill(float delta, Player* pPlayer) = 0;
+	virtual void OnActivaction(float delta, Player* pPlayer) = 0;
 	virtual void SetValues(int lvl) = 0;
 
 };

@@ -76,7 +76,7 @@ void Level1::Update(float delta)
 	mCurrentTimer += delta;
 	var += delta;
 
-	if(Scene::GetAll<Player>().size() <= 0)
+	if (Scene::GetAll<Player>().size() <= 0)
 	{
 		std::cout << "LOSE\n";
 		mEndTimer += delta;
@@ -93,8 +93,10 @@ void Level1::Update(float delta)
 		if (mEndTimer > 2.f)
 			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
 	}
-}
 
+	std::cout << "Mana : " << *(GameManager::GetInstance()->GetCurrentPlayer()->GetCurrentMana()) << std::endl;
+
+}
 
 void Level1::GetPosition(Entity* pPlayer)
 { 
