@@ -16,7 +16,7 @@ Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
 	mTimerPattern3 = 0;
-	mTimerPattern4 = 0;
+	mTimerPattern4 = 0; 
 	mTimerPattern5 = 0;
 
 	mSpeedBoost = 0;
