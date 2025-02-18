@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "../Important/GameManager.h"
 
 Button::Button()
 {
@@ -14,4 +15,18 @@ void Button::Update(float delta)
 	mPos = getPosition();
 	mBoundingBox = sprite.getGlobalBounds();
 	mBoundingBox = getTransform().transformRect(mBoundingBox);
+}
+
+bool Button::IsClicked()
+{
+	sf::RenderWindow* w = GameManager::GetInstance()->GetWindow();
+
+	if (mBoundingBox.contains(sf::Mouse::getPosition(*w).x, sf::Mouse::getPosition(*w).y)) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

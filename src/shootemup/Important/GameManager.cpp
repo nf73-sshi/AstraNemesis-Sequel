@@ -49,6 +49,18 @@ GameManager* GameManager::GetInstance()
 
 void GameManager::Init()
 {
+	if (mFont.loadFromFile("res/vhs-gothic.ttf") )
+	{
+		std::cout << "Path 1 : Font loaded !\n";
+	}
+	else
+	{
+		if (mFont.loadFromFile("../../../res/vhs-gothic.ttf"))
+		{
+			std::cout << "Path 2 : Font Loaded !\n";
+		}
+	}
+
 	debugMod = false;
 
 	std::fstream Data("../../../res/const_data.txt");

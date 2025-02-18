@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "../Others/Collide.h"
+#include "../Important/GameManager.h"
 #include <iostream>
 
 void Scene::Update(float delta)
@@ -8,7 +9,7 @@ void Scene::Update(float delta)
 
 	for (int i = 0; i < arrayEntity.size(); i++)
 	{
-		arrayEntity[i]->Update(delta); 
+		arrayEntity[i]->Update(delta);
 		Collide* c = dynamic_cast<Collide*>(arrayEntity[i]);
 		if (c)
 		{
@@ -33,11 +34,27 @@ void Scene::Update(float delta)
 			delete* it;
 			it = arrayEntity.erase(it);
 		}
-		else 
+		else
 		{
 			++it;
 		}
 	}
+}
+
+void Scene::DrawText(sf::Text* yourText, std::string text, float x, float y, int size, sf::Color color)
+{
+	sf::Text textToDisplay;
+
+	textToDisplay.setFont(GameManager::GetInstance()->mFont);
+
+	textToDisplay.setString(text);
+	textToDisplay.setPosition(x, y);
+	textToDisplay.setCharacterSize(size);
+	textToDisplay.setFillColor(color);
+
+	yourText = &textToDisplay;
+
+	GameManager::GetInstance()->GetWindow()->draw(*yourText);
 }
 
 Scene::~Scene()
@@ -47,7 +64,7 @@ Scene::~Scene()
 
 void Scene::Clear()
 {
-	for (Entity* e: arrayEntity)
+	for (Entity* e : arrayEntity)
 	{
 		delete e;
 	}

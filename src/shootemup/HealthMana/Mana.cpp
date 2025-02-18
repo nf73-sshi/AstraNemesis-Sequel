@@ -3,14 +3,26 @@
 
 Mana::Mana()
 {
-    mMaxMana = GameManager::GetInstance()->GetStats().GetPlayerMaxMana();
-    mCurrentMana = mMaxMana;
-    mManaReload = GameManager::GetInstance()->GetStats().GetPlayerManaReload(); 
+    auto stats = GameManager::GetInstance()->GetStats();
+    mMaxMana = stats.GetPlayerMaxMana(); 
+    mCurrentMana = stats.GetPlayerMana();
+    mManaReload = stats.GetPlayerManaReload();  
 }
 
-int Mana::GetCurrentMana()
+void Mana::FillManaBar(float dt)
 {
-    return mCurrentMana;
+    mProgress += dt;
+
+    if (mProgress > mManaReload)
+    {
+        AddRemoveMana(1);
+        mProgress = 0;
+    }
+}
+
+int* Mana::GetCurrentMana()
+{
+    return &mCurrentMana;
 }
 void Mana::SetCurrentMana(int value)
 {

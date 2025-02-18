@@ -3,6 +3,8 @@
 #include "../../Sprites/Background.h"
 #include "../../Sprites/UI.h"
 #include "../../HealthMana/HealthBar.h"
+#include "../../Important/GameManager.h"
+#include "../../HealthMana/ManaBar.h"
 #include "../../Bosses/Boss1.h"
 #include "../../PlayerMobs/Mob1.h"
 #include <iostream>
@@ -11,8 +13,6 @@
 
 void Level1::Init()
 {
-	playerPos.x = 0;
-	playerPos.y = 0;
 	mCurrentTimer = 0;
 	mEndTimer = 0;
 
@@ -48,7 +48,12 @@ void Level1::Init()
 	HealthBar* pBossHB = new HealthBar();
 	pBossHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, 30);
 	pBossHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, 30);
-	pBoss->SetLifeBar(pBossHB); 
+	pBoss->SetLifeBar(pBossHB);
+
+	ManaBar* pManaB = new ManaBar();
+	pManaB->GetManaBarFilled()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
+	pManaB->GetManaBarEmpty()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
+	pPlayer->SetManaBar(pManaB);  
 
 	addEntity(pBG);
 
@@ -56,22 +61,22 @@ void Level1::Init()
 	addEntity(pBoss); 
 	addEntity(pUI);
 
-	addEntity(pPlayerHB); 
+	addEntity(pPlayerHB);
+	addEntity(pManaB);
 	addEntity(pBossHB);
 }
 
 void Level1::Update(float delta)
-{
-	GetPosition(GameManager::GetInstance()->GetCurrentPlayer());
-
+{	
 	Scene::Update(delta);
+
+	DrawText(&textPlayerHP, "UWUWUWUWU", WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f, 48, sf::Color::White);
 
 	mCurrentTimer += delta;
 	var += delta;
 
-	if(Scene::GetAll<Player>().size() <= 0)
+	if (Scene::GetAll<Player>().size() <= 0)
 	{
-		std::cout << "LOSE\n";
 		mEndTimer += delta;
 
 		if (mEndTimer > 2.f)
@@ -80,17 +85,10 @@ void Level1::Update(float delta)
 
 	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob1>().size() <= 0)
 	{
-		std::cout << "WIN\n";
 		mEndTimer += delta;
 
 		if (mEndTimer > 2.f)
 			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
 	}
+
 }
-
-
-void Level1::GetPosition(Entity* pPlayer)
-{ 
-	playerPos = pPlayer->getPosition(); 
-}
-

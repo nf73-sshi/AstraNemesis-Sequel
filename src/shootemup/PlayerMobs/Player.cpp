@@ -12,22 +12,21 @@
 bool rotatemod = false;
 float angleFactor = 0.5f;
 
-Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetPlayerMaxHP(), 
-      GameManager::GetInstance()->GetStats().GetPlayerDamage(),
-      GameManager::GetInstance()->GetStats().GetPlayerSpeed(),
-      GameManager::GetInstance()->GetStats().GetPlayerSDelay() )
+Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetPlayerMaxHP(),
+    GameManager::GetInstance()->GetStats().GetPlayerDamage(),
+    GameManager::GetInstance()->GetStats().GetPlayerSpeed(),
+    GameManager::GetInstance()->GetStats().GetPlayerSDelay()), Mana()
 {
+
+
     mHitboxSize = 8.f;
 
     mTimerInactive = 0;
     mTimerInvincible = 0;
     mIsInvincible = false;
     mScaleBall = 1;
-	CreateSprite("../../../res/assets/Images/vaisseau.png", 0, 0, 64, 64);
+	CreateSprite("res/assets/Images/vaisseau.png", 0, 0, 64, 64);
     mTimerShoot = 0;
-
-    mMaxMana = GameManager::GetInstance()->GetStats().GetPlayerMaxMana();
-    mCurrentMana = mMaxMana;
 
     s1 = new SkillBallX2();
 
@@ -81,6 +80,11 @@ void Player::Move(float delta)
 void Player::SetLifeBar(HealthBar* pHB)
 {
     mHB = pHB;
+}
+
+void Player::SetManaBar(ManaBar* pManaBar)
+{
+    mManaBar = pManaBar; 
 }
 
 void Player::Shoot()
@@ -164,7 +168,11 @@ void Player::Update(float delta)
     Shoot();
 
     mHB->UpdateBar(Health::GetRatioHP()); 
-    s1->Update(delta, &mCurrentMana);
+    mManaBar->UpdateBar(Mana::GetRatioMana());
+    
+    FillManaBar(delta);
+
+    s1->Update(delta, this);
 }
 
 bool Player::GetIsInvincible()

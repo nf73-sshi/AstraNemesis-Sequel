@@ -21,6 +21,8 @@ protected:
 	void DebugMod();
 
 public:
+	sf::Font mFont;
+
 	static GameManager* GetInstance();
 
 	void Init();

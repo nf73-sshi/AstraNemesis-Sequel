@@ -7,10 +7,13 @@ protected:
 	int mCurrentMana;
 	int mMaxMana;
 	float mManaReload;
+	float mProgress = 0.f;
 public:
 	Mana(); 
 
-	int GetCurrentMana();
+	void FillManaBar(float dt);
+
+	int* GetCurrentMana();
 	void SetCurrentMana(int value);
 	void AddRemoveMana(int value);
 
