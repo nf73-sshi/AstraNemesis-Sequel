@@ -1,12 +1,23 @@
 #include "Entity.h"
 #include <iostream>
+#include <string> 
 
-void Entity::CreateSprite(const char* link, int x, int y, int sizeX, int sizeY)
+void Entity::CreateSprite(std::string link, int x, int y, int sizeX, int sizeY)
 {
     mDestroy = false;
     if (!texture.loadFromFile(link))
     {
-        std::cout << "Fichier non charge :" << link << std::endl;
+        if (!texture.loadFromFile("../../../" + link))
+        {
+        }
+        else
+        {
+            std::cout << "Successfuly 2nd Path : " << "../../../" + link << std::endl; 
+        }
+    }
+    else
+    {
+        std::cout << "Successfuly 1st Path : " << link << std::endl; 
     }
 
     sprite.setTexture(texture);

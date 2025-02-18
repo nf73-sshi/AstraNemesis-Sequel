@@ -8,19 +8,15 @@ float mTimer = 0;
 
 PlayButton::PlayButton() : Button() 
 {
-	CreateSprite("../../../res/assets/Menu/playButton.png", 0, 0, 200, 120);
+	CreateSprite("res/assets/Menu/playButton.png", 0, 0, 200, 120);
 }
 
 void PlayButton::Update(float delta)
 {
 	Button::Update(delta);
 
-	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) { 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("LevelSelect");
-		}
-	}
+	if (Button::IsClicked())
+		GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("LevelSelect");
 
 	if (mPos.x < 150)
 		mVelocity = min + rand() % rdm;
@@ -38,7 +34,7 @@ void PlayButton::Update(float delta)
 
 ShopButton::ShopButton() : Button()
 {
-	CreateSprite("../../../res/assets/Menu/shopButton.png", 0, 0, 200, 120);
+	CreateSprite("res/assets/Menu/shopButton.png", 0, 0, 200, 120);
 }
 
 void ShopButton::Update(float delta)
@@ -65,19 +61,15 @@ void ShopButton::Update(float delta)
 
 RulesButton::RulesButton()
 {
-	CreateSprite("../../../res/assets/Menu/rulesButton.png", 0, 0, 200, 120);
+	CreateSprite("res/assets/Menu/rulesButton.png", 0, 0, 200, 120);
 }
 
 void RulesButton::Update(float delta)
 {
 	Button::Update(delta);
 
-	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Rules");
-		}
-	}
+	if (Button::IsClicked())
+		GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Rules");
 
 	if (mTimer < 1)
 		return;
@@ -97,19 +89,15 @@ void RulesButton::Update(float delta)
 
 QuitButton::QuitButton() : Button() 
 {
-	CreateSprite("../../../res/assets/Menu/quitButton.png", 0, 0, 200, 120);
+	CreateSprite("res/assets/Menu/quitButton.png", 0, 0, 200, 120);
 }
 
 void QuitButton::Update(float delta)
 {
 	Button::Update(delta);
 
-	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			exit(69);
-		}
-	}
+	if (Button::IsClicked())
+		exit(69);
 
 	if (mTimer < 2)
 		return;

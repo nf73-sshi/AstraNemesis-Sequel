@@ -10,7 +10,7 @@
 GameOverButton::GameOverButton() : Button()
 {
 	mDestroy = false;
-	CreateSprite("../../../res/assets/Menu/gameover.png", 0, 0, 350, 256);
+	CreateSprite("res/assets/Menu/gameover.png", 0, 0, 350, 256);
 }
 
 void GameOverButton::Update(float delta)

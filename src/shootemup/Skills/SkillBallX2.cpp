@@ -1,23 +1,25 @@
 #include "SkillBallX2.h"
+#include "../PlayerMobs/Player.h"
 #include <iostream>
 
 SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 2, 3)
 {
+	mCost = 3;
 	mFactor = 0;
 
 	SetValues(mLvl);
 }
 
-void SkillBallX2::Update(float delta, int* currentCharge)
+void SkillBallX2::Update(float delta, Player* pPlayer)
 {
-	TriggerSkill(delta, currentCharge); 
+	TriggerSkill(delta, pPlayer);  
 }
 
-void SkillBallX2::TriggerSkill(float delta, int* currentCharge)
+void SkillBallX2::TriggerSkill(float delta, Player* pPlayer)
 {
 	if (mSkillUsed && mElapsedTime < mDuration)
-	{
-		OnActivaction(delta, currentCharge);
+	{ 
+		OnActivaction(delta, pPlayer);
 		mElapsedTime += delta;
 	}
 	else
@@ -29,12 +31,12 @@ void SkillBallX2::TriggerSkill(float delta, int* currentCharge)
 			GameManager::GetInstance()->GetCurrentPlayer()->GetDefaultSDelay() );
 	}
 
-	if (CanUseSkill(*currentCharge) && mSkillUsed == false)
+	if (CanUseSkill( *(pPlayer->GetCurrentMana()) ) && mSkillUsed == false)
 	{
 		mSkillCanBeUsed = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			// *currentCharge -= mCost;
+			pPlayer->AddRemoveMana(-mCost);
 			mSkillUsed = true;
 		}
 	}
@@ -44,7 +46,7 @@ void SkillBallX2::TriggerSkill(float delta, int* currentCharge)
 	}
 }
 
-void SkillBallX2::OnActivaction(float delta, int* currentCharge)
+void SkillBallX2::OnActivaction(float delta, Player* pPlayer) 
 {
 	GameManager::GetInstance()->GetCurrentPlayer()->SetShootingDelay( 
 		GameManager::GetInstance()->GetCurrentPlayer()->GetDefaultSDelay() * mFactor);

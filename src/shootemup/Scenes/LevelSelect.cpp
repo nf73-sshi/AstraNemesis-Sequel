@@ -3,19 +3,16 @@
 
 Lvl1Button::Lvl1Button() : Button()
 {
-	CreateSprite("../../../res/assets/LevelSelection/lvl1Button.png", 0, 0, 120, 120);
+	CreateSprite("res/assets/LevelSelection/lvl1Button.png", 0, 0, 120, 120);
 }
 
 void Lvl1Button::Update(float delta)
 {
 	Button::Update(delta); 
 
-	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) { 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
-		{
-			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Lvl1"); 
-		}
-	} 
+	if (Button::IsClicked())
+		GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Lvl1");
+
 }
 
 
