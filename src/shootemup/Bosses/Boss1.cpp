@@ -23,7 +23,7 @@ Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 
 	mVelocityX = mSpeed;
 	mVelocityY = mSpeed * 2.5;
-	CreateSprite("../../../res/assets/Images/Boss1.png", 0, 0, 533, 255);
+	CreateSprite("res/assets/Images/Boss1.png", 0, 0, 533, 255);
 }
 
 void Boss1::Update(float delta)  

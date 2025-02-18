@@ -25,7 +25,7 @@ Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetP
     mTimerInvincible = 0;
     mIsInvincible = false;
     mScaleBall = 1;
-	CreateSprite("../../../res/assets/Images/vaisseau.png", 0, 0, 64, 64);
+	CreateSprite("res/assets/Images/vaisseau.png", 0, 0, 64, 64);
     mTimerShoot = 0;
 
     s1 = new SkillBallX2();

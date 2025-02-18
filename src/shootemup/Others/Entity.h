@@ -11,7 +11,7 @@ protected:
 
 public:
 
-    void CreateSprite(const char* link, int x, int y, int sizeX, int sizeY);
+    void CreateSprite(std::string link, int x, int y, int sizeX, int sizeY);
 
     bool GetMDestroy();
 
