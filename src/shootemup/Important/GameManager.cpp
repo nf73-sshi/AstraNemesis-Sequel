@@ -14,6 +14,7 @@
 #include "../Scenes/Menu.h"
 #include "../Scenes/LevelSelect.h"
 #include "../Scenes/GameOver.h"
+#include "../Important/res.h"
 
 
 
