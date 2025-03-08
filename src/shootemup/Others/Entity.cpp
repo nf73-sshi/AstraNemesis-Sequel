@@ -12,12 +12,12 @@ void Entity::CreateSprite(std::string link, int x, int y, int sizeX, int sizeY)
         }
         else
         {
-            std::cout << "Successfuly 2nd Path : " << "../../../" + link << std::endl; 
+           // std::cout << "Successfuly 2nd Path : " << "../../../" + link << std::endl; 
         }
     }
     else
     {
-        std::cout << "Successfuly 1st Path : " << link << std::endl; 
+        // std::cout << "Successfuly 1st Path : " << link << std::endl; 
     }
 
     sprite.setTexture(texture);

@@ -2,7 +2,7 @@
 #include "../PlayerMobs/Player.h"
 #include <iostream>
 
-SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 30, 3)
+SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 35, 3)
 {
 	mFactor = 0;
 

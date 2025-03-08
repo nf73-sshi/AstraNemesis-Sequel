@@ -29,8 +29,8 @@ Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetP
 	CreateSprite("res/assets/Images/vaisseau.png", 0, 0, 64, 64);
     mTimerShoot = 0;
 
-    s1 = new SkillBallX2();
-    s2 = new SkillHeal();
+    skillArray.push_back(new SkillBallX2());
+    skillArray.push_back(new SkillHeal());
 
 }
 
@@ -168,14 +168,12 @@ void Player::Update(float delta)
     Move(delta);
     ScreenCollision(); 
     Shoot();
+    SkillManager(delta);
 
     mHB->UpdateBar(Health::GetRatioHP()); 
     mManaBar->UpdateBar(Mana::GetRatioMana());
     
     FillManaBar(delta);
-
-    s1->Update(delta, this);
-    s2->Update(delta, this);
 }
 
 bool Player::GetIsInvincible()
@@ -186,6 +184,33 @@ bool Player::GetIsInvincible()
 void Player::SetInvincible(bool value)
 {
     mIsInvincible = value; 
+}
+
+void Player::SkillManager(float delta)
+{
+    Skill* usedSkill = nullptr;
+     
+    for (Skill* s : skillArray)
+    {
+        if (s->GetIsUsed())
+        {
+            usedSkill = s; 
+            break;
+        }
+    }
+
+    if (usedSkill != nullptr)
+    {
+        usedSkill->Update(delta, this);
+    }
+    else
+    {
+        for (Skill* s : skillArray)
+        {
+            s->Update(delta, this);
+        }
+    }
+
 }
 
 Hitbox Player::GetHitbox()
@@ -210,5 +235,8 @@ void Player::OnCollide(Entity* e)
         mIsInvincible = true;
         AddRemoveHP(-1);
         mHB->UpdateBar(Health::GetRatioHP());
-    }
+
+        AddRemoveMana(GetMaxMana() * 0.1f);
+   
+     } 
 }

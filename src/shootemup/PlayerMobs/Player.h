@@ -25,8 +25,7 @@ protected:
 	HealthBar* mHB;
 	ManaBar* mManaBar;
 
-	Skill* s1;
-	Skill* s2;
+	std::vector<Skill*> skillArray;
 
 public:
 	Player();
@@ -51,7 +50,9 @@ public:
 	bool GetIsInvincible();
 	void SetInvincible(bool value); 
 
-	// Hérité via Collide
+	void SkillManager(float delta);
+
+
 	Hitbox GetHitbox() override;
 
 	void OnCollide(Entity* e) override;
