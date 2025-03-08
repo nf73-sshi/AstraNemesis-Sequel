@@ -2,9 +2,8 @@
 #include "../PlayerMobs/Player.h"
 #include <iostream>
 
-SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 2, 3)
+SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 30, 3)
 {
-	mCost = 3;
 	mFactor = 0;
 
 	SetValues(mLvl);
@@ -34,7 +33,7 @@ void SkillBallX2::TriggerSkill(float delta, Player* pPlayer)
 	if (CanUseSkill( *(pPlayer->GetCurrentMana()) ) && mSkillUsed == false)
 	{
 		mSkillCanBeUsed = true;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
 		{
 			pPlayer->AddRemoveMana(-mCost);
 			mSkillUsed = true;

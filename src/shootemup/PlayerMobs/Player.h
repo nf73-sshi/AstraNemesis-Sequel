@@ -6,6 +6,7 @@
 #include "../HealthMana/ManaBar.h"
 #include "../HealthMana/HealthBar.h"
 #include "../Skills/Skill.h"
+
 #include "../Important/res.h"
 
 class Mana; 
@@ -25,6 +26,7 @@ protected:
 	ManaBar* mManaBar;
 
 	Skill* s1;
+	Skill* s2;
 
 public:
 	Player();

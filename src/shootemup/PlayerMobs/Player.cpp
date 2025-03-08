@@ -7,6 +7,7 @@
 #include <typeinfo>
 #include <iostream>
 #include "../Skills/SkillBallX2.h"
+#include "../Skills/SkillHeal.h"
 #include "../Skills/Skill.h"
 
 bool rotatemod = false;
@@ -29,24 +30,25 @@ Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetP
     mTimerShoot = 0;
 
     s1 = new SkillBallX2();
+    s2 = new SkillHeal();
 
 }
 
 void Player::Move(float delta)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         this->move(0.f, -mSpeed * delta);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         this->move(0.f, mSpeed * delta);
     } 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         this->move(-mSpeed * delta, 0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         this->move(mSpeed * delta, 0);
     }
@@ -173,6 +175,7 @@ void Player::Update(float delta)
     FillManaBar(delta);
 
     s1->Update(delta, this);
+    s2->Update(delta, this);
 }
 
 bool Player::GetIsInvincible()

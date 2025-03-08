@@ -1,59 +1,5 @@
 #include "Stats.h"
 
-Stats::Stats()
-{
-    mPlayerMaxMana = 10;
-    mPlayerCurrentMana = (int) ((float) mPlayerMaxMana * 0.5f);
-    mPlayerManaReload = 7.f; 
-    mMoney = 0;
-
-    mSkillBallX2Lvl = 1;
-
-    mPlayerMaxHP = 5;
-    mPlayerCurrentHP = mPlayerMaxHP;
-    mPlayerDamage = 10;
-    mPlayerSpeed = 750.f;
-    mPlayerSDelay = 0.2f;
-
-}
-
-int Stats::GetPlayerMaxMana()
-{
-    return mPlayerMaxMana;
-}
-int Stats::GetPlayerMana()
-{
-    return mPlayerCurrentMana;
-}
-int Stats::GetMoney()
-{
-    return mMoney;
-}
-int Stats::GetSkillBallX2Lvl()
-{
-    return mSkillBallX2Lvl;
-}
-int Stats::GetPlayerMaxHP()
-{
-    return mPlayerMaxHP;
-}
-int Stats::GetPlayerHP()
-{
-    return mPlayerCurrentHP;
-}
-int Stats::GetPlayerDamage()
-{
-    return mPlayerDamage;
-}
-float Stats::GetPlayerSpeed()
-{
-    return mPlayerSpeed;
-}
-float Stats::GetPlayerSDelay()
-{
-    return mPlayerSDelay;
-}
-
 void Stats::SetPlayerMaxMana(int value)
 {
     mPlayerMaxMana = value;
@@ -96,6 +42,15 @@ void Stats::SetPlayerSpeed(float value)
 void Stats::SetPlayerSDelay(float value)
 {
     mPlayerSDelay = value;
+}
+void Stats::SetPlayerManaReload(float value)
+{
+    mPlayerManaReload = value;
+
+    if (mPlayerManaReload <= 0)
+    {
+        mPlayerManaReload = 0.01f;
+    }
 }
 
 void Stats::AddPlayerMaxMana(int value)
@@ -170,20 +125,6 @@ void Stats::AddPlayerSDelay(float value)
 
     if (mPlayerSDelay < 0.001f) 
         mPlayerSDelay = 0.001f;
-}
-
-float Stats::GetPlayerManaReload()
-{
-    return mPlayerManaReload;
-}
-void Stats::SetPlayerManaReload(float value)
-{
-    mPlayerManaReload = value;
-
-    if (mPlayerManaReload <= 0)
-    {
-        mPlayerManaReload = 0.01f;
-    }
 }
 void Stats::AddRemovePlayerManaReload(float value)
 {
