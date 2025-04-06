@@ -18,6 +18,35 @@
 
 GameManager* GameManager::mInstance = nullptr;
 
+void GameManager::InitMusics()
+{
+}
+
+void GameManager::InitSFX()
+{
+	mAssetManager->LoadSound("Beep", "res/assets/SFX/beep.wav");
+}
+
+void GameManager::InitTextures()
+{
+	mAssetManager->LoadTexture("BulletsTile", "res/assets/Images/bulletsTile.png");
+	mAssetManager->LoadTexture("BackButton", "res/assets/Rules/backButton.png");
+	mAssetManager->LoadTexture("MobsTile", "res/assets/Images/mobs.png");
+	mAssetManager->LoadTexture("Player", "res/assets/Images/vaisseau.png");
+	mAssetManager->LoadTexture("Boss1", "res/assets/Images/Boss1.png");
+	mAssetManager->LoadTexture("GameOverButton", "res/assets/Menu/gameover.png");
+	mAssetManager->LoadTexture("LvlButton", "res/assets/LevelSelection/lvl1Button.png");
+	mAssetManager->LoadTexture("ShopButton", "res/assets/Menu/shopButton.png");
+	mAssetManager->LoadTexture("PlayButton", "res/assets/Menu/playButton.png");
+	mAssetManager->LoadTexture("RulesButton", "res/assets/Menu/rulesButton.png");
+	mAssetManager->LoadTexture("QuitButton", "res/assets/Menu/quitButton.png");
+	mAssetManager->LoadTexture("Rules", "res/assets/Rules/Rules.png");
+	mAssetManager->LoadTexture("BackgroundSpace", "res/assets/Images/spaceHeavyLess.png");
+	mAssetManager->LoadTexture("Title", "res/assets/Menu/title.png");
+	mAssetManager->LoadTexture("BackButton", "res/assets/Rules/backButton.png");
+	mAssetManager->LoadTexture("UI", "res/assets/Interface/UI.png");
+}
+
 void GameManager::DebugMod()
 {
 	if (debugMod == true)
@@ -153,24 +182,9 @@ Scene* GameManager::GetCurrentScene()
 
 void GameManager::InitAssets()
 {
-	mAssetManager->LoadTexture("BulletsTile", "res/assets/Images/bulletsTile.png");
-	mAssetManager->LoadTexture("BackButton", "res/assets/Rules/backButton.png");
-	mAssetManager->LoadTexture("MobsTile", "res/assets/Images/mobs.png");
-	mAssetManager->LoadTexture("Player", "res/assets/Images/vaisseau.png");
-	mAssetManager->LoadTexture("Boss1", "res/assets/Images/Boss1.png");
-	mAssetManager->LoadTexture("GameOverButton", "res/assets/Menu/gameover.png");
-	mAssetManager->LoadTexture("LvlButton", "res/assets/LevelSelection/lvl1Button.png");
-
-	mAssetManager->LoadTexture("ShopButton", "res/assets/Menu/shopButton.png");
-	mAssetManager->LoadTexture("PlayButton", "res/assets/Menu/playButton.png");
-	mAssetManager->LoadTexture("RulesButton", "res/assets/Menu/rulesButton.png");
-	mAssetManager->LoadTexture("QuitButton", "res/assets/Menu/quitButton.png");
-	mAssetManager->LoadTexture("Rules", "res/assets/Rules/Rules.png");
-	mAssetManager->LoadTexture("BackgroundSpace", "res/assets/Images/spaceHeavyLess.png");
-
-	mAssetManager->LoadTexture("Title", "res/assets/Menu/title.png");
-	mAssetManager->LoadTexture("BackButton", "res/assets/Rules/backButton.png");
-	mAssetManager->LoadTexture("UI", "res/assets/Interface/UI.png");
+	InitTextures();
+	InitSFX();
+	InitMusics();
 }
 
 bool GameManager::GetIsDebugMod()

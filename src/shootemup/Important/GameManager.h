@@ -8,6 +8,9 @@ class Player;
 
 class GameManager
 {
+	void InitMusics();
+	void InitSFX();
+	void InitTextures();
 
 protected:
 	static GameManager* mInstance;

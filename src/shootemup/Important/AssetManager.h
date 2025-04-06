@@ -19,6 +19,7 @@ class AssetManager
 	std::map<const char*, std::string> mMusicPaths;
 
 public:
+	~AssetManager();
 	static AssetManager* Get();
 
 	//Il faut Load la texture avant de pouvoir la Get correctement

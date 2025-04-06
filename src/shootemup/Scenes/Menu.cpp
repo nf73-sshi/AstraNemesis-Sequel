@@ -97,7 +97,9 @@ void QuitButton::Update(float delta)
 	Button::Update(delta);
 
 	if (Button::IsClicked())
-		exit(69);
+	{
+		delete AssetManager::Get();
+	}
 
 	if (mTimer < 2)
 		return;

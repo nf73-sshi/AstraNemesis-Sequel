@@ -5,6 +5,40 @@
 
 AssetManager* AssetManager::instance = nullptr;
 
+AssetManager::~AssetManager()
+{
+    if (mTextures.size() > 0)
+    {
+        for (std::map<const char*, sf::Texture*>::iterator it = mTextures.begin(); it != mTextures.end(); it++)
+        {
+            delete it->second;
+        }
+        mTextures.clear();
+    }
+
+    if (mSounds.size() > 0)
+    {
+        for (std::map<const char*, sf::Sound*>::iterator it = mSounds.begin(); it != mSounds.end(); it++)
+        {
+            delete it->second;
+        }
+        mSounds.clear();
+    }
+
+    if (mMusics.size() > 0)
+    {
+        for (std::map<const char*, sf::Music*>::iterator it = mMusics.begin(); it != mMusics.end(); it++)
+        {
+            delete it->second;
+        }
+        mMusics.clear();
+    }
+
+    mTexturesPaths.clear();
+    mSoundsPaths.clear();
+    mMusicPaths.clear();
+}
+
 AssetManager* AssetManager::Get()
 {
     if (instance == nullptr)

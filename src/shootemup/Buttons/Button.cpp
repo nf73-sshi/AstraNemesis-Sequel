@@ -1,5 +1,6 @@
 #include "Button.h"
 #include "../Important/GameManager.h"
+#include "../Important/AssetManager.h"
 
 Button::Button()
 {
@@ -24,6 +25,7 @@ bool Button::IsClicked()
 	if (mBoundingBox.contains(sf::Mouse::getPosition(*w).x, sf::Mouse::getPosition(*w).y)) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
+			AssetManager::Get()->GetSound("Beep")->play();
 			return true;
 		}
 	}
