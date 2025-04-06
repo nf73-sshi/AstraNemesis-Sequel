@@ -3,7 +3,7 @@
 
 BackButton::BackButton(const char* sceneName)
 {
-	CreateSprite("res/assets/Rules/backButton.png", 0, 0, 200, 120);
+	CreateSprite("BackButton", 0, 0, 200, 120);
 	mSceneToGo = sceneName; 
 }
 

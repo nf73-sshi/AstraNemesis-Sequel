@@ -1,28 +1,22 @@
 #include "Entity.h"
 #include <iostream>
 #include <string> 
+#include "../Important/AssetManager.h"
 
-void Entity::CreateSprite(std::string link, int x, int y, int sizeX, int sizeY)
+void Entity::CreateSprite(const char* alias, int x, int y, int sizeX, int sizeY)
 {
     mDestroy = false;
-    if (!texture.loadFromFile(link))
+    sf::Texture* tmpTexture = AssetManager::Get()->GetTexture(alias);
+    if (tmpTexture)
     {
-        if (!texture.loadFromFile("../../../" + link))
-        {
-        }
-        else
-        {
-           // std::cout << "Successfuly 2nd Path : " << "../../../" + link << std::endl; 
-        }
+        texture = *tmpTexture;
+        sprite.setTexture(texture);
+        sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
     }
     else
     {
-        // std::cout << "Successfuly 1st Path : " << link << std::endl; 
+        std::cout << "Erreur : " << alias << " n'a pas pu etre initialise !\n";
     }
-
-    sprite.setTexture(texture);
-    sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
-
 }
 
 bool Entity::GetMDestroy() 

@@ -5,7 +5,7 @@
 
 HowToPlay::HowToPlay()
 {
-	CreateSprite("res/assets/Rules/Rules.png", 0, 0, 384, 206);
+	CreateSprite("Rules", 0, 0, 384, 206);
 }
 
 void HowToPlay::Update(float delta)

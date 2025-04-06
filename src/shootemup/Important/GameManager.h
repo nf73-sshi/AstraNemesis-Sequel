@@ -1,6 +1,7 @@
 #pragma once
 #include "../Scenes/SceneManager.h"
 #include "Stats.h"
+#include "../Important/AssetManager.h"
 
 class Scene;
 class Player;
@@ -15,6 +16,8 @@ protected:
 	sf::RenderWindow* mWindow;
 	Player* mCurrentPlayer;
 	Stats mCurrentStats;
+
+	AssetManager* mAssetManager = AssetManager::Get(); 
 
 	bool debugMod;
 
@@ -34,6 +37,8 @@ public:
 	void RunGame();
 
 	Scene* GetCurrentScene();
+
+	void InitAssets();
 
 	bool GetIsDebugMod();
 

@@ -8,7 +8,7 @@ float mTimer = 0;
 
 PlayButton::PlayButton() : Button() 
 {
-	CreateSprite("res/assets/Menu/playButton.png", 0, 0, 200, 120);
+	CreateSprite("PlayButton", 0, 0, 200, 120);
 }
 
 void PlayButton::Update(float delta)
@@ -34,7 +34,7 @@ void PlayButton::Update(float delta)
 
 ShopButton::ShopButton() : Button()
 {
-	CreateSprite("res/assets/Menu/shopButton.png", 0, 0, 200, 120);
+	CreateSprite("ShopButton", 0, 0, 200, 120);
 }
 
 void ShopButton::Update(float delta)
@@ -61,7 +61,7 @@ void ShopButton::Update(float delta)
 
 RulesButton::RulesButton()
 {
-	CreateSprite("res/assets/Menu/rulesButton.png", 0, 0, 200, 120);
+	CreateSprite("RulesButton", 0, 0, 200, 120);
 }
 
 void RulesButton::Update(float delta)
@@ -89,7 +89,7 @@ void RulesButton::Update(float delta)
 
 QuitButton::QuitButton() : Button() 
 {
-	CreateSprite("res/assets/Menu/quitButton.png", 0, 0, 200, 120);
+	CreateSprite("QuitButton", 0, 0, 200, 120);
 }
 
 void QuitButton::Update(float delta)
@@ -117,7 +117,6 @@ void QuitButton::Update(float delta)
 
 void Menu::Init()
 {
-
 	const float size = 1.5f;
 
 	Background* pBG = new Background();

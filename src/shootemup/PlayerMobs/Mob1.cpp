@@ -12,7 +12,7 @@ Mob1::Mob1() : Character("Mob1", 30, 1, 300, 0.5)
 	mVelocityX = mSpeed;
 	mVelocityY = mSpeed;
 	mTimerMove = 0;
-	CreateSprite("res/assets/Images/mobs.png", 0, 0, 64, 64);
+	CreateSprite("MobsTile", 0, 0, 64, 64);
 	mRdm = 0;
 }
 

@@ -3,7 +3,7 @@
 
 Lvl1Button::Lvl1Button() : Button()
 {
-	CreateSprite("res/assets/LevelSelection/lvl1Button.png", 0, 0, 120, 120);
+	CreateSprite("LvlButton", 0, 0, 120, 120);
 }
 
 void Lvl1Button::Update(float delta)
