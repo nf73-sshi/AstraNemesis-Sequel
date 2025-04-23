@@ -6,9 +6,11 @@ class HealthBar : public Entity
 protected:
 	sf::RectangleShape mHpBarFilled;
 	sf::RectangleShape mHpBarEmpty;
-  
+
+	float mLength;
+	float mWidth;
 public:
-	HealthBar();
+	HealthBar(float length, float width);
 
 	void Update(float delta) override;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

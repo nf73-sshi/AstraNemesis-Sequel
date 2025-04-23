@@ -12,37 +12,40 @@ void Level::Init()
 {
 	mEndTimer = 2.f;
 
-	Player* pPlayer = new Player();
+	pCurrentPlayer = new Player();
 
-	GameManager::GetInstance()->SetCurrentPlayer(pPlayer);
+	GameManager::GetInstance()->SetCurrentPlayer(pCurrentPlayer);
 
-	pPlayer->setOrigin(32, 32);
-	pPlayer->scale(1.5, 1.5);
-	pPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.7);
+	pCurrentPlayer->setOrigin(32, 32);
+	pCurrentPlayer->scale(1.5, 1.5);
+	pCurrentPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.7);
 
 	Background* pBG = new Background();
 	pBG->setOrigin(960, 0);
 	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
 
+	addEntity(pBG);
+	addEntity(pCurrentPlayer);
+}
+
+void Level::InitUI()
+{
 	UI* pUI = new UI();
 	pUI->setOrigin(75, 270);
 	pUI->setScale(2, 2);
 	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
+	addEntity(pUI);
 
-	HealthBar* pPlayerHB = new HealthBar();
+	HealthBar* pPlayerHB = new HealthBar(200.f, 30.f);
+	pCurrentPlayer->SetLifeBar(pPlayerHB);
 	pPlayerHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
 	pPlayerHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
-	pPlayer->SetLifeBar(pPlayerHB);
 
 	ManaBar* pManaB = new ManaBar();
+
 	pManaB->GetManaBarFilled()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120);
 	pManaB->GetManaBarEmpty()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120);
-	pPlayer->SetManaBar(pManaB);
-
-	addEntity(pBG);
-
-	addEntity(pPlayer);
-	addEntity(pUI);
+	pCurrentPlayer->SetManaBar(pManaB);
 
 	addEntity(pPlayerHB);
 	addEntity(pManaB);

@@ -2,8 +2,14 @@
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
-HealthBar::HealthBar() : mHpBarFilled(sf::Vector2f(200.f, 30)), mHpBarEmpty(sf::Vector2f(200.f, 30))
+HealthBar::HealthBar(float length, float width)
 {
+	mLength = length;
+	mWidth = width;
+
+	mHpBarFilled.setSize(sf::Vector2f(mLength, mWidth));
+	mHpBarEmpty.setSize(sf::Vector2f(mLength, mWidth));
+
 	mDestroy = false;
 	mHpBarFilled.setFillColor(sf::Color::Yellow);
 	mHpBarEmpty.setFillColor(sf::Color(162, 0, 255));
@@ -32,5 +38,7 @@ sf::RectangleShape* HealthBar::GetMHpBarEmpty()
 
 void HealthBar::UpdateBar(float ratio)
 {
-	mHpBarFilled.setSize(sf::Vector2f(200.f * ratio, 30));
+	const sf::Vector2f finalSize = { mLength * ratio, mWidth };
+
+	mHpBarFilled.setSize(finalSize);
 }
