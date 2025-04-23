@@ -57,5 +57,6 @@ public:
 
 	void OnCollide(Entity* e) override;
 
+	HealthBar* GetHB() { return mHB; }
 };
 

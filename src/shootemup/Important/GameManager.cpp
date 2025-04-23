@@ -114,7 +114,7 @@ void GameManager::Update()
 
 void GameManager::RunGame()
 {
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Astra Nemesis !", sf::Style::Fullscreen);
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Astra Nemesis !", sf::Style::Default);
 	bool isFullScreen = true;
 
 	InitAssets();

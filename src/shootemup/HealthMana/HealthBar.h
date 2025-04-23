@@ -9,6 +9,12 @@ protected:
 
 	float mLength;
 	float mWidth;
+
+	float mCurrentRatio = 1;
+	float alpha = 255;
+
+	float varColor1;
+	float varColor2;
 public:
 	HealthBar(float length, float width);
 
@@ -17,6 +23,8 @@ public:
 
 	sf::RectangleShape* GetMHpBarFilled();
 	sf::RectangleShape* GetMHpBarEmpty();
+
+	void SetBarPosition(float x, float y);
 
 	void UpdateBar(float ratio);
 };

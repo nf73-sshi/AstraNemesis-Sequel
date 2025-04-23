@@ -10,7 +10,7 @@
 
 void Level::Init()
 {
-	mEndTimer = 2.f;
+	mEndTimer = 3.f;
 
 	pCurrentPlayer = new Player();
 
@@ -38,8 +38,7 @@ void Level::InitUI()
 
 	HealthBar* pPlayerHB = new HealthBar(200.f, 30.f);
 	pCurrentPlayer->SetLifeBar(pPlayerHB);
-	pPlayerHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
-	pPlayerHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
+	pPlayerHB->SetBarPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
 
 	ManaBar* pManaB = new ManaBar();
 
