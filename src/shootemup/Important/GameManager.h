@@ -12,6 +12,8 @@ class GameManager
 	void InitSFX();
 	void InitTextures();
 
+	float dt;
+
 protected:
 	static GameManager* mInstance;
 	SceneManager mSceneManager;
@@ -26,6 +28,11 @@ protected:
 
 	void DebugMod();
 
+	bool play = true;
+
+	bool pause = false;
+	float mTimerPause = 0.f;
+
 public:
 	sf::Font mFont;
 
@@ -38,6 +45,8 @@ public:
 	void Draw();
 	
 	void RunGame();
+
+	float GetDeltaTime() { return dt; }
 
 	Scene* GetCurrentScene();
 
@@ -53,5 +62,9 @@ public:
 
 	Player* GetCurrentPlayer();
 	void SetCurrentPlayer(Player* pCurrentPlayer);
+
+	void StopGame() { play = false; }
+
+	void SwitchGameState();
 };
 

@@ -98,7 +98,7 @@ void QuitButton::Update(float delta)
 
 	if (Button::IsClicked())
 	{
-		delete AssetManager::Get();
+		GameManager::GetInstance()->StopGame();
 	}
 
 	if (mTimer < 2)

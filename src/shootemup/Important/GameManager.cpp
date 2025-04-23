@@ -131,8 +131,10 @@ void GameManager::RunGame()
 
 	mCurrentScene->Init();
 
-	while (window.isOpen())
+	while (window.isOpen() && play == true)
 	{
+		std::cout << mTimerPause << std::endl;
+
 		sf::Event event;
 
 		while (window.pollEvent(event))
@@ -141,11 +143,19 @@ void GameManager::RunGame()
 				window.close();
 		}
 
-		float delta = clock.restart().asSeconds();
+		dt = clock.restart().asSeconds();
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
+			SwitchGameState();
+		else
+			if (mTimerPause >= 0)
+				mTimerPause -= dt;
+
+		if (pause == true)
+			continue;
 
 		Update();
-		mSceneManager.GetCurrentScene()->Update(delta);
+		mSceneManager.GetCurrentScene()->Update(dt);
 
 		window.clear();
 		window.draw(*mSceneManager.GetCurrentScene());
@@ -171,7 +181,6 @@ void GameManager::RunGame()
 		}
 
 		DebugMod();
-
 	}
 }
 
@@ -215,6 +224,15 @@ Player* GameManager::GetCurrentPlayer()
 void GameManager::SetCurrentPlayer(Player* pCurrentPlayer)
 {
 	mCurrentPlayer = pCurrentPlayer;
+}
+
+void GameManager::SwitchGameState()
+{
+	if (mTimerPause <= 0.f)
+	{
+		pause = !pause;
+		mTimerPause = 0.5f;
+	}
 }
 
 
