@@ -13,82 +13,33 @@
 
 void Level1::Init()
 {
-	mCurrentTimer = 0;
-	mEndTimer = 0;
-
-	Player* pPlayer = new Player();
-
-	GameManager::GetInstance()->SetCurrentPlayer(pPlayer);
-
-	pPlayer->setOrigin(32, 32);
-	pPlayer->scale(1.5, 1.5);
-	pPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.7);
-
+	Level::Init();
 
 	ABoss* pBoss = new Boss1();
 	pBoss->setOrigin(266.5f, 127.5f);
 	pBoss->scale(2, 1);
 	pBoss->setPosition(WINDOW_WIDTH * 0.4, 127.5);
 
-
-	Background* pBG = new Background();
-	pBG->setOrigin(960, 0);
-	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
-
-	UI* pUI = new UI();
-	pUI->setOrigin(75, 270);
-	pUI->setScale(2, 2);
-	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
-
-	HealthBar* pPlayerHB = new HealthBar();
-	pPlayerHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
-	pPlayerHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
-	pPlayer->SetLifeBar(pPlayerHB);
-
 	HealthBar* pBossHB = new HealthBar();
 	pBossHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, 30);
 	pBossHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, 30);
 	pBoss->SetLifeBar(pBossHB);
 
-	ManaBar* pManaB = new ManaBar();
-	pManaB->GetManaBarFilled()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
-	pManaB->GetManaBarEmpty()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
-	pPlayer->SetManaBar(pManaB);  
-
-	addEntity(pBG);
-
-	addEntity(pPlayer);
 	addEntity(pBoss); 
-	addEntity(pUI);
-
-	addEntity(pPlayerHB);
-	addEntity(pManaB);
 	addEntity(pBossHB);
 }
 
 void Level1::Update(float delta)
 {	
-	Scene::Update(delta);
+	Level::Update(delta);
 
 	DrawText(&textPlayerHP, "UWUWUWUWU", WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f, 48, sf::Color::White);
 
-	mCurrentTimer += delta;
-	var += delta;
-
-	if (Scene::GetAll<Player>().size() <= 0)
-	{
-		mEndTimer += delta;
-
-		if (mEndTimer > 2.f)
-			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
-	}
-
 	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob1>().size() <= 0)
 	{
-		mEndTimer += delta;
+		mEndTimer -= delta;
 
-		if (mEndTimer > 2.f)
+		if (mEndTimer <= 0.f)
 			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
 	}
-
 }
