@@ -8,6 +8,7 @@
 
 Mob1::Mob1() : Character("Mob1", 30, 1, 300, 0.5)
 {
+	mDrawPriority = 1;
 	mDestroy = false;
 	mVelocityX = mSpeed;
 	mVelocityY = mSpeed;

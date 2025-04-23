@@ -3,6 +3,7 @@
 UI::UI()
 {
 	mDestroy = false;
+	mDrawPriority = 3;
 	CreateSprite("UI", 0, 0, 150, 540);
 }
 

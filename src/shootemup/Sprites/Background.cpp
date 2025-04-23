@@ -2,6 +2,8 @@
 
 Background::Background()
 {
+	mDrawPriority = -4;
+
 	CreateSprite("BackgroundSpace", 0, 0, 1920, 2160);
 }
 

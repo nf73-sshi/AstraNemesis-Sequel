@@ -1,6 +1,6 @@
 #include "SkillHeal.h"
 
-SkillHeal::SkillHeal() : Skill(GameManager::GetInstance()->GetStats().GetSkillHealX2Lvl(), 75, 3)
+SkillHeal::SkillHeal() : Skill(GameManager::GetInstance()->GetStats().GetSkillHealX2Lvl(), 70, 3)
 {
 	SetValues(mLvl);
 }

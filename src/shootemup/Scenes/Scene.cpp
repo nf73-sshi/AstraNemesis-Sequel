@@ -2,6 +2,7 @@
 #include "../Others/Collide.h"
 #include "../Important/GameManager.h"
 #include <iostream>
+#include <map>
 
 void Scene::Update(float delta)
 {
@@ -73,9 +74,13 @@ void Scene::Clear()
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (int i = 0; i < arrayEntity.size(); ++i)
+	for (int i = -4; i < 5; ++i)
 	{
-		target.draw(*(arrayEntity[i]), states);
+		for (Entity* e : arrayEntity)
+		{
+			if(e->mDrawPriority == i)
+				target.draw(*e, states);
+		}
 	}
 }
 

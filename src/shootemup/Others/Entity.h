@@ -11,6 +11,7 @@ protected:
     sf::Vector2f mDirection = { 0, 0 };
 
 public:
+    int mDrawPriority = 0;
 
     void CreateSprite(const char* alias, int x, int y, int sizeX, int sizeY);
 

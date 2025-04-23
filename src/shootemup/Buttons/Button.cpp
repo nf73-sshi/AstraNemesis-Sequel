@@ -4,6 +4,8 @@
 
 Button::Button()
 {
+	mDrawPriority = -3;
+
 	mVelocity = 100;
 	mTimer = 0;
 	min = 100;

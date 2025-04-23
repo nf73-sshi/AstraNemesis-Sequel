@@ -5,6 +5,7 @@
 
 HealthBar::HealthBar(float length, float width)
 {
+	mDrawPriority = 4;
 	varColor1 = 0.f;
 	varColor2 = 255;
 
