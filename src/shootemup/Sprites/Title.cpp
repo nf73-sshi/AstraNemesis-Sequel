@@ -2,7 +2,7 @@
 
 Title::Title()
 {
-	mDrawPriority = 4;
+	mDrawPriority = 9;
 
 	CreateSprite("Title", 0, 0, 342, 200);
 }

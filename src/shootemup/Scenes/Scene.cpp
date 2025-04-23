@@ -74,14 +74,29 @@ void Scene::Clear()
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (int i = -4; i < 5; ++i)
+	std::vector<std::vector<Entity*>> arrayEntityOrder;
+
+	std::vector<Entity*> empty; 
+
+	for (int i = 0; i < 10; ++i)
 	{
-		for (Entity* e : arrayEntity)
+		arrayEntityOrder.push_back(empty); 
+	}
+
+	for (Entity* e : arrayEntity)
+	{
+		arrayEntityOrder[e->mDrawPriority].push_back(e);
+	}
+
+	for (int i = 0; i < 10; ++i)
+	{
+		for (Entity* e : arrayEntityOrder[i])
 		{
-			if(e->mDrawPriority == i)
-				target.draw(*e, states);
+			target.draw(*e, states);
 		}
 	}
+
+	arrayEntityOrder.clear();
 }
 
 void Scene::addEntity(Entity* e)

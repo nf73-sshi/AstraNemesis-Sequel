@@ -4,7 +4,7 @@
 
 Button::Button()
 {
-	mDrawPriority = -3;
+	mDrawPriority = 2;
 
 	mVelocity = 100;
 	mTimer = 0;

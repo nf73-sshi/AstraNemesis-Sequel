@@ -18,7 +18,7 @@ Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetP
     GameManager::GetInstance()->GetStats().GetPlayerSpeed(),
     GameManager::GetInstance()->GetStats().GetPlayerSDelay()), Mana()
 {
-    mDrawPriority = 0;
+    mDrawPriority = 5;
 
     mHitboxSize = 8.f;
 

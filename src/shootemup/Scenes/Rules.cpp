@@ -5,7 +5,7 @@
 
 HowToPlay::HowToPlay()
 {
-	mDrawPriority = 4;
+	mDrawPriority = 9;
 
 	CreateSprite("Rules", 0, 0, 384, 206);
 }
