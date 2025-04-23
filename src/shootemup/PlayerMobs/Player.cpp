@@ -114,8 +114,8 @@ void Player::ScreenCollision()
     if (this->getPosition().x > 1588.f) 
         this->setPosition(1588, this->getPosition().y); 
 
-    if (this->getPosition().y < 32.f) 
-        this->setPosition(this->getPosition().x, 32); 
+    if (this->getPosition().y < 32.f + 40.f) 
+        this->setPosition(this->getPosition().x, 32.f + 40.f); 
 
     if (this->getPosition().y > 1048.f) 
         this->setPosition(this->getPosition().x, 1048);
