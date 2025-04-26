@@ -1,5 +1,5 @@
 #include "AssetManager.h"
-#include "AssetManager.h"
+#include "GameManager.h"
 #include <iostream>
 #include <string>
 
@@ -161,4 +161,68 @@ sf::Music* AssetManager::GetMusic(const char* alias)
     }
 
     return nullptr; // Alias inconnu
+}
+
+void AssetManager::StopAllSounds()
+{
+    for (auto it = mSounds.begin(); it != mSounds.end(); ++it)
+    {
+        if ((*it).second->getStatus() == sf::Sound::Status::Stopped) 
+            continue;
+
+        (*it).second->stop();
+    }
+}
+
+void AssetManager::StopAllMusics()
+{
+    for (auto it = mMusics.begin(); it != mMusics.end(); ++it)
+    {
+        if ((*it).second->getStatus() == sf::Music::Status::Stopped) 
+            continue;
+
+        (*it).second->stop();
+    }
+}
+
+void AssetManager::PauseOrDePauseAll()
+{
+    if (GameManager::GetInstance()->pause == true)
+    {
+        for (auto it = mSounds.begin(); it != mSounds.end(); ++it)
+        {
+            if ((*it).second->getStatus() == sf::Sound::Status::Playing)
+                (*it).second->pause();
+
+        }
+
+        for (auto it = mMusics.begin(); it != mMusics.end(); ++it)
+        {
+            if ((*it).second->getStatus() == sf::Music::Status::Playing) 
+                (*it).second->pause();
+        }
+    }
+    else
+    {
+        for (auto it = mSounds.begin(); it != mSounds.end(); ++it)
+        {
+            if ((*it).second->getStatus() == sf::Sound::Status::Paused)
+                (*it).second->play();
+        }
+
+        for (auto it = mMusics.begin(); it != mMusics.end(); ++it)
+        {
+            if ((*it).second->getStatus() == sf::Music::Status::Paused)
+                (*it).second->play();
+        }
+    }
+
+}
+
+void AssetManager::ResetPitchAllMusic()
+{
+    for (auto it = mMusics.begin(); it != mMusics.end(); ++it)
+    {
+        (*it).second->setPitch(1);
+    }
 }

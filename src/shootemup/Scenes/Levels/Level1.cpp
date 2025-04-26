@@ -4,6 +4,9 @@
 #include "../../Important/GameManager.h"
 #include "../../Bosses/Boss1.h"
 #include "../../PlayerMobs/Mob1.h"
+#include "../../Important/AssetManager.h"
+#include "../../PlayerMobs/Player.h"
+#include <iostream>
 
 
 void Level1::Init()
@@ -23,17 +26,33 @@ void Level1::Init()
 	addEntity(pBossHB);
 
 	InitUI();
+
+	auto am = AssetManager::Get();
+
+	am->StopAllMusics();
+	am->GetMusic("Dynamic Music2")->play();
 }
 
 void Level1::Update(float delta)
 {	
 	Level::Update(delta);
 
-	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob1>().size() <= 0)
+	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob1>().size() <= 0 && pCurrentPlayer->Health::IsDead() == false)
 	{
-		mEndTimer -= delta;
+		pCurrentPlayer->SetInvincible(true);
 
-		if (mEndTimer <= 0.f)
-			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
+		auto jingle = AssetManager::Get()->GetSound("Winning");
+
+		if (mIsWon == false)  
+		{
+			AssetManager::Get()->StopAllMusics();
+			jingle->play(); 
+			mIsWon = true;
+		}
+
+		if (jingle->getStatus() == sf::Sound::Status::Stopped)
+		{
+			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu"); 
+		}
 	}
 }

@@ -8,6 +8,7 @@ class Level : public Scene
 {
 protected:
 	float mEndTimer;
+	bool mIsWon;
 	Player* pCurrentPlayer;
 public:
 	virtual void Init();

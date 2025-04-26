@@ -5,6 +5,7 @@
 #include "../Important/GameManager.h"
 #include <iostream>
 #include <typeinfo>
+#include "../Important/AssetManager.h"
 
 Mob1::Mob1() : Character("Mob1", 30, 1, 300, 0.5)
 {
@@ -37,6 +38,14 @@ void Mob1::Update(float delta)
 
 	if (Health::IsDead() == true)
 	{
+		AssetManager::Get()->GetSound("Die1")->play(); 
+		Player* p = GameManager::GetInstance()->GetCurrentPlayer();
+
+		if (p != nullptr)
+		{
+			p->AddRemoveMana(3);
+		}
+
 		mDestroy = true;
 		return;
 	}
@@ -99,5 +108,18 @@ void Mob1::OnCollide(Entity* e)
 	{
 		AddRemoveHP(- e->GetDamage());
 		mTimerDelay = 0;
+	}
+
+	if (typeid(*e) == typeid(Player))
+	{
+		Player* currentPlayer = GameManager::GetInstance()->GetCurrentPlayer();
+
+		if (currentPlayer->GetIsInvincible() == true)
+			return;
+
+
+		currentPlayer->SetInvincible(true);
+		currentPlayer->AddRemoveHP(-1);
+		AssetManager::Get()->GetSound("Hit2")->play();
 	}
 }

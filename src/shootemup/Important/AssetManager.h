@@ -30,5 +30,11 @@ public:
 	sf::Texture* GetTexture(const char* alias);
 	sf::Sound* GetSound(const char* alias);
 	sf::Music* GetMusic(const char* alias);
+
+	void StopAllSounds();
+	void StopAllMusics();
+
+	void PauseOrDePauseAll();
+	void ResetPitchAllMusic();
 };
 

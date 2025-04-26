@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "../Important/GameManager.h"
+#include "../Important/AssetManager.h"
 #include "../Bosses/ABoss.h"
 #include <cmath>
 #include "../Balls/AllyBall.h"
@@ -101,6 +102,8 @@ void Player::Shoot()
         b->setPosition(this->getPosition());
         GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
         mTimerShoot = 0;
+
+        AssetManager::Get()->GetSound("Laser1")->play();
     }
 
     return;
@@ -161,6 +164,7 @@ void Player::Update(float delta)
 
     if (Health::IsDead())
     {
+        AssetManager::Get()->GetSound("Game Over")->play();
         mDestroy = true;
         return;
     }
@@ -237,6 +241,6 @@ void Player::OnCollide(Entity* e)
         mHB->UpdateBar(Health::GetRatioHP());
 
         AddRemoveMana(GetMaxMana() * 0.1f);
-   
+        AssetManager::Get()->GetSound("Hit2")->play();
      } 
 }

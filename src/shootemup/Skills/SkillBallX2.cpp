@@ -1,8 +1,9 @@
 #include "SkillBallX2.h"
 #include "../PlayerMobs/Player.h"
+#include "../Important/AssetManager.h"
 #include <iostream>
 
-SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 35, 3)
+SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 30, 3)
 {
 	mFactor = 0;
 
@@ -17,7 +18,8 @@ void SkillBallX2::Update(float delta, Player* pPlayer)
 void SkillBallX2::TriggerSkill(float delta, Player* pPlayer)
 {
 	if (mSkillUsed && mElapsedTime < mDuration)
-	{ 
+	{
+
 		OnActivaction(delta, pPlayer);
 		mElapsedTime += delta;
 	}
@@ -37,6 +39,9 @@ void SkillBallX2::TriggerSkill(float delta, Player* pPlayer)
 		{
 			pPlayer->AddRemoveMana(-mCost);
 			mSkillUsed = true;
+
+			auto sfx = AssetManager::Get()->GetSound("Boost1");
+			sfx->play();
 		}
 	}
 	else
@@ -58,27 +63,27 @@ void SkillBallX2::SetValues(int lvl)
 	switch (lvl)
 	{
 	case 1:
-		mFactor = 0.5f;
+		mFactor = 0.75f;
 		break;
 
 	case 2:
-		mFactor = 0.44f;
+		mFactor = 0.7f;
 		break;
 	
 	case 3:
-		mFactor = 0.38f;
+		mFactor = 0.63f;
 		break;
 
 	case 4:
-		mFactor = 0.32f;
+		mFactor = 0.57f;
 		break;
 
 	case 5:
-		mFactor = 0.25f;
+		mFactor = 0.50f;
 		break;
 
 	default:
-		mFactor = 0.5f;
+		mFactor = 0.75f;
 		break;
 
 	}

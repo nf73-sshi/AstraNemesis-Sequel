@@ -2,6 +2,7 @@
 #include "../Sprites/Background.h"
 #include "../Important/GameManager.h"
 #include <iostream>
+#include "../Important/AssetManager.h"
 #include "../Important/res.h"
 
 float mTimer = 0;
@@ -150,6 +151,16 @@ void Menu::Init()
 	addEntity(pRules);
 	addEntity(pQuit);
 	addEntity(pTitle);
+
+
+	AssetManager::Get()->ResetPitchAllMusic();
+
+	auto menuMusic = AssetManager::Get()->GetMusic("Menu1"); 
+	if (menuMusic->getStatus() == sf::Sound::Stopped)
+	{
+		AssetManager::Get()->StopAllMusics(); 
+		menuMusic->play(); 
+	}
 
 }
 

@@ -49,6 +49,6 @@ void ABoss::OnCollide(Entity* e)
 
 		currentPlayer->SetInvincible(true); 
 		currentPlayer->AddRemoveHP(-1); 
-		currentPlayer->GetHB()->UpdateBar(currentPlayer->Health::GetRatioHP()); 
+		AssetManager::Get()->GetSound("Hit2")->play(); 
 	}
 }

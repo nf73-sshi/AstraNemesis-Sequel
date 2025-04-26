@@ -30,11 +30,12 @@ protected:
 
 	bool play = true;
 
-	bool pause = false;
+
 	float mTimerPause = 0.f;
 
 public:
 	sf::Font mFont;
+	bool pause = false;
 
 	static GameManager* GetInstance();
 

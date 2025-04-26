@@ -11,6 +11,7 @@
 void Level::Init()
 {
 	mEndTimer = 3.f;
+	mIsWon = false;
 
 	pCurrentPlayer = new Player();
 
@@ -59,6 +60,8 @@ void Level::Update(float delta)
 		mEndTimer -= delta;
 
 		if (mEndTimer <= 0)
+		{
 			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
+		}
 	}
 }

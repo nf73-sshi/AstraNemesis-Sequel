@@ -1,6 +1,6 @@
 #include "SkillHeal.h"
 
-SkillHeal::SkillHeal() : Skill(GameManager::GetInstance()->GetStats().GetSkillHealX2Lvl(), 70, 3)
+SkillHeal::SkillHeal() : Skill(GameManager::GetInstance()->GetStats().GetSkillHealX2Lvl(), 50, 3)
 {
 	SetValues(mLvl);
 }
@@ -31,6 +31,9 @@ void SkillHeal::TriggerSkill(float delta, Player* pPlayer)
 			pPlayer->AddRemoveMana(-mCost);
 			mSkillUsed = true;
 			GameManager::GetInstance()->GetCurrentPlayer()->AddRemoveHP(mPower); 
+
+			auto sfx = AssetManager::Get()->GetSound("Heal1");
+			sfx->play();
 		}
 	}
 	else
