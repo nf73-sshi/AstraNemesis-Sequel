@@ -1,94 +1,58 @@
 #include "Level1.h"
-#include "../../PlayerMobs/Player.h"
-#include "../../Sprites/Background.h"
-#include "../../Sprites/UI.h"
+#include "../../Important/res.h"
 #include "../../HealthMana/HealthBar.h"
 #include "../../Important/GameManager.h"
-#include "../../HealthMana/ManaBar.h"
 #include "../../Bosses/Boss1.h"
 #include "../../PlayerMobs/Mob1.h"
+#include "../../Important/AssetManager.h"
+#include "../../PlayerMobs/Player.h"
 #include <iostream>
-#include "../../Important/res.h"
 
 
 void Level1::Init()
 {
-	mCurrentTimer = 0;
-	mEndTimer = 0;
-
-	Player* pPlayer = new Player();
-
-	GameManager::GetInstance()->SetCurrentPlayer(pPlayer);
-
-	pPlayer->setOrigin(32, 32);
-	pPlayer->scale(1.5, 1.5);
-	pPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.7);
-
+	Level::Init();
 
 	ABoss* pBoss = new Boss1();
 	pBoss->setOrigin(266.5f, 127.5f);
 	pBoss->scale(2, 1);
-	pBoss->setPosition(WINDOW_WIDTH * 0.4, 127.5);
+	pBoss->setPosition(WINDOW_WIDTH * 0.4, 127.5); 
 
-
-	Background* pBG = new Background();
-	pBG->setOrigin(960, 0);
-	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
-
-	UI* pUI = new UI();
-	pUI->setOrigin(75, 270);
-	pUI->setScale(2, 2);
-	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
-
-	HealthBar* pPlayerHB = new HealthBar();
-	pPlayerHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
-	pPlayerHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
-	pPlayer->SetLifeBar(pPlayerHB);
-
-	HealthBar* pBossHB = new HealthBar();
-	pBossHB->GetMHpBarFilled()->setPosition(WINDOW_WIDTH - 250, 30);
-	pBossHB->GetMHpBarEmpty()->setPosition(WINDOW_WIDTH - 250, 30);
+	HealthBar* pBossHB = new HealthBar(1500.f, 20.f);
 	pBoss->SetLifeBar(pBossHB);
+	pBossHB->SetBarPosition(50, 10);
 
-	ManaBar* pManaB = new ManaBar();
-	pManaB->GetManaBarFilled()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
-	pManaB->GetManaBarEmpty()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120); 
-	pPlayer->SetManaBar(pManaB);  
-
-	addEntity(pBG);
-
-	addEntity(pPlayer);
 	addEntity(pBoss); 
-	addEntity(pUI);
-
-	addEntity(pPlayerHB);
-	addEntity(pManaB);
 	addEntity(pBossHB);
+
+	InitUI();
+
+	auto am = AssetManager::Get();
+
+	am->StopAllMusics();
+	am->GetMusic("Dynamic Music2")->play();
 }
 
 void Level1::Update(float delta)
 {	
-	Scene::Update(delta);
+	Level::Update(delta);
 
-	DrawText(&textPlayerHP, "UWUWUWUWU", WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f, 48, sf::Color::White);
-
-	mCurrentTimer += delta;
-	var += delta;
-
-	if (Scene::GetAll<Player>().size() <= 0)
+	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob1>().size() <= 0 && pCurrentPlayer->Health::IsDead() == false)
 	{
-		mEndTimer += delta;
+		pCurrentPlayer->SetInvincible(true);
 
-		if (mEndTimer > 2.f)
-			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
+		auto jingle = AssetManager::Get()->GetSound("Winning");
+
+		if (mIsWon == false)  
+		{
+			AssetManager::Get()->StopAllMusics();
+			jingle->play(); 
+			mIsWon = true;
+		}
+
+		if (jingle->getStatus() == sf::Sound::Status::Stopped)
+		{
+			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu"); 
+		}
 	}
-
-	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob1>().size() <= 0)
-	{
-		mEndTimer += delta;
-
-		if (mEndTimer > 2.f)
-			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("Menu");
-	}
-
 }

@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "../Important/GameManager.h"
+#include "../Important/AssetManager.h"
 #include "../Bosses/ABoss.h"
 #include <cmath>
 #include "../Balls/AllyBall.h"
@@ -7,6 +8,7 @@
 #include <typeinfo>
 #include <iostream>
 #include "../Skills/SkillBallX2.h"
+#include "../Skills/SkillHeal.h"
 #include "../Skills/Skill.h"
 
 bool rotatemod = false;
@@ -17,7 +19,7 @@ Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetP
     GameManager::GetInstance()->GetStats().GetPlayerSpeed(),
     GameManager::GetInstance()->GetStats().GetPlayerSDelay()), Mana()
 {
-
+    mDrawPriority = 5;
 
     mHitboxSize = 8.f;
 
@@ -25,28 +27,29 @@ Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetP
     mTimerInvincible = 0;
     mIsInvincible = false;
     mScaleBall = 1;
-	CreateSprite("res/assets/Images/vaisseau.png", 0, 0, 64, 64);
+	CreateSprite("Player", 0, 0, 64, 64);
     mTimerShoot = 0;
 
-    s1 = new SkillBallX2();
+    skillArray.push_back(new SkillBallX2());
+    skillArray.push_back(new SkillHeal());
 
 }
 
 void Player::Move(float delta)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         this->move(0.f, -mSpeed * delta);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         this->move(0.f, mSpeed * delta);
     } 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         this->move(-mSpeed * delta, 0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         this->move(mSpeed * delta, 0);
     }
@@ -99,6 +102,8 @@ void Player::Shoot()
         b->setPosition(this->getPosition());
         GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
         mTimerShoot = 0;
+
+        AssetManager::Get()->GetSound("Laser1")->play();
     }
 
     return;
@@ -112,8 +117,8 @@ void Player::ScreenCollision()
     if (this->getPosition().x > 1588.f) 
         this->setPosition(1588, this->getPosition().y); 
 
-    if (this->getPosition().y < 32.f) 
-        this->setPosition(this->getPosition().x, 32); 
+    if (this->getPosition().y < 32.f + 40.f) 
+        this->setPosition(this->getPosition().x, 32.f + 40.f); 
 
     if (this->getPosition().y > 1048.f) 
         this->setPosition(this->getPosition().x, 1048);
@@ -159,6 +164,7 @@ void Player::Update(float delta)
 
     if (Health::IsDead())
     {
+        AssetManager::Get()->GetSound("Game Over")->play();
         mDestroy = true;
         return;
     }
@@ -166,13 +172,12 @@ void Player::Update(float delta)
     Move(delta);
     ScreenCollision(); 
     Shoot();
+    SkillManager(delta);
 
     mHB->UpdateBar(Health::GetRatioHP()); 
     mManaBar->UpdateBar(Mana::GetRatioMana());
     
     FillManaBar(delta);
-
-    s1->Update(delta, this);
 }
 
 bool Player::GetIsInvincible()
@@ -183,6 +188,33 @@ bool Player::GetIsInvincible()
 void Player::SetInvincible(bool value)
 {
     mIsInvincible = value; 
+}
+
+void Player::SkillManager(float delta)
+{
+    Skill* usedSkill = nullptr;
+     
+    for (Skill* s : skillArray)
+    {
+        if (s->GetIsUsed())
+        {
+            usedSkill = s; 
+            break;
+        }
+    }
+
+    if (usedSkill != nullptr)
+    {
+        usedSkill->Update(delta, this);
+    }
+    else
+    {
+        for (Skill* s : skillArray)
+        {
+            s->Update(delta, this);
+        }
+    }
+
 }
 
 Hitbox Player::GetHitbox()
@@ -207,5 +239,8 @@ void Player::OnCollide(Entity* e)
         mIsInvincible = true;
         AddRemoveHP(-1);
         mHB->UpdateBar(Health::GetRatioHP());
-    }
+
+        AddRemoveMana(GetMaxMana() * 0.1f);
+        AssetManager::Get()->GetSound("Hit2")->play();
+     } 
 }

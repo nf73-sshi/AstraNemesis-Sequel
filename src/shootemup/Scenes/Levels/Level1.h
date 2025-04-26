@@ -1,17 +1,10 @@
 #pragma once
-#include "../Scene.h"
-#include <SFML/Graphics/Text.hpp>
+#include "Level.h"
 
-class Level1 : public Scene
+class Level1 : public Level
 {
-	float mCurrentTimer;
-	float var;
-	float mEndTimer;
-
-	sf::Text textPlayerHP;
-	sf::Text textMana;
 public:
-	void Init();
+	void Init() override;
 	void Update(float delta) override;
 };
 

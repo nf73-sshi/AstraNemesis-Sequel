@@ -9,7 +9,7 @@
     "dependencies": [],
     "configuration": [
         {
-            "additional_dependencies": "%(AdditionalDependencies)",
+            "additional_dependencies": "openal32.lib;flac.lib;vorbis.lib;vorbisfile.lib;ogg.lib",
             "additional_include_directories": "",
             "additional_library_directories": "",
             "character_set": "Unicode",

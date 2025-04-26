@@ -2,6 +2,7 @@
 #include "../Sprites/Background.h"
 #include "../Important/GameManager.h"
 #include <iostream>
+#include "../Important/AssetManager.h"
 
 #define WINDOW_WIDTH 1920 
 #define WINDOW_HEIGHT 1080 
@@ -10,7 +11,7 @@
 GameOverButton::GameOverButton() : Button()
 {
 	mDestroy = false;
-	CreateSprite("res/assets/Menu/gameover.png", 0, 0, 350, 256);
+	CreateSprite("GameOverButton", 0, 0, 350, 256);
 }
 
 void GameOverButton::Update(float delta)
@@ -45,6 +46,10 @@ void GameOver::Init()
 	addEntity(pBG);
 	addEntity(pGO);
 
+	auto am = AssetManager::Get();
+
+	am->StopAllMusics();
+	am->GetMusic("Calm Space")->play();
 }
 
 void GameOver::Update(float delta)

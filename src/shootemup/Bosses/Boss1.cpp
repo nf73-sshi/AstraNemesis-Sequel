@@ -8,6 +8,7 @@
 #include <typeinfo>
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
+#include "../Important/AssetManager.h"
 
 Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 {
@@ -23,12 +24,14 @@ Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 
 	mVelocityX = mSpeed;
 	mVelocityY = mSpeed * 2.5;
-	CreateSprite("res/assets/Images/Boss1.png", 0, 0, 533, 255);
+	CreateSprite("Boss1", 0, 0, 533, 255);
 }
 
 void Boss1::Update(float delta)  
 {
 	ABoss::Update(delta);
+
+	auto linkedMusic = AssetManager::Get()->GetMusic("Dynamic Music2");
 
 	if (mTimerInactive < 2)
 	{
@@ -48,9 +51,15 @@ void Boss1::Update(float delta)
 			Pattern5(delta);
 			Randomize();
 		}
-	}
 
-	if (mHP <= mHPMax * 0.33)
+		if (linkedMusic->getPitch() < 1.1)
+		{
+			AssetManager::Get()->GetSound("Explosion1")->play(); 
+			linkedMusic->setPitch(1.1);
+		}
+
+	}
+	else if (mHP <= mHPMax * 0.33)
 	{
 		this->sprite.setColor(sf::Color(255, 50, 50, 255));
 		mShootingDelay = 0.2;
@@ -62,10 +71,23 @@ void Boss1::Update(float delta)
 			Pattern5(delta);
 			Randomize();
 		}
+
+		if (linkedMusic->getPitch() < 1.2)
+		{
+			AssetManager::Get()->GetSound("Explosion1")->play();
+			linkedMusic->setPitch(1.2);
+		}
+
+	}
+	else
+	{
+		if (linkedMusic->getPitch() != 1.f)
+			linkedMusic->setPitch(1.f);
 	}
 
 	if (Health::IsDead())
 	{
+		AssetManager::Get()->GetSound("Explosion1")->play(); 
 		mDestroy = true;
 		return;
 	}
@@ -168,6 +190,12 @@ void Boss1::Pattern3(float delta)
 
 void Boss1::Pattern4(float delta)
 {
+	if (GameManager::GetInstance()->GetCurrentScene()->GetAll<Mob1>().size() >= 4)
+	{
+		mRandomizer = rand() % 90;
+		return;
+	}
+
 	mTimerPattern4 += delta;
 
 	if (mTimerPattern4 >= 0.5)

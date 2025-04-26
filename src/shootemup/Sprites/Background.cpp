@@ -2,7 +2,9 @@
 
 Background::Background()
 {
-	CreateSprite("res/assets/Images/spaceHeavyLess.png", 0, 0, 1920, 2160); 
+	mDrawPriority = 0;
+
+	CreateSprite("BackgroundSpace", 0, 0, 1920, 2160);
 }
 
 void Background::Update(float delta)

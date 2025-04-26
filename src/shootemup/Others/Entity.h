@@ -8,10 +8,12 @@ protected:
     sf::Texture texture;
     sf::Sprite sprite;
     bool mDestroy;
+    sf::Vector2f mDirection = { 0, 0 };
 
 public:
+    int mDrawPriority = 0;
 
-    void CreateSprite(std::string link, int x, int y, int sizeX, int sizeY);
+    void CreateSprite(const char* alias, int x, int y, int sizeX, int sizeY);
 
     bool GetMDestroy();
 

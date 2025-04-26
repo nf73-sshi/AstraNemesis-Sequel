@@ -3,7 +3,7 @@
 
 EnemyBall::EnemyBall(int damage, float speed, float scale, float xFactor, float yFactor) : Ball(damage, speed, scale, xFactor, yFactor)
 {
-	CreateSprite("res/assets/Images/bulletsTile.png", 293, 325, 18, 18);
+	CreateSprite("BulletsTile", 293, 325, 18, 18);
 }
 
 void EnemyBall::OnCollide(Entity* e)

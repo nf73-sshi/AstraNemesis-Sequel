@@ -6,15 +6,25 @@ class HealthBar : public Entity
 protected:
 	sf::RectangleShape mHpBarFilled;
 	sf::RectangleShape mHpBarEmpty;
-  
+
+	float mLength;
+	float mWidth;
+
+	float mCurrentRatio = 1;
+	float alpha = 255;
+
+	float varColor1;
+	float varColor2;
 public:
-	HealthBar();
+	HealthBar(float length, float width);
 
 	void Update(float delta) override;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	sf::RectangleShape* GetMHpBarFilled();
 	sf::RectangleShape* GetMHpBarEmpty();
+
+	void SetBarPosition(float x, float y);
 
 	void UpdateBar(float ratio);
 };

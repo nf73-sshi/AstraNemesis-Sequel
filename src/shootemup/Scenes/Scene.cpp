@@ -2,6 +2,7 @@
 #include "../Others/Collide.h"
 #include "../Important/GameManager.h"
 #include <iostream>
+#include <map>
 
 void Scene::Update(float delta)
 {
@@ -73,10 +74,29 @@ void Scene::Clear()
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (int i = 0; i < arrayEntity.size(); ++i)
+	std::vector<std::vector<Entity*>> arrayEntityOrder;
+
+	std::vector<Entity*> empty; 
+
+	for (int i = 0; i < 10; ++i)
 	{
-		target.draw(*(arrayEntity[i]), states);
+		arrayEntityOrder.push_back(empty); 
 	}
+
+	for (Entity* e : arrayEntity)
+	{
+		arrayEntityOrder[e->mDrawPriority].push_back(e);
+	}
+
+	for (int i = 0; i < 10; ++i)
+	{
+		for (Entity* e : arrayEntityOrder[i])
+		{
+			target.draw(*e, states);
+		}
+	}
+
+	arrayEntityOrder.clear();
 }
 
 void Scene::addEntity(Entity* e)
