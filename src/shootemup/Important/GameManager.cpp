@@ -16,6 +16,8 @@
 #include "../Scenes/GameOver.h"
 #include "../Important/res.h"
 
+#define VOL 0.1f
+
 GameManager* GameManager::mInstance = nullptr;
 
 void GameManager::InitMusics()
@@ -26,16 +28,16 @@ void GameManager::InitMusics()
 	mAssetManager->LoadMusic("Menu1", "res/assets/Musics/menu1.wav");
 
 	mAssetManager->GetMusic("Calm Space")->setLoop(true);
-	mAssetManager->GetMusic("Calm Space")->setVolume(35);
+	mAssetManager->GetMusic("Calm Space")->setVolume(35 * VOL);
 
 	mAssetManager->GetMusic("Dynamic Music1")->setLoop(true);
-	mAssetManager->GetMusic("Dynamic Music1")->setVolume(50);
+	mAssetManager->GetMusic("Dynamic Music1")->setVolume(50 * VOL); 
 
 	mAssetManager->GetMusic("Dynamic Music2")->setLoop(true);
-	mAssetManager->GetMusic("Dynamic Music2")->setVolume(55);
+	mAssetManager->GetMusic("Dynamic Music2")->setVolume(55 * VOL); 
 
 	mAssetManager->GetMusic("Menu1")->setLoop(true);
-	mAssetManager->GetMusic("Menu1")->setVolume(35);
+	mAssetManager->GetMusic("Menu1")->setVolume(35 * VOL);
 }
 
 void GameManager::InitSFX()
@@ -57,22 +59,22 @@ void GameManager::InitSFX()
 	mAssetManager->LoadSound("Laser3", "res/assets/SFX/laser3.wav");
 	mAssetManager->LoadSound("Winning", "res/assets/SFX/winning_jingle.wav");
 
-	mAssetManager->GetSound("Beep")->setVolume(100);
-	mAssetManager->GetSound("Applause")->setVolume(100);
-	mAssetManager->GetSound("Boost1")->setVolume(10);
-	mAssetManager->GetSound("Boost2")->setVolume(100);
-	mAssetManager->GetSound("Die1")->setVolume(35);
-	mAssetManager->GetSound("Epic Intro")->setVolume(100);
-	mAssetManager->GetSound("Explosion1")->setVolume(75);
-	mAssetManager->GetSound("Game Over")->setVolume(100);
-	mAssetManager->GetSound("Heal1")->setVolume(80);
-	mAssetManager->GetSound("Heal2")->setVolume(100);
-	mAssetManager->GetSound("Hit1")->setVolume(100);
-	mAssetManager->GetSound("Hit2")->setVolume(50);
-	mAssetManager->GetSound("Laser1")->setVolume(45);
-	mAssetManager->GetSound("Laser2")->setVolume(45);
-	mAssetManager->GetSound("Laser3")->setVolume(45);
-	mAssetManager->GetSound("Winning")->setVolume(50); 
+	mAssetManager->GetSound("Beep")->setVolume(100 * VOL);
+	mAssetManager->GetSound("Applause")->setVolume(100 * VOL);
+	mAssetManager->GetSound("Boost1")->setVolume(10 * VOL);
+	mAssetManager->GetSound("Boost2")->setVolume(100 * VOL);
+	mAssetManager->GetSound("Die1")->setVolume(35 * VOL);
+	mAssetManager->GetSound("Epic Intro")->setVolume(100 * VOL);
+	mAssetManager->GetSound("Explosion1")->setVolume(75 * VOL);
+	mAssetManager->GetSound("Game Over")->setVolume(100 * VOL);
+	mAssetManager->GetSound("Heal1")->setVolume(80 * VOL);
+	mAssetManager->GetSound("Heal2")->setVolume(100 * VOL);
+	mAssetManager->GetSound("Hit1")->setVolume(100 * VOL);
+	mAssetManager->GetSound("Hit2")->setVolume(50 * VOL);
+	mAssetManager->GetSound("Laser1")->setVolume(45 * VOL);
+	mAssetManager->GetSound("Laser2")->setVolume(45 * VOL);
+	mAssetManager->GetSound("Laser3")->setVolume(45 * VOL);
+	mAssetManager->GetSound("Winning")->setVolume(50 * VOL); 
 }
 
 void GameManager::InitTextures()
