@@ -1,0 +1,29 @@
+-- Using cached SFML-SFML-2.6.1.tar.gz
+-- Extracting source C:/Users/Nathan/AppData/Local/vcpkg/downloads/SFML-SFML-2.6.1.tar.gz
+-- Applying patch fix-dependencies.patch
+-- Using source at C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/sfml/src/2.6.1-f39277683b.clean
+-- Found external ninja('1.12.1').
+-- Configuring x64-windows
+CMake Warning at C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/x64-windows/share/vcpkg-cmake/vcpkg_cmake_configure.cmake:327 (message):
+  The following variables are not used in CMakeLists.txt:
+
+      SFML_MISC_INSTALL_PREFIX
+      SFML_WARNINGS_AS_ERRORS
+
+  Please recheck them and remove the unnecessary options from the
+  `vcpkg_cmake_configure` call.
+
+  If these options should still be passed for whatever reason, please use the
+  `MAYBE_UNUSED_VARIABLES` argument.
+Call Stack (most recent call first):
+  C:/Users/Nathan/AppData/Local/vcpkg/registries/git-trees/3cf9cce0cc82c37f5a37c1c97d05c7fcb4609486/portfile.cmake:17 (vcpkg_cmake_configure)
+  scripts/ports.cmake:203 (include)
+
+
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~2.3.0-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.5.4-2-x86_64.pkg.tar.zst
+-- Using msys root at C:/Users/Nathan/AppData/Local/vcpkg/downloads/tools/msys2/21caed2f81ec917b
+-- Installing: C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/pkgs/sfml_x64-windows/share/sfml/copyright
+-- Exécution de la validation post-build

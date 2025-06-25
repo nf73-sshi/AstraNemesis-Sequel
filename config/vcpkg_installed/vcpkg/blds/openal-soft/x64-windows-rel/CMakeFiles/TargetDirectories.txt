@@ -1,0 +1,8 @@
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/common.dir
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/OpenAL.dir
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/ex-common.dir
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/edit_cache.dir
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/rebuild_cache.dir
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/list_install_components.dir
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/install.dir
+C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/openal-soft/x64-windows-rel/CMakeFiles/install/local.dir

@@ -1,0 +1,8 @@
+-- Using cached nothings-stb-5736b15f7ea0ffb08dd38af21067c314d6a3aae9.tar.gz
+-- Extracting source C:/Users/Nathan/AppData/Local/vcpkg/downloads/nothings-stb-5736b15f7ea0ffb08dd38af21067c314d6a3aae9.tar.gz
+-- Using source at C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/blds/stb/src/14d6a3aae9-dc9b68ccde.clean
+-- Installing: C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/pkgs/stb_x64-windows/share/stb/FindStb.cmake
+-- Installing: C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/pkgs/stb_x64-windows/share/stb/vcpkg-cmake-wrapper.cmake
+-- Installing: C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/pkgs/stb_x64-windows/share/stb/usage
+-- Installing: C:/Users/Nathan/Documents/GitHub/SHMUP after GC/config/vcpkg_installed/vcpkg/pkgs/stb_x64-windows/share/stb/copyright
+-- Exécution de la validation post-build
