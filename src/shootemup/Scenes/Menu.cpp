@@ -162,6 +162,8 @@ void Menu::Init()
 		menuMusic->play(); 
 	}
 
+	/////////////////////////////// SUPPRIMER §§§§§§§!
+	DrawText("TJAJTATJT", WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f, 40, sf::Color::Red);
 }
 
 

@@ -40,22 +40,32 @@ void Scene::Update(float delta)
 			++it;
 		}
 	}
+	for (auto it = arrayTextes.begin(); it != arrayTextes.end();)
+	{
+		if (false)
+		{
+			delete* it;
+			it = arrayTextes.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
 }
 
-void Scene::DrawText(sf::Text* yourText, std::string text, float x, float y, int size, sf::Color color)
+void Scene::DrawText(std::string text, float x, float y, int size, sf::Color color)
 {
-	sf::Text textToDisplay;
+	sf::Text* textToDisplay = new sf::Text();
 
-	textToDisplay.setFont(GameManager::GetInstance()->mFont);
+	textToDisplay->setFont(GameManager::GetInstance()->mFont);
 
-	textToDisplay.setString(text);
-	textToDisplay.setPosition(x, y);
-	textToDisplay.setCharacterSize(size);
-	textToDisplay.setFillColor(color);
+	textToDisplay->setString(text);
+	textToDisplay->setPosition(x, y);
+	textToDisplay->setCharacterSize(size);
+	textToDisplay->setFillColor(color);
 
-	yourText = &textToDisplay;
-
-	GameManager::GetInstance()->GetWindow()->draw(*yourText);
+	arrayTextes.push_back(textToDisplay);
 }
 
 Scene::~Scene()
@@ -70,6 +80,12 @@ void Scene::Clear()
 		delete e;
 	}
 	arrayEntity.clear();
+
+	for (sf::Text* t : arrayTextes)
+	{
+		delete t;
+	}
+	arrayTextes.clear();
 }
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -94,6 +110,11 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 			target.draw(*e, states);
 		}
+	}
+
+	for (sf::Text* t : arrayTextes)
+	{
+		target.draw(*t, states);
 	}
 
 	arrayEntityOrder.clear();
