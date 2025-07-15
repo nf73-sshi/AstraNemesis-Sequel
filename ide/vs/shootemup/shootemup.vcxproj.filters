@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+    <ItemGroup>
+        <Filter Include="header">
+            <UniqueIdentifier>{7651E9AC-B811-475F-BD52-68FCC4EF6CB1}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Balls">
+            <UniqueIdentifier>{E9A77BB1-7300-4C33-84A9-869CBAF8495A}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Bosses">
+            <UniqueIdentifier>{9C7A50B1-05E1-4592-A189-1ED2683D27C1}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Buttons">
+            <UniqueIdentifier>{6F38BDF9-F7A4-491E-945C-F6A69D3D6A0F}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\HealthMana">
+            <UniqueIdentifier>{4AAA3D9D-AC6A-46BF-8118-08F87AD53738}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Important">
+            <UniqueIdentifier>{0A4CD617-A196-4B32-8E55-EF4727646415}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Others">
+            <UniqueIdentifier>{95C63F0C-B4B6-4777-85B0-657D18A12B6E}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\PlayerMobs">
+            <UniqueIdentifier>{E43840D9-FAF0-4DD7-A6C0-F6E57C16C149}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Scenes">
+            <UniqueIdentifier>{03399E72-C887-4766-A0CE-5897E2C0A3AC}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Scenes\Levels">
+            <UniqueIdentifier>{AB9BAAAA-3334-43E6-9B37-924DAF8DECF5}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Skills">
+            <UniqueIdentifier>{7EA9463A-A20A-474F-8894-9AF89540FE2B}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="header\Sprites">
+            <UniqueIdentifier>{150A8324-2529-4B12-B5FA-17657AB56F8E}</UniqueIdentifier>
+            <Extensions>h;hpp</Extensions>
+        </Filter>
+        <Filter Include="resource">
+            <UniqueIdentifier>{F5D1C1D6-71CC-4B9F-BCE0-527F390410DD}</UniqueIdentifier>
+            <Extensions>hlsl;jpg;jpeg;png;wav;mp3;ico;dds;rc;obj</Extensions>
+        </Filter>
+        <Filter Include="resource\Important">
+            <UniqueIdentifier>{0842E12D-7CFA-4D69-8B41-43FF00CC0FDF}</UniqueIdentifier>
+            <Extensions>hlsl;jpg;jpeg;png;wav;mp3;ico;dds;rc;obj</Extensions>
+        </Filter>
+        <Filter Include="source">
+            <UniqueIdentifier>{7C3B9CA7-9DB9-43FA-BB1E-C42DCDD72384}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Balls">
+            <UniqueIdentifier>{9DA83B43-1B75-4E83-AC6B-12AF043DD6CC}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Bosses">
+            <UniqueIdentifier>{66A36EE8-D995-4717-966E-54E6585CF52E}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Buttons">
+            <UniqueIdentifier>{6BA78C32-9807-4BEC-958B-3E6D94070210}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\HealthMana">
+            <UniqueIdentifier>{86D185A4-856E-4F3A-B3DF-E26420B6BF95}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Important">
+            <UniqueIdentifier>{79849A92-F43C-48C3-B35E-75B2D4B2C5DF}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Others">
+            <UniqueIdentifier>{11FF7EEE-9026-4EF5-A309-F80C3E20EF65}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\PlayerMobs">
+            <UniqueIdentifier>{E475B5E7-5096-4F5A-85C4-712A6FEE6B86}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Scenes">
+            <UniqueIdentifier>{C5FCDBBB-7079-4624-9F3D-5A6AE1851E76}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Scenes\Levels">
+            <UniqueIdentifier>{4B6A3149-C417-4C2F-B7BF-52391A7BCF7D}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Skills">
+            <UniqueIdentifier>{D7BB0206-827A-48D5-A117-03AAF04DCD75}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+        <Filter Include="source\Sprites">
+            <UniqueIdentifier>{DFD9A855-4035-469C-9CE2-44F67A68A695}</UniqueIdentifier>
+            <Extensions>cpp;c</Extensions>
+        </Filter>
+    </ItemGroup>
+    <ItemGroup>
+        <ClCompile Include="..\..\..\src\shootemup\Balls\AllyBall.cpp">
+            <Filter>source\Balls</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Balls\Ball.cpp">
+            <Filter>source\Balls</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Balls\EnemyBall.cpp">
+            <Filter>source\Balls</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Bosses\ABoss.cpp">
+            <Filter>source\Bosses</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Bosses\Boss1.cpp">
+            <Filter>source\Bosses</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Buttons\BackButton.cpp">
+            <Filter>source\Buttons</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Buttons\Button.cpp">
+            <Filter>source\Buttons</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\HealthMana\Health.cpp">
+            <Filter>source\HealthMana</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\HealthMana\HealthBar.cpp">
+            <Filter>source\HealthMana</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\HealthMana\Mana.cpp">
+            <Filter>source\HealthMana</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\HealthMana\ManaBar.cpp">
+            <Filter>source\HealthMana</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Important\AssetManager.cpp">
+            <Filter>source\Important</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Important\GameManager.cpp">
+            <Filter>source\Important</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Important\main.cpp">
+            <Filter>source\Important</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Important\Stats.cpp">
+            <Filter>source\Important</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Others\Character.cpp">
+            <Filter>source\Others</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Others\Collide.cpp">
+            <Filter>source\Others</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Others\Entity.cpp">
+            <Filter>source\Others</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\PlayerMobs\Mob1.cpp">
+            <Filter>source\PlayerMobs</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\PlayerMobs\Player.cpp">
+            <Filter>source\PlayerMobs</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\GameOver.cpp">
+            <Filter>source\Scenes</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\Levels\Level.cpp">
+            <Filter>source\Scenes\Levels</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\Levels\Level1.cpp">
+            <Filter>source\Scenes\Levels</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\LevelSelect.cpp">
+            <Filter>source\Scenes</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\Menu.cpp">
+            <Filter>source\Scenes</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\Rules.cpp">
+            <Filter>source\Scenes</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\Scene.cpp">
+            <Filter>source\Scenes</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Scenes\SceneManager.cpp">
+            <Filter>source\Scenes</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Skills\Skill.cpp">
+            <Filter>source\Skills</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Skills\SkillBallX2.cpp">
+            <Filter>source\Skills</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Skills\SkillHeal.cpp">
+            <Filter>source\Skills</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Sprites\Background.cpp">
+            <Filter>source\Sprites</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Sprites\Title.cpp">
+            <Filter>source\Sprites</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\..\src\shootemup\Sprites\UI.cpp">
+            <Filter>source\Sprites</Filter>
+        </ClCompile>
+        <ClInclude Include="..\..\..\src\shootemup\Balls\AllyBall.h">
+            <Filter>header\Balls</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Balls\Ball.h">
+            <Filter>header\Balls</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Balls\EnemyBall.h">
+            <Filter>header\Balls</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Bosses\ABoss.h">
+            <Filter>header\Bosses</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Bosses\Boss1.h">
+            <Filter>header\Bosses</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Buttons\BackButton.h">
+            <Filter>header\Buttons</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Buttons\Button.h">
+            <Filter>header\Buttons</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\HealthMana\Health.h">
+            <Filter>header\HealthMana</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\HealthMana\HealthBar.h">
+            <Filter>header\HealthMana</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\HealthMana\Mana.h">
+            <Filter>header\HealthMana</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\HealthMana\ManaBar.h">
+            <Filter>header\HealthMana</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Important\AssetManager.h">
+            <Filter>header\Important</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Important\GameManager.h">
+            <Filter>header\Important</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Important\main.h">
+            <Filter>header\Important</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Important\res.h">
+            <Filter>header\Important</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Important\Stats.h">
+            <Filter>header\Important</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Others\Character.h">
+            <Filter>header\Others</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Others\Collide.h">
+            <Filter>header\Others</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Others\Entity.h">
+            <Filter>header\Others</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob1.h">
+            <Filter>header\PlayerMobs</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Player.h">
+            <Filter>header\PlayerMobs</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\GameOver.h">
+            <Filter>header\Scenes</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\Levels\Level.h">
+            <Filter>header\Scenes\Levels</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\Levels\Level1.h">
+            <Filter>header\Scenes\Levels</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\LevelSelect.h">
+            <Filter>header\Scenes</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\Menu.h">
+            <Filter>header\Scenes</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\Rules.h">
+            <Filter>header\Scenes</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\Scene.h">
+            <Filter>header\Scenes</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Scenes\SceneManager.h">
+            <Filter>header\Scenes</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Skills\Skill.h">
+            <Filter>header\Skills</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Skills\SkillBallX2.h">
+            <Filter>header\Skills</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Skills\SkillHeal.h">
+            <Filter>header\Skills</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Sprites\Background.h">
+            <Filter>header\Sprites</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Sprites\Title.h">
+            <Filter>header\Sprites</Filter>
+        </ClInclude>
+        <ClInclude Include="..\..\..\src\shootemup\Sprites\UI.h">
+            <Filter>header\Sprites</Filter>
+        </ClInclude>
+        <None Include="..\..\..\src\shootemup\Important\app.ico">
+            <Filter>resource\Important</Filter>
+        </None>
+        <None Include="..\..\..\src\shootemup\Important\app.rc">
+            <Filter>resource\Important</Filter>
+        </None>
+        <None Include="..\..\..\src\shootemup\Important\small.ico">
+            <Filter>resource\Important</Filter>
+        </None>
+    </ItemGroup>
+</Project>
