@@ -1,11 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30319.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shootemup", "shootemup\shootemup.vcxproj", "{7E0F4D7C-5274-4423-9661-451FBF8FCBC3}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shootemup", "shootemup\shootemup.vcxproj", "{6060F48E-5297-4E14-AF66-2895C809AB60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,15 +10,13 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7E0F4D7C-5274-4423-9661-451FBF8FCBC3}.Debug|x64.ActiveCfg = Debug|x64
-		{7E0F4D7C-5274-4423-9661-451FBF8FCBC3}.Debug|x64.Build.0 = Debug|x64
-		{7E0F4D7C-5274-4423-9661-451FBF8FCBC3}.Release|x64.ActiveCfg = Release|x64
-		{7E0F4D7C-5274-4423-9661-451FBF8FCBC3}.Release|x64.Build.0 = Release|x64
+		{6060F48E-5297-4E14-AF66-2895C809AB60}.Debug|x64.ActiveCfg = Debug|x64
+		{6060F48E-5297-4E14-AF66-2895C809AB60}.Debug|x64.Build.0 = Debug|x64
+		{6060F48E-5297-4E14-AF66-2895C809AB60}.Release|x64.ActiveCfg = Release|x64
+		{6060F48E-5297-4E14-AF66-2895C809AB60}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E4491E6-01F8-4849-B1FE-71BAA87B79F7}
