@@ -37,7 +37,7 @@ public:
 	sf::Font mFont;
 	bool pause = false;
 
-	static GameManager* GetInstance();
+	static GameManager* GetInstance(); 
 
 	void Init();
 
