@@ -74,7 +74,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>openal32.lib;flac.lib;vorbis.lib;vorbisfile.lib;ogg.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-system-d.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\Nathan\Documents\GitHub\SHMUP after GC\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Nathan\Documents\GitHub\SHMUP after GC\SFML-2.6.2\lib\Debug;C:\Users\Nathan\Documents\GitHub\SHMUP after GC\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -91,7 +91,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>openal32.lib;flac.lib;vorbis.lib;vorbisfile.lib;ogg.lib</AdditionalDependencies>
+      <AdditionalDependencies>openal32.lib;flac.lib;vorbis.lib;vorbisfile.lib;ogg.lib;sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\Nathan\Documents\GitHub\SHMUP after GC\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
