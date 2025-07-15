@@ -2,107 +2,107 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
     <ItemGroup>
         <Filter Include="header">
-            <UniqueIdentifier>{7651E9AC-B811-475F-BD52-68FCC4EF6CB1}</UniqueIdentifier>
+            <UniqueIdentifier>{D55428D1-FD97-4106-9F82-95769F3458E8}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Balls">
-            <UniqueIdentifier>{E9A77BB1-7300-4C33-84A9-869CBAF8495A}</UniqueIdentifier>
+            <UniqueIdentifier>{FA1A33BE-5B2E-4E5D-8542-A34562B41C76}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Bosses">
-            <UniqueIdentifier>{9C7A50B1-05E1-4592-A189-1ED2683D27C1}</UniqueIdentifier>
+            <UniqueIdentifier>{4DA9EA13-96C7-46B9-BADD-A8F9F7B14E49}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Buttons">
-            <UniqueIdentifier>{6F38BDF9-F7A4-491E-945C-F6A69D3D6A0F}</UniqueIdentifier>
+            <UniqueIdentifier>{32557F96-5129-403E-B3A2-1A249BDBF236}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\HealthMana">
-            <UniqueIdentifier>{4AAA3D9D-AC6A-46BF-8118-08F87AD53738}</UniqueIdentifier>
+            <UniqueIdentifier>{D367D682-E321-4EAB-921E-EE29629DA8EE}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Important">
-            <UniqueIdentifier>{0A4CD617-A196-4B32-8E55-EF4727646415}</UniqueIdentifier>
+            <UniqueIdentifier>{EBB537FD-5BAF-4362-B890-6539E6CF736E}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Others">
-            <UniqueIdentifier>{95C63F0C-B4B6-4777-85B0-657D18A12B6E}</UniqueIdentifier>
+            <UniqueIdentifier>{107E267C-A1EC-44BF-9BFC-DC9C403C659E}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\PlayerMobs">
-            <UniqueIdentifier>{E43840D9-FAF0-4DD7-A6C0-F6E57C16C149}</UniqueIdentifier>
+            <UniqueIdentifier>{54C9B2F4-7B27-46AD-AE0E-1623E412D0C0}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Scenes">
-            <UniqueIdentifier>{03399E72-C887-4766-A0CE-5897E2C0A3AC}</UniqueIdentifier>
+            <UniqueIdentifier>{E88A641D-EE48-4AE2-AECD-C45B85297A39}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Scenes\Levels">
-            <UniqueIdentifier>{AB9BAAAA-3334-43E6-9B37-924DAF8DECF5}</UniqueIdentifier>
+            <UniqueIdentifier>{4976D91C-5D9A-4ABE-84F0-609E1A6B51D3}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Skills">
-            <UniqueIdentifier>{7EA9463A-A20A-474F-8894-9AF89540FE2B}</UniqueIdentifier>
+            <UniqueIdentifier>{3C370A9C-D0C4-4E6C-8BAA-A4FDA6D9F3F6}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="header\Sprites">
-            <UniqueIdentifier>{150A8324-2529-4B12-B5FA-17657AB56F8E}</UniqueIdentifier>
+            <UniqueIdentifier>{515A51C0-E29B-410F-9ECA-86590BF4C4F5}</UniqueIdentifier>
             <Extensions>h;hpp</Extensions>
         </Filter>
         <Filter Include="resource">
-            <UniqueIdentifier>{F5D1C1D6-71CC-4B9F-BCE0-527F390410DD}</UniqueIdentifier>
+            <UniqueIdentifier>{1A307FB1-E188-4848-BDEC-AC7098119300}</UniqueIdentifier>
             <Extensions>hlsl;jpg;jpeg;png;wav;mp3;ico;dds;rc;obj</Extensions>
         </Filter>
         <Filter Include="resource\Important">
-            <UniqueIdentifier>{0842E12D-7CFA-4D69-8B41-43FF00CC0FDF}</UniqueIdentifier>
+            <UniqueIdentifier>{B60FC9B3-9A6F-4ACD-A434-B6C0A3976EDD}</UniqueIdentifier>
             <Extensions>hlsl;jpg;jpeg;png;wav;mp3;ico;dds;rc;obj</Extensions>
         </Filter>
         <Filter Include="source">
-            <UniqueIdentifier>{7C3B9CA7-9DB9-43FA-BB1E-C42DCDD72384}</UniqueIdentifier>
+            <UniqueIdentifier>{B7645585-4916-43DC-86F9-2CB13A694F7A}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Balls">
-            <UniqueIdentifier>{9DA83B43-1B75-4E83-AC6B-12AF043DD6CC}</UniqueIdentifier>
+            <UniqueIdentifier>{3B4B6A86-408B-40D5-B012-786D4475D65E}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Bosses">
-            <UniqueIdentifier>{66A36EE8-D995-4717-966E-54E6585CF52E}</UniqueIdentifier>
+            <UniqueIdentifier>{8112C600-65DD-41C3-8C49-733B424B2D0E}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Buttons">
-            <UniqueIdentifier>{6BA78C32-9807-4BEC-958B-3E6D94070210}</UniqueIdentifier>
+            <UniqueIdentifier>{5182D7DD-9A5B-40EE-BA48-99D29886AB3C}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\HealthMana">
-            <UniqueIdentifier>{86D185A4-856E-4F3A-B3DF-E26420B6BF95}</UniqueIdentifier>
+            <UniqueIdentifier>{9C764DE9-5C49-4A13-B87F-26C94557569A}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Important">
-            <UniqueIdentifier>{79849A92-F43C-48C3-B35E-75B2D4B2C5DF}</UniqueIdentifier>
+            <UniqueIdentifier>{BE953E57-ACE7-4AC0-8DEC-93AE43AAF744}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Others">
-            <UniqueIdentifier>{11FF7EEE-9026-4EF5-A309-F80C3E20EF65}</UniqueIdentifier>
+            <UniqueIdentifier>{117620CD-0830-401D-8442-992F7770636B}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\PlayerMobs">
-            <UniqueIdentifier>{E475B5E7-5096-4F5A-85C4-712A6FEE6B86}</UniqueIdentifier>
+            <UniqueIdentifier>{DDBA8D81-B745-46CF-9A3A-C8269D58DF95}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Scenes">
-            <UniqueIdentifier>{C5FCDBBB-7079-4624-9F3D-5A6AE1851E76}</UniqueIdentifier>
+            <UniqueIdentifier>{0508E643-CAA3-4AF8-83A2-563BADC30E2B}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Scenes\Levels">
-            <UniqueIdentifier>{4B6A3149-C417-4C2F-B7BF-52391A7BCF7D}</UniqueIdentifier>
+            <UniqueIdentifier>{9B536CDC-F5EC-45AE-8A6D-361D368A7BA0}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Skills">
-            <UniqueIdentifier>{D7BB0206-827A-48D5-A117-03AAF04DCD75}</UniqueIdentifier>
+            <UniqueIdentifier>{CDCFE50F-FD06-424F-B3F8-DCAAFA6C7BC1}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
         <Filter Include="source\Sprites">
-            <UniqueIdentifier>{DFD9A855-4035-469C-9CE2-44F67A68A695}</UniqueIdentifier>
+            <UniqueIdentifier>{DE74D950-1516-464A-B720-8C341A3D527D}</UniqueIdentifier>
             <Extensions>cpp;c</Extensions>
         </Filter>
     </ItemGroup>
