@@ -10,7 +10,7 @@
 
 void Level::Init()
 {
-	mEndTimer = 3.f;
+	mEndTimer = 1.f;
 	mIsWon = false;
 
 	pCurrentPlayer = new Player();

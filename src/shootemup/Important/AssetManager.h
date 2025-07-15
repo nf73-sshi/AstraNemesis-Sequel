@@ -9,27 +9,27 @@ class AssetManager
 	static AssetManager* instance;
 
 	//Stock avec les noms
-	std::map<const char*, sf::Texture*> mTextures;
-	std::map<const char*, sf::Sound*> mSounds;
-	std::map<const char*, sf::Music*> mMusics;
+	std::map<std::string, sf::Texture*> mTextures;
+	std::map<std::string, sf::Sound*> mSounds;
+	std::map<std::string, sf::Music*> mMusics;
 
 	//Nom puis le Path
-	std::map<const char*, std::string> mTexturesPaths;
-	std::map<const char*, std::string> mSoundsPaths;
-	std::map<const char*, std::string> mMusicPaths;
+	std::map<std::string, std::string> mTexturesPaths;
+	std::map<std::string, std::string> mSoundsPaths;
+	std::map<std::string, std::string> mMusicPaths;
 
 public:
 	~AssetManager();
 	static AssetManager* Get();
 
 	//Il faut Load la texture avant de pouvoir la Get correctement
-	sf::Texture* LoadTexture(const char* alias, std::string path);
-	sf::Sound* LoadSound(const char* alias, std::string path);
-	sf::Music* LoadMusic(const char* alias, std::string path);
+	sf::Texture* LoadTexture(std::string alias, std::string path);
+	sf::Sound* LoadSound(std::string alias, std::string path);
+	sf::Music* LoadMusic(std::string alias, std::string path);
 
-	sf::Texture* GetTexture(const char* alias);
-	sf::Sound* GetSound(const char* alias);
-	sf::Music* GetMusic(const char* alias);
+	sf::Texture* GetTexture(std::string alias);
+	sf::Sound* GetSound(std::string alias);
+	sf::Music* GetMusic(std::string alias);
 
 	void StopAllSounds();
 	void StopAllMusics();

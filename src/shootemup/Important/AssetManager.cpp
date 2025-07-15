@@ -9,7 +9,7 @@ AssetManager::~AssetManager()
 {
     if (mTextures.size() > 0)
     {
-        for (std::map<const char*, sf::Texture*>::iterator it = mTextures.begin(); it != mTextures.end(); it++)
+        for (std::map<std::string, sf::Texture*>::iterator it = mTextures.begin(); it != mTextures.end(); it++)
         {
             delete it->second;
         }
@@ -18,8 +18,9 @@ AssetManager::~AssetManager()
 
     if (mSounds.size() > 0)
     {
-        for (std::map<const char*, sf::Sound*>::iterator it = mSounds.begin(); it != mSounds.end(); it++)
+        for (std::map<std::string, sf::Sound*>::iterator it = mSounds.begin(); it != mSounds.end(); it++)
         {
+            it->second->stop();
             delete it->second;
         }
         mSounds.clear();
@@ -27,8 +28,9 @@ AssetManager::~AssetManager()
 
     if (mMusics.size() > 0)
     {
-        for (std::map<const char*, sf::Music*>::iterator it = mMusics.begin(); it != mMusics.end(); it++)
+        for (std::map<std::string, sf::Music*>::iterator it = mMusics.begin(); it != mMusics.end(); it++)
         {
+            it->second->stop();
             delete it->second;
         }
         mMusics.clear();
@@ -49,7 +51,7 @@ AssetManager* AssetManager::Get()
     return instance;
 }
 
-sf::Texture* AssetManager::LoadTexture(const char* alias, std::string path)
+sf::Texture* AssetManager::LoadTexture(std::string alias, std::string path)
 {
     sf::Texture* pTexture = new sf::Texture();
 
@@ -69,7 +71,7 @@ sf::Texture* AssetManager::LoadTexture(const char* alias, std::string path)
     return pTexture;
 }
 
-sf::Sound* AssetManager::LoadSound(const char* alias, std::string path) 
+sf::Sound* AssetManager::LoadSound(std::string alias, std::string path)
 {
     sf::SoundBuffer* pSoundBuffer = new sf::SoundBuffer();
     sf::Sound* pSound = new sf::Sound();
@@ -91,7 +93,7 @@ sf::Sound* AssetManager::LoadSound(const char* alias, std::string path)
     return pSound;
 }
 
-sf::Music* AssetManager::LoadMusic(const char* alias, std::string path)
+sf::Music* AssetManager::LoadMusic(std::string alias, std::string path)
 {
     sf::Music* pMusic = new sf::Music();
 
@@ -111,7 +113,7 @@ sf::Music* AssetManager::LoadMusic(const char* alias, std::string path)
     return pMusic;
 }
 
-sf::Texture* AssetManager::GetTexture(const char* alias)
+sf::Texture* AssetManager::GetTexture(std::string alias)
 {
     auto it = mTextures.find(alias);
     if (it != mTextures.end())
@@ -128,7 +130,7 @@ sf::Texture* AssetManager::GetTexture(const char* alias)
     return nullptr; // Alias inconnu
 }
 
-sf::Sound* AssetManager::GetSound(const char* alias)
+sf::Sound* AssetManager::GetSound(std::string alias)
 {
     auto it = mSounds.find(alias);
     if (it != mSounds.end())
@@ -145,7 +147,7 @@ sf::Sound* AssetManager::GetSound(const char* alias)
     return nullptr; // Alias inconnu
 }
 
-sf::Music* AssetManager::GetMusic(const char* alias)
+sf::Music* AssetManager::GetMusic(std::string alias)
 {
     auto it = mMusics.find(alias);
     if (it != mMusics.end())

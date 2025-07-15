@@ -16,7 +16,7 @@
 #include "../Scenes/GameOver.h"
 #include "../Important/res.h"
 
-#define VOL 0.1f
+#define VOL 1.f
 
 GameManager* GameManager::mInstance = nullptr;
 
