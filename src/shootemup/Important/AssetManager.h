@@ -3,6 +3,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Audio.hpp>
 #include <string>
+#include <iostream>
 
 class AssetManager
 {
@@ -10,22 +11,17 @@ class AssetManager
 
 	//Stock avec les noms
 	std::map<std::string, sf::Texture*> mTextures;
-	std::map<std::string, sf::Sound*> mSounds;
-	std::map<std::string, sf::Music*> mMusics;
-
-	//Nom puis le Path
-	std::map<std::string, std::string> mTexturesPaths;
-	std::map<std::string, std::string> mSoundsPaths;
-	std::map<std::string, std::string> mMusicPaths;
+	std::map<std::string, sf::SoundBuffer> mSoundBuffers;
+	std::map<std::string, sf::Sound> mSounds;
+	std::map<std::string, std::unique_ptr<sf::Music>> mMusics;
 
 public:
 	~AssetManager();
 	static AssetManager* Get();
 
-	//Il faut Load la texture avant de pouvoir la Get correctement
-	sf::Texture* LoadTexture(std::string alias, std::string path);
-	sf::Sound* LoadSound(std::string alias, std::string path);
-	sf::Music* LoadMusic(std::string alias, std::string path);
+	bool LoadTexture(std::string alias, std::string path);
+	bool LoadSound(std::string alias, std::string path);
+	bool LoadMusic(std::string alias, std::string path);
 
 	sf::Texture* GetTexture(std::string alias);
 	sf::Sound* GetSound(std::string alias);

@@ -228,6 +228,8 @@ void GameManager::RunGame()
 
 		DebugMod();
 	}
+
+	delete mAssetManager;
 }
 
 Scene* GameManager::GetCurrentScene()
