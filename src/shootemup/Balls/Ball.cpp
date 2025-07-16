@@ -52,8 +52,13 @@ void Ball::SetSpeed(float speed)
 
 void Ball::SetDirection(float xFactor, float yFactor)
 {
-	mXFactor = xFactor;
-	mYFactor = yFactor;
+	auto normal = sqrt(xFactor * xFactor + yFactor * yFactor);
+
+	if (normal == 0)
+		return;
+
+	mXFactor = xFactor / normal;
+	mYFactor = yFactor / normal;
 }
 
 void Ball::Update(float delta)

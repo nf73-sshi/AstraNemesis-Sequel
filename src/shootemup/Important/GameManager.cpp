@@ -165,7 +165,7 @@ void GameManager::Update()
 
 void GameManager::RunGame()
 {
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Astra Nemesis !", sf::Style::Default);
+	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Astra Nemesis !", sf::Style::Default);
 	bool isFullScreen = false;
 
 	InitAssets();
@@ -216,7 +216,7 @@ void GameManager::RunGame()
 			{
 				if (!isFullScreen)
 				{
-					window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Fullscreen);
+					window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Astra Nemesis !", sf::Style::Fullscreen);
 					isFullScreen = true;
 
 				}
@@ -228,7 +228,7 @@ void GameManager::RunGame()
 			{
 				if (isFullScreen)
 				{
-					window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Close);
+					window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Astra Nemesis !", sf::Style::Close);
 					isFullScreen = false;
 
 				}

@@ -331,5 +331,8 @@
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob.h">
       <Filter>header\PlayerMobs</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Others\Convert.h">
+      <Filter>header\Others</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

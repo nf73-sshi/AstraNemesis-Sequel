@@ -23,6 +23,9 @@ public:
 
     virtual bool IsDead();
 
+    void SetPosition(sf::Vector2f pos);
+    void SetPosition(float x, float y);
+
     Entity* GetEntity();
 
     void SetMDestroy(bool value); 

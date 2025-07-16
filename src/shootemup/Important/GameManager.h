@@ -64,6 +64,6 @@ public:
 
 	void StopGame() { play = false; }
 
-	void SwitchGameState();
+	void SwitchGameState(); 
 };
 

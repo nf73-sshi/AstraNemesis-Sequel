@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string> 
 #include "../Important/AssetManager.h"
+#include "Convert.h"
 
 void Entity::CreateSprite(const char* alias, int x, int y, int sizeX, int sizeY)
 {
@@ -43,6 +44,18 @@ float Entity::GetRatioHP()
 bool Entity::IsDead()
 {
     return false;
+}
+
+void Entity::SetPosition(sf::Vector2f pos)
+{
+    auto resizedPos = Convert::AdaptToWindow(pos);
+
+    setPosition(resizedPos);
+}
+
+void Entity::SetPosition(float x, float y)
+{
+    SetPosition(sf::Vector2f(x, y));
 }
 
 Entity* Entity::GetEntity()

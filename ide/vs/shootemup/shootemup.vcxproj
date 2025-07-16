@@ -157,6 +157,7 @@
     <ClInclude Include="..\..\..\src\shootemup\Important\Stats.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Character.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Collide.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Others\Convert.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Entity.h" />
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob.h" />
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob1.h" />
