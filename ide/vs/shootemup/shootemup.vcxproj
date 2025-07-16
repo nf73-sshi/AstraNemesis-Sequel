@@ -120,6 +120,7 @@
     <ClCompile Include="..\..\..\src\shootemup\Others\Character.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Others\Collide.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Others\Entity.cpp" />
+    <ClCompile Include="..\..\..\src\shootemup\PlayerMobs\Mob.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\PlayerMobs\Mob1.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\PlayerMobs\Player.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Scenes\GameOver.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="..\..\..\src\shootemup\Others\Character.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Collide.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Entity.h" />
+    <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob.h" />
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob1.h" />
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Player.h" />
     <ClInclude Include="..\..\..\src\shootemup\Scenes\GameOver.h" />

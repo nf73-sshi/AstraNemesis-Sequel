@@ -16,7 +16,8 @@
 #include "../Scenes/GameOver.h"
 #include "../Important/res.h"
 
-#define VOL 1.f
+const float VOL = 1.f;
+const int changeWindowDelay = 2;
 
 GameManager* GameManager::mInstance = nullptr;
 
@@ -115,7 +116,7 @@ void GameManager::DebugMod()
 	}
 }
 
-GameManager* GameManager::GetInstance()
+GameManager* GameManager::Get()
 {
 	if (mInstance == nullptr)
 	{
@@ -179,6 +180,8 @@ void GameManager::RunGame()
 
 	sf::Clock clock;
 
+	float windowResizeTimer = 0;
+
 	while (window.isOpen() && play == true)
 	{
 		sf::Event event;
@@ -207,24 +210,34 @@ void GameManager::RunGame()
 		window.draw(*mSceneManager.GetCurrentScene());
 		window.display();
 
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
+		if (windowResizeTimer <= 0)
 		{
-			if (!isFullScreen)
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
 			{
-				window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Fullscreen);
-				isFullScreen = true;
+				if (!isFullScreen)
+				{
+					window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Fullscreen);
+					isFullScreen = true;
+
+				}
+
+				windowResizeTimer = changeWindowDelay;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				if (isFullScreen)
+				{
+					window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Close);
+					isFullScreen = false;
+
+				}
+
+				windowResizeTimer = changeWindowDelay;
 			}
 		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			if (isFullScreen)
-			{
-				window.create(sf::VideoMode(1920, 1080), "Shoot Them Down !", sf::Style::Close);
-				isFullScreen = false;
-			}
-		}
+		else
+			windowResizeTimer -= dt;
 
 		DebugMod();
 	}

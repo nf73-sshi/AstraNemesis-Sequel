@@ -21,8 +21,8 @@ void GameOverButton::Update(float delta)
 	if (mBoundingBox.contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) { 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
 		{ 
-			GameManager().GetInstance()->GetCurrentSceneManager().ChangeScene("Menu"); 
-			GameManager().GetInstance()->GetCurrentSceneManager().GetCurrentScene()->Init(); 
+			GameManager().Get()->GetCurrentSceneManager().ChangeScene("Menu"); 
+			GameManager().Get()->GetCurrentSceneManager().GetCurrentScene()->Init(); 
 			sf::Mouse::setPosition(sf::Vector2i(WINDOW_WIDTH *0.5, WINDOW_HEIGHT * 0.1));
 		} 
 	} 
@@ -32,14 +32,11 @@ void GameOverButton::Update(float delta)
 
 void GameOver::Init()
 {
-	mWindow = GameManager::GetInstance()->GetWindow();
+	mWindow = GameManager::Get()->GetWindow();
 
 	Background* pBG = new Background();
-	pBG->setOrigin(960, 0);
-	pBG->setPosition(WINDOW_WIDTH * 0.5, -WINDOW_HEIGHT);
 
 	GameOverButton* pGO = new GameOverButton();
-	pGO->setOrigin(175, 128);
 	pGO->setScale(3, 3);
 	pGO->setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
 

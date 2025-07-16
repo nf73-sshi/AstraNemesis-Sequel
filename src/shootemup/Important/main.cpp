@@ -4,7 +4,7 @@
 int main()
 {
 	GameManager pGameManager;
-	pGameManager.GetInstance()->RunGame();
+	pGameManager.Get()->RunGame();
 
 	return 0;
 }

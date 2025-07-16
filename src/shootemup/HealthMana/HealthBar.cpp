@@ -32,7 +32,7 @@ void HealthBar::Update(float delta)
 		mHpBarEmpty.setFillColor(sf::Color(eBar.r, eBar.g, eBar.b, alpha));
 
 		if (alpha > 0)
-			alpha -= 150 * GameManager::GetInstance()->GetDeltaTime();
+			alpha -= 150 * GameManager::Get()->GetDeltaTime();
 		else
 			alpha = 0.f;
 	}

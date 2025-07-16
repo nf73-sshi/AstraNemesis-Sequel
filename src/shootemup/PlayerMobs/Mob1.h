@@ -1,11 +1,8 @@
 #pragma once
-#include "../Others/Character.h"
-#include "../Others/Collide.h"
+#include "Mob.h"
 
-class Mob1 : public Character, public Collide
+class Mob1 : public Mob
 {
-	float mVelocityX;
-	float mVelocityY;
 	int mRdm;
 	float mTimerMove;
 
@@ -17,8 +14,5 @@ public:
 	void Update(float delta) override;
 
 	void Pattern1(float delta);
-
-	Hitbox GetHitbox() override;
-	void OnCollide(Entity* e) override;
 };
 

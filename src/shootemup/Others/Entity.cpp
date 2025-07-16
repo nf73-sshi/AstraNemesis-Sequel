@@ -12,6 +12,12 @@ void Entity::CreateSprite(const char* alias, int x, int y, int sizeX, int sizeY)
         texture = *tmpTexture;
         sprite.setTexture(texture);
         sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
+
+        sf::FloatRect bounds = sprite.getGlobalBounds();
+
+        origin = { bounds.width * 0.5f, bounds.height * 0.5f };
+
+        setOrigin(origin);
     }
     else
     {

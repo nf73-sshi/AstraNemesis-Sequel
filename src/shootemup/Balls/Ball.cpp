@@ -4,7 +4,7 @@
 Ball::Ball(int damage, float speed, float scale, float xFactor, float yFactor)
 {
 	mDrawPriority = 1;
-	mCurrentScene = GameManager::GetInstance()->GetCurrentScene();
+	mCurrentScene = GameManager::Get()->GetCurrentScene();
 	mDamage = damage;
 	mSpeed = speed;
 	mScale = scale;

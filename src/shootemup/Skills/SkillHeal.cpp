@@ -1,6 +1,6 @@
 #include "SkillHeal.h"
 
-SkillHeal::SkillHeal() : Skill(GameManager::GetInstance()->GetStats().GetSkillHealX2Lvl(), 50, 3)
+SkillHeal::SkillHeal() : Skill(GameManager::Get()->GetStats().GetSkillHealX2Lvl(), 50, 3)
 {
 	SetValues(mLvl);
 }
@@ -23,14 +23,14 @@ void SkillHeal::TriggerSkill(float delta, Player* pPlayer)
 		mSkillUsed = false;
 	}
 
-	if (CanUseSkill(*(pPlayer->GetCurrentMana())) && mSkillUsed == false && GameManager::GetInstance()->GetCurrentPlayer()->Health::GetRatioHP() < 1)
+	if (CanUseSkill(*(pPlayer->GetCurrentMana())) && mSkillUsed == false && GameManager::Get()->GetCurrentPlayer()->Health::GetRatioHP() < 1)
 	{
 		mSkillCanBeUsed = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) 
 		{
 			pPlayer->AddRemoveMana(-mCost);
 			mSkillUsed = true;
-			GameManager::GetInstance()->GetCurrentPlayer()->AddRemoveHP(mPower); 
+			GameManager::Get()->GetCurrentPlayer()->AddRemoveHP(mPower); 
 
 			auto sfx = AssetManager::Get()->GetSound("Heal1");
 			sfx->play();

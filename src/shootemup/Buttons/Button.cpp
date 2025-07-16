@@ -22,9 +22,12 @@ void Button::Update(float delta)
 
 bool Button::IsClicked()
 {
-	sf::RenderWindow* w = GameManager::GetInstance()->GetWindow();
+	sf::RenderWindow* w = GameManager::Get()->GetWindow();
 
-	if (mBoundingBox.contains(sf::Mouse::getPosition(*w).x, sf::Mouse::getPosition(*w).y)) {
+	sf::Vector2f mousePos = w->mapPixelToCoords(sf::Mouse::getPosition(*w));
+
+	if (mBoundingBox.contains(mousePos))
+	{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			AssetManager::Get()->GetSound("Beep")->play();

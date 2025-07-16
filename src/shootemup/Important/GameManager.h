@@ -37,14 +37,12 @@ public:
 	sf::Font mFont;
 	bool pause = false;
 
-	static GameManager* GetInstance(); 
+	static GameManager* Get(); 
 
 	void Init();
 
 	void Update();
 
-	void Draw();
-	
 	void RunGame();
 
 	float GetDeltaTime() { return dt; }

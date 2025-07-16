@@ -3,7 +3,7 @@
 
 Mana::Mana()
 {
-    auto stats = GameManager::GetInstance()->GetStats();
+    auto stats = GameManager::Get()->GetStats();
     mMaxMana = stats.GetPlayerMaxMana(); 
     mCurrentMana = stats.GetPlayerMana();
     mManaReload = stats.GetPlayerManaReload();  

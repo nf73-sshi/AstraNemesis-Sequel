@@ -145,7 +145,7 @@ void AssetManager::StopAllMusics()
 
 void AssetManager::PauseOrDePauseAll()
 {
-    if (GameManager::GetInstance()->pause == true)
+    if (GameManager::Get()->pause == true)
     {
         for (auto it = mSounds.begin(); it != mSounds.end(); ++it)
         {

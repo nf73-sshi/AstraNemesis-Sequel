@@ -41,7 +41,7 @@ void ABoss::OnCollide(Entity* e)
 
 	if (typeid(*e) == typeid(Player))
 	{
-		Player* currentPlayer = GameManager::GetInstance()->GetCurrentPlayer();
+		Player* currentPlayer = GameManager::Get()->GetCurrentPlayer();
 		
 		if (currentPlayer->GetIsInvincible() == true)
 			return;

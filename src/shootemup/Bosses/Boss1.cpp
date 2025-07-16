@@ -120,9 +120,8 @@ void Boss1::Shoot()
 	{
 		EnemyBall* b = new EnemyBall(1, 1, mScaleBall, 0, 800);
     
-		b->setOrigin(9.f, 9.f);
 		b->setPosition(getPosition());
-		GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+		GameManager::Get()->GetCurrentScene()->addEntity(b);
 		mTimerShoot = 0;
 	}
 
@@ -150,9 +149,8 @@ void Boss1::Pattern2(float delta)
 		{
 			EnemyBall* b = new EnemyBall(1, 1, 2.5, i * 125.f, 600);
 
-			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
-			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+			GameManager::Get()->GetCurrentScene()->addEntity(b);
 
 		}
 
@@ -175,9 +173,8 @@ void Boss1::Pattern3(float delta)
 		{
 			EnemyBall* b = new EnemyBall(1, 1, 18, 0, 250);
 
-			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
-			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+			GameManager::Get()->GetCurrentScene()->addEntity(b);
 
 		}
 
@@ -190,7 +187,7 @@ void Boss1::Pattern3(float delta)
 
 void Boss1::Pattern4(float delta)
 {
-	if (GameManager::GetInstance()->GetCurrentScene()->GetAll<Mob1>().size() >= 4)
+	if (GameManager::Get()->GetCurrentScene()->GetAll<Mob1>().size() >= 4)
 	{
 		mRandomizer = rand() % 90;
 		return;
@@ -202,11 +199,10 @@ void Boss1::Pattern4(float delta)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			Mob1* b = new Mob1();
-			b->setOrigin(32, 32);
+			Mob* b = new Mob1();
 			b->setScale(3, 3);
 			b->setPosition(WINDOW_WIDTH * 0.12 + i* 500 , -192);
-			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+			GameManager::Get()->GetCurrentScene()->addEntity(b);
 		}
 
 		mTimerPattern1 = 0;
@@ -227,9 +223,8 @@ void Boss1::Pattern5(float delta)
 		{
 			EnemyBall* b = new EnemyBall(1, 1, 4, i * 300, 750);
 
-			b->setOrigin(9.f, 9.f);
 			b->setPosition(getPosition());
-			GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+			GameManager::Get()->GetCurrentScene()->addEntity(b);
 		}
 
 		mTimerPattern1 = 0;

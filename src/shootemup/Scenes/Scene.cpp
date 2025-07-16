@@ -58,7 +58,7 @@ void Scene::DrawText(std::string text, float x, float y, int size, sf::Color col
 {
 	sf::Text* textToDisplay = new sf::Text();
 
-	textToDisplay->setFont(GameManager::GetInstance()->mFont);
+	textToDisplay->setFont(GameManager::Get()->mFont);
 
 	textToDisplay->setString(text);
 	textToDisplay->setPosition(x, y);

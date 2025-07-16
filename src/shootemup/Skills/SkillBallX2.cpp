@@ -3,7 +3,7 @@
 #include "../Important/AssetManager.h"
 #include <iostream>
 
-SkillBallX2::SkillBallX2() : Skill(GameManager::GetInstance()->GetStats().GetSkillBallX2Lvl(), 30, 3)
+SkillBallX2::SkillBallX2() : Skill(GameManager::Get()->GetStats().GetSkillBallX2Lvl(), 30, 3)
 {
 	mFactor = 0;
 
@@ -28,8 +28,8 @@ void SkillBallX2::TriggerSkill(float delta, Player* pPlayer)
 		mElapsedTime = 0;
 		mSkillUsed = false;
 
-		GameManager::GetInstance()->GetCurrentPlayer()->SetShootingDelay(
-			GameManager::GetInstance()->GetCurrentPlayer()->GetDefaultSDelay() );
+		GameManager::Get()->GetCurrentPlayer()->SetShootingDelay(
+			GameManager::Get()->GetCurrentPlayer()->GetDefaultSDelay() );
 	}
 
 	if (CanUseSkill( *(pPlayer->GetCurrentMana()) ) && mSkillUsed == false)
@@ -52,8 +52,8 @@ void SkillBallX2::TriggerSkill(float delta, Player* pPlayer)
 
 void SkillBallX2::OnActivaction(float delta, Player* pPlayer) 
 {
-	GameManager::GetInstance()->GetCurrentPlayer()->SetShootingDelay( 
-		GameManager::GetInstance()->GetCurrentPlayer()->GetDefaultSDelay() * mFactor);
+	GameManager::Get()->GetCurrentPlayer()->SetShootingDelay( 
+		GameManager::Get()->GetCurrentPlayer()->GetDefaultSDelay() * mFactor);
 
 	return;
 }

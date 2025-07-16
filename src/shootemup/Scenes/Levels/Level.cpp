@@ -7,6 +7,8 @@
 #include "../../HealthMana/HealthBar.h"
 #include "../../Important/GameManager.h"
 #include "../../HealthMana/ManaBar.h"
+#include "../../Bosses/ABoss.h"
+#include "../../PlayerMobs/Mob.h"
 
 void Level::Init()
 {
@@ -15,15 +17,12 @@ void Level::Init()
 
 	pCurrentPlayer = new Player();
 
-	GameManager::GetInstance()->SetCurrentPlayer(pCurrentPlayer);
+	GameManager::Get()->SetCurrentPlayer(pCurrentPlayer);
 
-	pCurrentPlayer->setOrigin(32, 32);
 	pCurrentPlayer->scale(1.5, 1.5);
 	pCurrentPlayer->setPosition(WINDOW_WIDTH * 0.4, WINDOW_HEIGHT * 0.7);
 
 	Background* pBG = new Background();
-	pBG->setOrigin(960, 0);
-	pBG->setPosition(WINDOW_WIDTH * 0.5, -1080);
 
 	addEntity(pBG);
 	addEntity(pCurrentPlayer);
@@ -32,7 +31,6 @@ void Level::Init()
 void Level::InitUI()
 {
 	UI* pUI = new UI();
-	pUI->setOrigin(75, 270);
 	pUI->setScale(2, 2);
 	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
 	addEntity(pUI);
@@ -61,7 +59,26 @@ void Level::Update(float delta)
 
 		if (mEndTimer <= 0)
 		{
-			GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene("GameOver");
+			GameManager::Get()->GetCurrentSceneManager().ChangeScene("GameOver");
+		}
+	}
+
+	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob>().size() <= 0 && pCurrentPlayer->Health::IsDead() == false)
+	{
+		pCurrentPlayer->SetInvincible(true);
+
+		auto jingle = AssetManager::Get()->GetSound("Winning");
+
+		if (mIsWon == false)
+		{
+			AssetManager::Get()->StopAllMusics();
+			jingle->play();
+			mIsWon = true;
+		}
+
+		if (jingle->getStatus() == sf::Sound::Status::Stopped)
+		{
+			GameManager::Get()->GetCurrentSceneManager().ChangeScene("Menu");
 		}
 	}
 }

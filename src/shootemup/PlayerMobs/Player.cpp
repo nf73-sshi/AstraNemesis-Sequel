@@ -14,10 +14,10 @@
 bool rotatemod = false;
 float angleFactor = 0.5f;
 
-Player::Player() : Character("Ship", GameManager::GetInstance()->GetStats().GetPlayerMaxHP(),
-    GameManager::GetInstance()->GetStats().GetPlayerDamage(),
-    GameManager::GetInstance()->GetStats().GetPlayerSpeed(),
-    GameManager::GetInstance()->GetStats().GetPlayerSDelay()), Mana()
+Player::Player() : Character("Ship", GameManager::Get()->GetStats().GetPlayerMaxHP(),
+    GameManager::Get()->GetStats().GetPlayerDamage(),
+    GameManager::Get()->GetStats().GetPlayerSpeed(),
+    GameManager::Get()->GetStats().GetPlayerSDelay()), Mana()
 {
     mDrawPriority = 5;
 
@@ -54,7 +54,7 @@ void Player::Move(float delta)
         this->move(mSpeed * delta, 0);
     }
 
-    if (GameManager::GetInstance()->GetIsDebugMod())
+    if (GameManager::Get()->GetIsDebugMod())
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
         {
@@ -98,9 +98,8 @@ void Player::Shoot()
     if (mTimerShoot > mShootingDelay) {
         AllyBall* b = new AllyBall(mDamage, 1, mScaleBall, std::cos(PI * angleFactor) * 1000, std::sin(PI * angleFactor) * -1000);
 
-        b->setOrigin(9.f, 9.f);
         b->setPosition(this->getPosition());
-        GameManager::GetInstance()->GetCurrentScene()->addEntity(b);
+        GameManager::Get()->GetCurrentScene()->addEntity(b);
         mTimerShoot = 0;
 
         AssetManager::Get()->GetSound("Laser1")->play();

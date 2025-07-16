@@ -12,7 +12,7 @@ void BackButton::Update(float delta)
 	Button::Update(delta);
 
 	if (Button::IsClicked())
-		GameManager::GetInstance()->GetCurrentSceneManager().ChangeScene(mSceneToGo);
+		GameManager::Get()->GetCurrentSceneManager().ChangeScene(mSceneToGo);
 
 	return;
 }

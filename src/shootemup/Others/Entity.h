@@ -7,9 +7,9 @@ class Entity : public sf::Drawable, public sf::Transformable
 protected:
     sf::Texture texture;
     sf::Sprite sprite;
-    bool mDestroy;
+    bool mDestroy = false;
     sf::Vector2f mDirection = { 0, 0 };
-
+    sf::Vector2f origin;
 public:
     int mDrawPriority = 0;
 

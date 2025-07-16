@@ -1,4 +1,4 @@
 #pragma once
-#define WINDOW_WIDTH 1920 
-#define WINDOW_HEIGHT 1080 
-#define PI 3.1415926535
+constexpr int WINDOW_WIDTH = 1920;
+constexpr int WINDOW_HEIGHT = 1080;
+constexpr float PI = 3.1415926535f;
