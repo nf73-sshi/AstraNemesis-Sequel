@@ -80,17 +80,25 @@ void GameManager::InitSFX()
 
 void GameManager::InitTextures()
 {
+	//Gameplay Assets
 	mAssetManager->LoadTexture("BulletsTile", "res/assets/Images/bulletsTile.png");
-	mAssetManager->LoadTexture("BackButton", "res/assets/Rules/backButton.png");
 	mAssetManager->LoadTexture("MobsTile", "res/assets/Images/mobs.png");
 	mAssetManager->LoadTexture("Player", "res/assets/Images/vaisseau.png");
 	mAssetManager->LoadTexture("Boss1", "res/assets/Images/Boss1.png");
+
+	//Levels
+	mAssetManager->LoadTexture("lvl1Button", "res/assets/LevelSelection/lvl1Button_v2.png");
+	mAssetManager->LoadTexture("lvl2Button", "res/assets/LevelSelection/lvl2Button.png");
+
+	//Buttons
 	mAssetManager->LoadTexture("GameOverButton", "res/assets/Menu/gameover.png");
-	mAssetManager->LoadTexture("LvlButton", "res/assets/LevelSelection/lvl1Button.png");
+	mAssetManager->LoadTexture("BackButton", "res/assets/Rules/backButton.png");
 	mAssetManager->LoadTexture("ShopButton", "res/assets/Menu/shopButton.png");
 	mAssetManager->LoadTexture("PlayButton", "res/assets/Menu/playButton.png");
 	mAssetManager->LoadTexture("RulesButton", "res/assets/Menu/rulesButton.png");
 	mAssetManager->LoadTexture("QuitButton", "res/assets/Menu/quitButton.png");
+
+	//Others
 	mAssetManager->LoadTexture("Rules", "res/assets/Rules/Rules.png");
 	mAssetManager->LoadTexture("BackgroundSpace", "res/assets/Images/spaceHeavyLess.png");
 	mAssetManager->LoadTexture("Title", "res/assets/Menu/title.png");

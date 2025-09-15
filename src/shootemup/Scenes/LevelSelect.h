@@ -5,6 +5,13 @@
 #include "../Buttons/Button.h"
 #include "../Buttons/BackButton.h"
 
+class Lvl2Button : public Button
+{
+public:
+	Lvl2Button();
+	void Update(float delta) override;
+};
+
 class Lvl1Button : public Button
 {
 
@@ -16,8 +23,8 @@ public:
 
 class LevelSelect : public Scene
 {
-
 public:
+	~LevelSelect();
 	void Init();
 	void Update(float delta) override;
 

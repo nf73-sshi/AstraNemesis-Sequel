@@ -15,6 +15,7 @@ public:
 
     void CreateSprite(const char* alias, int x, int y, int sizeX, int sizeY);
 
+    sf::Sprite& GetSprite() { return sprite; }
     bool GetMDestroy();
 
     virtual int GetDamage();
@@ -26,7 +27,7 @@ public:
     void SetPosition(sf::Vector2f pos);
     void SetPosition(float x, float y);
 
-    Entity* GetEntity();
+    Entity* GetEntity(); // 0 IQ
 
     void SetMDestroy(bool value); 
 

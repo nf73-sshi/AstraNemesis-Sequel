@@ -16,8 +16,6 @@ void Background::Update(float delta)
 {
 	mPos = this->getPosition();
 
-	std::cout << "BG pos = (" << mPos.x << ", " << mPos.y << ")" << std::endl;
-
 	if (mPos.y >= Convert::AdaptToWindow(WINDOW_HEIGHT - 10))
 	{
 		this->setPosition(WINDOW_WIDTH * 0.5, 0);
