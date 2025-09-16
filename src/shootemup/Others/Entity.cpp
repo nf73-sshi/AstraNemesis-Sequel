@@ -58,11 +58,6 @@ void Entity::SetPosition(float x, float y)
     SetPosition(sf::Vector2f(x, y));
 }
 
-Entity* Entity::GetEntity()
-{
-    return this;
-}
-
 void Entity::SetMDestroy(bool value)
 {
     mDestroy = value;
@@ -73,4 +68,11 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const
     states.transform.combine(getTransform());
 
     target.draw(sprite, states);
+}
+
+sf::Vector2f Entity::GetSpriteSize()
+{
+    sf::FloatRect rect = sprite.getGlobalBounds();
+
+    return sf::Vector2f(rect.width, rect.height);
 }

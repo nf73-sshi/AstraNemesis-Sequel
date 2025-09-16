@@ -9,9 +9,9 @@ Mana::Mana()
     mManaReload = stats.GetPlayerManaReload();  
 }
 
-void Mana::FillManaBar(float dt)
+void Mana::FillManaBar()
 {
-    mProgress += dt;
+    mProgress += GameManager::Get()->GetDeltaTime();
 
     if (mProgress > mManaReload)
     {

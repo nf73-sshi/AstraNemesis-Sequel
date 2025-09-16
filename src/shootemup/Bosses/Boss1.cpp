@@ -92,7 +92,6 @@ void Boss1::Update(float delta)
 		return;
 	}
 
-	mPos = GetPosition();
 	mTimerDelay += delta;
 	mTimerShoot += delta;
 	mTimerPattern1 += delta; 
@@ -130,10 +129,10 @@ void Boss1::Shoot()
 
 void Boss1::Pattern1(float delta)
 {
-	if (mPos.x < 100)
+	if (getPosition().x < 100)
 		mVelocityX = mSpeed + mSpeedBoost;
 
-	if (mPos.x > 1550)
+	if (getPosition().x > 1550)
 		mVelocityX = -mSpeed - mSpeedBoost;
 
 	this->move(mVelocityX * delta, 0);

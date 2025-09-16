@@ -11,7 +11,7 @@ protected:
 public:
 	Mana(); 
 
-	void FillManaBar(float dt);
+	void FillManaBar();
 
 	int* GetCurrentMana();
 	void SetCurrentMana(int value);

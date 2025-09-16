@@ -7,8 +7,8 @@ protected:
 	sf::RectangleShape mHpBarFilled;
 	sf::RectangleShape mHpBarEmpty;
 
-	float mLength;
-	float mWidth;
+	float mLength = 0;
+	float mWidth = 0;
 
 	float mCurrentRatio = 1;
 	float alpha = 255;
@@ -23,6 +23,8 @@ public:
 
 	sf::RectangleShape* GetMHpBarFilled();
 	sf::RectangleShape* GetMHpBarEmpty();
+
+	sf::Vector2f GetSize() { return sf::Vector2f(mLength, mWidth); }
 
 	void SetBarPosition(float x, float y);
 

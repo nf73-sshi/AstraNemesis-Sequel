@@ -41,10 +41,10 @@ void Mob1::Pattern1(float delta)
 		mTimerMove = 0;
 	}
 
-	if (mPos.x < 192)
+	if (getPosition().x < 192)
 		mVelocityX = mSpeed;
 
-	if (mPos.x > 1428)
+	if (getPosition().x > 1428)
 		mVelocityX = -mSpeed;
 
 	this->move(mVelocityX * delta, 0);

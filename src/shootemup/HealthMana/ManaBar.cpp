@@ -1,6 +1,6 @@
 #include "ManaBar.h"
 
-ManaBar::ManaBar() : mManaBarFilled(sf::Vector2f(250.f, 30)), mManaBarEmpty(sf::Vector2f(250.f, 30))
+ManaBar::ManaBar(float length, float width) : mManaBarFilled(sf::Vector2f(length, width)), mManaBarEmpty(sf::Vector2f(length, width))
 {
 	mDrawPriority = 9;
 
@@ -28,6 +28,12 @@ sf::RectangleShape* ManaBar::GetManaBarFilled()
 sf::RectangleShape* ManaBar::GetManaBarEmpty()
 {
 	return &mManaBarEmpty;
+}
+
+void ManaBar::SetBarPosition(float x, float y)
+{
+	mManaBarEmpty.setPosition(x, y);
+	mManaBarFilled.setPosition(x, y);
 }
 
 void ManaBar::UpdateBar(float ratio)

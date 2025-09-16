@@ -15,7 +15,6 @@ Button::Button()
 void Button::Update(float delta)
 {
 	mTimer += delta;
-	mPos = getPosition();
 	mBoundingBox = sprite.getGlobalBounds();
 	mBoundingBox = getTransform().transformRect(mBoundingBox);
 }

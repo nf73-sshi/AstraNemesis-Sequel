@@ -19,10 +19,10 @@ void PlayButton::Update(float delta)
 	if (Button::IsClicked())
 		GameManager::Get()->GetCurrentSceneManager().ChangeScene("LevelSelect");
 
-	if (mPos.x < 150)
+	if (getPosition().x < 150)
 		mVelocity = min + rand() % rdm;
 
-	if (mPos.x > 1770)
+	if (getPosition().x > 1770)
 		mVelocity = -(min + rand() % rdm);
 	
 	this->move(mVelocity * delta, 0);
@@ -48,10 +48,10 @@ void ShopButton::Update(float delta)
 		return;
 
 
-	if (mPos.x < 150)
+	if (getPosition().x < 150)
 		mVelocity = min + rand() % rdm;
 
-	if (mPos.x > 1770)
+	if (getPosition().x > 1770)
 		mVelocity = - (min + rand() % rdm);
 
 	this->move(mVelocity * delta, 0);
@@ -76,10 +76,10 @@ void RulesButton::Update(float delta)
 		return;
 
 
-	if (mPos.x < 150)
+	if (getPosition().x < 150)
 		mVelocity = min + rand() % rdm;
 
-	if (mPos.x > 1770)
+	if (getPosition().x > 1770)
 		mVelocity = -(min + rand() % rdm);
 
 	this->move(mVelocity * delta, 0);
@@ -105,10 +105,10 @@ void QuitButton::Update(float delta)
 	if (mTimer < 2)
 		return;
 
-	if (mPos.x < 150)
+	if (getPosition().x < 150)
 		mVelocity = min + rand() % rdm;
 
-	if (mPos.x > 1770)
+	if (getPosition().x > 1770)
 		mVelocity = -(min + rand() % rdm);
 
 	this->move(mVelocity * delta, 0);

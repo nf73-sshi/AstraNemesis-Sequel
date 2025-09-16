@@ -27,13 +27,12 @@ public:
     void SetPosition(sf::Vector2f pos);
     void SetPosition(float x, float y);
 
-    Entity* GetEntity(); // 0 IQ
-
     void SetMDestroy(bool value); 
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     virtual void Update(float delta) = 0;
 
+    sf::Vector2f GetSpriteSize();
 };
 

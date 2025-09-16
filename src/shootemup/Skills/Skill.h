@@ -12,7 +12,6 @@ protected:
 	float mDuration;
 	bool mSkillCanBeUsed;
 	bool mSkillUsed;
-
 public:
 	Skill(int lvl, int cost, float duration);
 
@@ -29,6 +28,5 @@ public:
 	virtual void TriggerSkill(float delta, Player* pPlayer) = 0;
 	virtual void OnActivaction(float delta, Player* pPlayer) = 0;
 	virtual void SetValues(int lvl) = 0;
-
 };
 

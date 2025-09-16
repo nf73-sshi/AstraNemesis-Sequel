@@ -20,12 +20,6 @@ Character::Character(const char* name, int hp, int damage, float speed, float sh
 	mEndTimer = 0;
 }
 
-sf::Vector2f Character::GetPosition()
-{
-	mPos = this->getPosition();
-	return mPos;
-}
-
 void Character::Update(float delta)
 {
 	return;

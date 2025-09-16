@@ -14,9 +14,7 @@ Background::Background()
 
 void Background::Update(float delta)
 {
-	mPos = this->getPosition();
-
-	if (mPos.y >= Convert::AdaptToWindow(WINDOW_HEIGHT - 10))
+	if (getPosition().y >= Convert::AdaptToWindow(WINDOW_HEIGHT - 10))
 	{
 		this->setPosition(WINDOW_WIDTH * 0.5, 0);
 	}

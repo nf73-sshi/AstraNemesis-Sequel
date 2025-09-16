@@ -13,7 +13,6 @@ Mob::Mob(const char* name, int hp, int damage, float speed, float shootingDelay)
 
 void Mob::Update(float delta)
 {
-	mPos = GetPosition();
 	mTimerShoot += delta;
 	mTimerDelay += delta;
 

@@ -30,7 +30,9 @@ protected:
 public:
 	Player();
 
-	void Move(float delta);
+	void Move();
+
+	void DebugFeatures();
 
 	void SetLifeBar(HealthBar* pHB);
 
@@ -40,17 +42,16 @@ public:
 
 	void ScreenCollision();
 
-	void InvincibleAnim(float delta);
+	void InvincibleAnim();
 
-	void ResetInvincible(float delta);
-
+	void ResetInvincible();
 
 	void Update(float delta) override;
 
 	bool GetIsInvincible();
 	void SetInvincible(bool value); 
 
-	void SkillManager(float delta);
+	void SkillManager();
 
 
 	Hitbox GetHitbox() override;

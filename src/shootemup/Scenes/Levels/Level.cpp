@@ -39,10 +39,9 @@ void Level::InitUI()
 	pCurrentPlayer->SetLifeBar(pPlayerHB);
 	pPlayerHB->SetBarPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
 
-	ManaBar* pManaB = new ManaBar();
+	ManaBar* pManaB = new ManaBar(220.f, 30.f);
 
-	pManaB->GetManaBarFilled()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120);
-	pManaB->GetManaBarEmpty()->setPosition(WINDOW_WIDTH - 275, WINDOW_HEIGHT - 120);
+	pManaB->SetBarPosition(WINDOW_WIDTH - 260, WINDOW_HEIGHT - 120);
 	pCurrentPlayer->SetManaBar(pManaB);
 
 	addEntity(pPlayerHB);

@@ -15,231 +15,241 @@ bool rotatemod = false;
 float angleFactor = 0.5f;
 
 Player::Player() : Character("Ship", GameManager::Get()->GetStats().GetPlayerMaxHP(),
-    GameManager::Get()->GetStats().GetPlayerDamage(),
-    GameManager::Get()->GetStats().GetPlayerSpeed(),
-    GameManager::Get()->GetStats().GetPlayerSDelay()), Mana()
+	GameManager::Get()->GetStats().GetPlayerDamage(),
+	GameManager::Get()->GetStats().GetPlayerSpeed(),
+	GameManager::Get()->GetStats().GetPlayerSDelay()), Mana()
 {
-    mDrawPriority = 5;
+	mDrawPriority = 5;
 
-    mHitboxSize = 8.f;
+	mHitboxSize = 8.f;
 
-    mTimerInactive = 0;
-    mTimerInvincible = 0;
-    mIsInvincible = false;
-    mScaleBall = 1;
+	mTimerInactive = 0;
+	mTimerInvincible = 0;
+	mIsInvincible = false;
+	mScaleBall = 1;
 	CreateSprite("Player", 0, 0, 64, 64);
-    mTimerShoot = 0;
+	mTimerShoot = 0;
 
-    skillArray.push_back(new SkillBallX2());
-    skillArray.push_back(new SkillHeal());
+	skillArray.push_back(new SkillBallX2());
+	skillArray.push_back(new SkillHeal());
 
 }
 
-void Player::Move(float delta)
+void Player::Move()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
-        this->move(0.f, -mSpeed * delta);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-    {
-        this->move(0.f, mSpeed * delta);
-    } 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-    {
-        this->move(-mSpeed * delta, 0);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        this->move(mSpeed * delta, 0);
-    }
+	float dt = GameManager::Get()->GetDeltaTime();
 
-    if (GameManager::Get()->GetIsDebugMod())
-    {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-        {
-            rotatemod = true;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
-        {
-            rotatemod = false;
-            angleFactor = 0.5f;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) 
-        {
-            AddRemoveShootingDelay(-1.f); 
-        }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		this->move(0.f, -mSpeed * dt);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		this->move(0.f, mSpeed * dt);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+		this->move(-mSpeed * dt, 0);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		this->move(mSpeed * dt, 0);
+	}
+}
 
+void Player::DebugFeatures()
+{
+	if (GameManager::Get()->GetIsDebugMod() == false)
+		return;
 
-        if (rotatemod)
-        {
-            angleFactor -= 15.f * delta;
-            AddRemoveShootingDelay(-1.f);
-        }
-    }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	{
+		rotatemod = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+	{
+		rotatemod = false;
+		angleFactor = 0.5f;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
+	{
+		AddRemoveShootingDelay(-1.f);
+	}
 
+	if (rotatemod)
+	{
+		angleFactor -= 15.f * GameManager::Get()->GetDeltaTime();
+		AddRemoveShootingDelay(-1.f);
+	}
 }
 
 void Player::SetLifeBar(HealthBar* pHB)
 {
-    mHB = pHB;
+	mHB = pHB;
 }
 
 void Player::SetManaBar(ManaBar* pManaBar)
 {
-    mManaBar = pManaBar; 
+	mManaBar = pManaBar;
 }
 
 void Player::Shoot()
 {
-    if (mTimerInactive < 2)
-        return;
+	float dt = GameManager::Get()->GetDeltaTime();
 
-    if (mTimerShoot > mShootingDelay) {
-        AllyBall* b = new AllyBall(mDamage, 1, mScaleBall, std::cos(PI * angleFactor) * 1000, std::sin(PI * angleFactor) * -1000);
+	if (mTimerInactive < 2)
+	{
+		mTimerInactive += dt; 
+		return;
+	}
 
-        b->setPosition(this->getPosition());
-        GameManager::Get()->GetCurrentScene()->addEntity(b);
-        mTimerShoot = 0;
+	if (mIsInvincible == true)
+		return;
 
-        AssetManager::Get()->GetSound("Laser1")->play();
-    }
+	mTimerShoot += dt;
 
-    return;
+	if (mTimerShoot > mShootingDelay) {
+		AllyBall* b = new AllyBall(mDamage, 1, mScaleBall, std::cos(PI * angleFactor) * 1000, std::sin(PI * angleFactor) * -1000);
+
+		b->setPosition(this->getPosition());
+		GameManager::Get()->GetCurrentScene()->addEntity(b);
+		mTimerShoot = 0;
+
+		AssetManager::Get()->GetSound("Laser1")->play();
+	}
+
+	return;
 }
 
 void Player::ScreenCollision()
 {
-    if (this->getPosition().x < 32.f)
-        this->setPosition(32, this->getPosition().y); 
+	sf::Vector2f spriteSize = GetSpriteSize();
 
-    if (this->getPosition().x > 1588.f) 
-        this->setPosition(1588, this->getPosition().y); 
+	float halfSize = spriteSize.x / 2; // Square Sprite
 
-    if (this->getPosition().y < 32.f + 40.f) 
-        this->setPosition(this->getPosition().x, 32.f + 40.f); 
+	if (this->getPosition().x < halfSize)
+		this->setPosition(halfSize, this->getPosition().y);
 
-    if (this->getPosition().y > 1048.f) 
-        this->setPosition(this->getPosition().x, 1048);
+	if (this->getPosition().x > WINDOW_WIDTH - halfSize - 300) // 150 = size of the UI
+		this->setPosition(WINDOW_WIDTH - halfSize - 300, this->getPosition().y);
+
+	if (this->getPosition().y < halfSize + 40.f) // 40 = size of the HP Bar of the Boss
+		this->setPosition(this->getPosition().x, halfSize + 40.f);
+
+	if (this->getPosition().y > WINDOW_HEIGHT - halfSize)
+		this->setPosition(this->getPosition().x, WINDOW_HEIGHT - halfSize);
 
 }
 
-void Player::InvincibleAnim(float delta)
+void Player::InvincibleAnim()
 {
-    this->sprite.setColor(sf::Color(132, 255, 255, 255));
+	this->sprite.setColor(sf::Color(132, 255, 255, 255));
 }
 
-void Player::ResetInvincible(float delta)
+void Player::ResetInvincible()
 {
-    InvincibleAnim(delta);
+	InvincibleAnim();
 
-    mTimerInvincible += delta;
+	mTimerInvincible += GameManager::Get()->GetDeltaTime();
 
-    if (mTimerInvincible < 1)
-        return;
+	if (mTimerInvincible < 1)
+		return;
 
-    mIsInvincible = false;
-    mTimerInvincible = 0;
-    this->sprite.setColor(sf::Color(255, 255, 255, 255));
+	mIsInvincible = false;
+	mTimerInvincible = 0;
+	this->sprite.setColor(sf::Color(255, 255, 255, 255));
 }
 
 
 void Player::Update(float delta)
 {
-    mPos = GetPosition();
+	if (mIsInvincible == true)
+	{
+		ResetInvincible();
+	}
 
+	if (Health::IsDead())
+	{
+		AssetManager::Get()->GetSound("Game Over")->play();
+		mDestroy = true;
+		return;
+	}
 
-    mTimerShoot += delta;
+	DebugFeatures();
+	Move();
+	ScreenCollision();
+	Shoot();
+	SkillManager();
 
-    if (mTimerInactive < 2)
-    {
-        mTimerInactive += delta;
-    }
+	mHB->UpdateBar(Health::GetRatioHP());
+	mManaBar->UpdateBar(Mana::GetRatioMana());
 
-    if (mIsInvincible == true)
-    {
-        ResetInvincible(delta);
-    }
-
-    if (Health::IsDead())
-    {
-        AssetManager::Get()->GetSound("Game Over")->play();
-        mDestroy = true;
-        return;
-    }
-
-    Move(delta);
-    ScreenCollision(); 
-    Shoot();
-    SkillManager(delta);
-
-    mHB->UpdateBar(Health::GetRatioHP()); 
-    mManaBar->UpdateBar(Mana::GetRatioMana());
-    
-    FillManaBar(delta);
+	FillManaBar();
 }
 
 bool Player::GetIsInvincible()
 {
-    return mIsInvincible;
+	return mIsInvincible;
 }
 
 void Player::SetInvincible(bool value)
 {
-    mIsInvincible = value; 
+	mIsInvincible = value;
 }
 
-void Player::SkillManager(float delta)
+void Player::SkillManager()
 {
-    Skill* usedSkill = nullptr;
-     
-    for (Skill* s : skillArray)
-    {
-        if (s->GetIsUsed())
-        {
-            usedSkill = s; 
-            break;
-        }
-    }
+	float dt = GameManager::Get()->GetDeltaTime();
 
-    if (usedSkill != nullptr)
-    {
-        usedSkill->Update(delta, this);
-    }
-    else
-    {
-        for (Skill* s : skillArray)
-        {
-            s->Update(delta, this);
-        }
-    }
+	Skill* usedSkill = nullptr;
+
+	for (Skill* s : skillArray)
+	{
+		if (s->GetIsUsed())
+		{
+			usedSkill = s;
+			break;
+		}
+	}
+
+	if (usedSkill != nullptr)
+	{
+		usedSkill->Update(dt, this);
+	}
+	else
+	{
+		for (Skill* s : skillArray)
+		{
+			s->Update(dt, this);
+		}
+	}
 
 }
 
 Hitbox Player::GetHitbox()
 {
-    Hitbox h;
-    h.position = mPos;
-    h.radius = mHitboxSize;
+	Hitbox h;
+	h.position = getPosition();
+	h.radius = mHitboxSize;
 
-    return h;
+	return h;
 }
 
-void Player::OnCollide(Entity* e) 
+void Player::OnCollide(Entity* e)
 {
-    if (mIsDead == true)
-        return;
+	if (mIsDead == true)
+		return;
 
-    if (mIsInvincible == true)
-        return;
+	if (mIsInvincible == true)
+		return;
 
-    if (typeid(*e) == typeid(EnemyBall))
-    {
-        mIsInvincible = true;
-        AddRemoveHP(-1);
-        mHB->UpdateBar(Health::GetRatioHP());
+	if (typeid(*e) == typeid(EnemyBall))
+	{
+		mIsInvincible = true;
+		AddRemoveHP(-1);
+		mHB->UpdateBar(Health::GetRatioHP());
 
-        AddRemoveMana(GetMaxMana() * 0.1f);
-        AssetManager::Get()->GetSound("Hit2")->play();
-     } 
+		AddRemoveMana(GetMaxMana() * 0.1f);
+		AssetManager::Get()->GetSound("Hit2")->play();
+	}
 }

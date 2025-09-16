@@ -5,7 +5,6 @@ class Button : public Entity
 {
 
 protected:
-	sf::Vector2f mPos;
 	sf::FloatRect mBoundingBox;
 	float mVelocity;
 	int min;

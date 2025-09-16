@@ -6,7 +6,6 @@ class Character : public Health, public Entity
 {
 
 protected:
-	sf::Vector2f mPos; 
 	const char* mName;
 	float mSpeed;
 	float mScaleBall;
@@ -28,8 +27,6 @@ protected:
 
 public:
 	Character(const char* name, int hp, int damage, float speed, float shootingDelay);
-
-	sf::Vector2f GetPosition();
 
 	float GetSpeed();
 	void SetSpeed(float newSpeed);
