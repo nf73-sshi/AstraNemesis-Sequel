@@ -102,8 +102,8 @@ void Boss1::Update(float delta)
 		Shoot();
 	}
 
-	const int P1 = 40; // 60
-	const int P2 = 70;  // 90
+	const int P1 = 60; // 60
+	const int P2 = 90;  // 90
 
 	if (mTimerPattern1 > mAtkSpeed)
 	{
