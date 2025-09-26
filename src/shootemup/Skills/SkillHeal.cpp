@@ -23,7 +23,7 @@ void SkillHeal::TriggerSkill(float delta, Player* pPlayer)
 		mSkillUsed = false;
 	}
 
-	if (CanUseSkill(*(pPlayer->GetCurrentMana())) && mSkillUsed == false && GameManager::Get()->GetCurrentPlayer()->Health::GetRatioHP() < 1)
+	if (CanUseSkill() && mSkillUsed == false && GameManager::Get()->GetCurrentPlayer()->Health::GetRatioHP() < 1)
 	{
 		mSkillCanBeUsed = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) 

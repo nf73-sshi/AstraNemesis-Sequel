@@ -8,6 +8,7 @@
 #include "../Skills/Skill.h"
 
 #include "../Important/res.h"
+#include <map>
 
 class Mana; 
 
@@ -25,8 +26,7 @@ protected:
 	HealthBar* mHB;
 	ManaBar* mManaBar;
 
-	std::vector<Skill*> skillArray;
-
+	std::map<const char*, Skill*> skillArray;
 public:
 	Player();
 
@@ -53,6 +53,7 @@ public:
 
 	void SkillManager();
 
+	Skill* GetSkill(const char* name) { return skillArray[name]; }
 
 	Hitbox GetHitbox() override;
 

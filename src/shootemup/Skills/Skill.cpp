@@ -30,18 +30,15 @@ float Skill::GetElapsedTime()
     return mElapsedTime;
 }
 
-bool Skill::GetIsCanBeUsed()
-{
-    return mSkillCanBeUsed;
-}
-
 bool Skill::GetIsUsed()
 {
     return mSkillUsed;
 }
 
-bool Skill::CanUseSkill(int currentCharge) 
+bool Skill::CanUseSkill() 
 {
+    int currentCharge = *(GameManager::Get()->GetCurrentPlayer()->GetCurrentMana());
+
     if (currentCharge < mCost)
     {
         mSkillCanBeUsed = false;

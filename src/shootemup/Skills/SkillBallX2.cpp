@@ -3,7 +3,7 @@
 #include "../Important/AssetManager.h"
 #include <iostream>
 
-SkillBallX2::SkillBallX2() : Skill(GameManager::Get()->GetStats().GetSkillBallX2Lvl(), 30, 3)
+SkillBallX2::SkillBallX2() : Skill(GameManager::Get()->GetStats().GetSkillBallX2Lvl(), 35, 3)
 {
 	mFactor = 0;
 
@@ -32,7 +32,7 @@ void SkillBallX2::TriggerSkill(float delta, Player* pPlayer)
 			GameManager::Get()->GetCurrentPlayer()->GetDefaultSDelay() );
 	}
 
-	if (CanUseSkill( *(pPlayer->GetCurrentMana()) ) && mSkillUsed == false)
+	if (CanUseSkill() && mSkillUsed == false)
 	{
 		mSkillCanBeUsed = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))

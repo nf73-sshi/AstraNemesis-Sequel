@@ -37,11 +37,13 @@ void Level::InitUI()
 	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
 	addEntity(pUI);
 
-	UI_Skills* pSkillBallX2 = new UI_Skills("SkillBallX2");
+	const char* name1 = "SkillBallX2";
+	UI_Skills* pSkillBallX2 = new UI_Skills(name1, pCurrentPlayer->GetSkill(name1));
 	pSkillBallX2->setPosition(WINDOW_WIDTH - 225, WINDOW_HEIGHT - 180);
 	addEntity(pSkillBallX2);
 
-	UI_Skills* pSkillHeal = new UI_Skills("SkillHeal");
+	const char* name2 = "SkillHeal";
+	UI_Skills* pSkillHeal = new UI_Skills(name2, pCurrentPlayer->GetSkill(name2));
 	pSkillHeal->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT - 180);
 	addEntity(pSkillHeal);
 	/////

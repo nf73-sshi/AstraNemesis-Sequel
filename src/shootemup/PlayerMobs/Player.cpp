@@ -30,9 +30,8 @@ Player::Player() : Character("Ship", GameManager::Get()->GetStats().GetPlayerMax
 	CreateSprite("Player", 0, 0, 64, 64);
 	mTimerShoot = 0;
 
-	skillArray.push_back(new SkillBallX2());
-	skillArray.push_back(new SkillHeal());
-
+	skillArray["SkillBallX2"] = new SkillBallX2();
+	skillArray["SkillHeal"] = new SkillHeal();
 }
 
 void Player::Move()
@@ -203,11 +202,11 @@ void Player::SkillManager()
 
 	Skill* usedSkill = nullptr;
 
-	for (Skill* s : skillArray)
+	for (auto it = skillArray.begin(); it != skillArray.end(); ++it)
 	{
-		if (s->GetIsUsed())
+		if (it->second->GetIsUsed())
 		{
-			usedSkill = s;
+			usedSkill = it->second;
 			break;
 		}
 	}
@@ -218,9 +217,9 @@ void Player::SkillManager()
 	}
 	else
 	{
-		for (Skill* s : skillArray)
+		for (auto it = skillArray.begin(); it != skillArray.end(); ++it)
 		{
-			s->Update(dt, this);
+			it->second->Update(dt, this);
 		}
 	}
 

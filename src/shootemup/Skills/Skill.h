@@ -23,9 +23,8 @@ public:
 	float GetDuration();
 	float GetElapsedTime();
 
-	bool GetIsCanBeUsed();
 	bool GetIsUsed();
-	bool CanUseSkill(int currentCharge);
+	bool CanUseSkill();
 
 	virtual void Update(float delta, Player* pPlayer) = 0;
 	virtual void TriggerSkill(float delta, Player* pPlayer) = 0;
