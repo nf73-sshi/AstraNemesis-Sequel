@@ -9,6 +9,7 @@
 #include "../../HealthMana/ManaBar.h"
 #include "../../Bosses/ABoss.h"
 #include "../../PlayerMobs/Mob.h"
+#include "../../Skills/UI_Skills.h"
 
 void Level::Init()
 {
@@ -30,22 +31,34 @@ void Level::Init()
 
 void Level::InitUI()
 {
+	//Interface
 	UI* pUI = new UI();
 	pUI->setScale(2, 2);
 	pUI->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT * 0.5);
 	addEntity(pUI);
 
+	UI_Skills* pSkillBallX2 = new UI_Skills("SkillBallX2");
+	pSkillBallX2->setPosition(WINDOW_WIDTH - 225, WINDOW_HEIGHT - 180);
+	addEntity(pSkillBallX2);
+
+	UI_Skills* pSkillHeal = new UI_Skills("SkillHeal");
+	pSkillHeal->setPosition(WINDOW_WIDTH - 150, WINDOW_HEIGHT - 180);
+	addEntity(pSkillHeal);
+	/////
+	
+	// BARS
 	HealthBar* pPlayerHB = new HealthBar(200.f, 30.f);
 	pCurrentPlayer->SetLifeBar(pPlayerHB);
 	pPlayerHB->SetBarPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
+	pPlayerHB->fading = false;
+	addEntity(pPlayerHB);
 
 	ManaBar* pManaB = new ManaBar(220.f, 30.f);
-
 	pManaB->SetBarPosition(WINDOW_WIDTH - 260, WINDOW_HEIGHT - 120);
 	pCurrentPlayer->SetManaBar(pManaB);
-
-	addEntity(pPlayerHB);
 	addEntity(pManaB);
+	////////
+
 }
 
 void Level::Update(float delta)

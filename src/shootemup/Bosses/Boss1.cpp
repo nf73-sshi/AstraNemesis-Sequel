@@ -102,13 +102,16 @@ void Boss1::Update(float delta)
 		Shoot();
 	}
 
+	const int P1 = 40; // 60
+	const int P2 = 70;  // 90
+
 	if (mTimerPattern1 > mAtkSpeed)
 	{
-		if(mRandomizer < 60)
+		if(mRandomizer < P1)
 			Pattern2(delta);
-		if (mRandomizer >= 60 && mRandomizer < 90)
+		if (mRandomizer >= P1 && mRandomizer < P2)
 			Pattern3(delta); 
-		if (mRandomizer >= 90)
+		if (mRandomizer >= P2)
 			Pattern4(delta);
 	}
 }

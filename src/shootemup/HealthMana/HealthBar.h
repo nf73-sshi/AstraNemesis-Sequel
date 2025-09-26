@@ -6,6 +6,8 @@ class HealthBar : public Entity
 protected:
 	sf::RectangleShape mHpBarFilled;
 	sf::RectangleShape mHpBarEmpty;
+	sf::RectangleShape mLight; // Decoration
+	sf::RectangleShape mShadow; // Decoration
 
 	float mLength = 0;
 	float mWidth = 0;
@@ -16,6 +18,8 @@ protected:
 	float varColor1;
 	float varColor2;
 public:
+	bool fading = true;
+
 	HealthBar(float length, float width);
 
 	void Update(float delta) override;

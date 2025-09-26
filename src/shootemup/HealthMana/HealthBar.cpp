@@ -6,6 +6,8 @@
 HealthBar::HealthBar(float length, float width)
 {
 	mDrawPriority = 9;
+	mDestroy = false;
+
 	varColor1 = 0.f;
 	varColor2 = 255;
 
@@ -15,26 +17,35 @@ HealthBar::HealthBar(float length, float width)
 
 	mHpBarFilled.setSize(sf::Vector2f(mLength, mWidth));
 	mHpBarEmpty.setSize(sf::Vector2f(mLength, mWidth));
+	mLight.setSize(sf::Vector2f(mLength, mWidth * 0.10f));
+	mShadow.setSize(sf::Vector2f(mLength, mWidth * 0.15f));
 
-	mDestroy = false;
 	mHpBarFilled.setFillColor(sf::Color::Green); 
 	mHpBarEmpty.setFillColor(sf::Color(60, 0, 136));
+	mLight.setFillColor(sf::Color(255, 255, 255));
+	mShadow.setFillColor(sf::Color(0, 0, 0, 100));
 }
 
 void HealthBar::Update(float delta)
 {
 	if (mCurrentRatio <= 0.f)
 	{
-		sf::Color fBar = mHpBarFilled.getFillColor();
-		sf::Color eBar = mHpBarEmpty.getFillColor();
+		if (fading == true && alpha > 0)
+		{
+			sf::Color fBar = mHpBarFilled.getFillColor();
+			sf::Color eBar = mHpBarEmpty.getFillColor();
 
-		mHpBarFilled.setFillColor(sf::Color(fBar.r, fBar.g, fBar.b, alpha));
-		mHpBarEmpty.setFillColor(sf::Color(eBar.r, eBar.g, eBar.b, alpha));
+			mHpBarFilled.setFillColor(sf::Color(fBar.r, fBar.g, fBar.b, alpha));
+			mHpBarEmpty.setFillColor(sf::Color(eBar.r, eBar.g, eBar.b, alpha));
+			mLight.setFillColor(sf::Color(255, 255, 255, alpha));
+			mShadow.setFillColor(sf::Color(0, 0, 0, alpha));
 
-		if (alpha > 0)
 			alpha -= 150 * GameManager::Get()->GetDeltaTime();
+		}
 		else
-			alpha = 0.f;
+		{
+			SetMDestroy(true);
+		}
 	}
 
 	return;
@@ -44,6 +55,8 @@ void HealthBar::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(mHpBarEmpty, states);
 	target.draw(mHpBarFilled, states);  
+	target.draw(mLight, states);
+	target.draw(mShadow, states);
 }
 
 sf::RectangleShape* HealthBar::GetMHpBarFilled()
@@ -60,6 +73,8 @@ void HealthBar::SetBarPosition(float x, float y)
 {
 	mHpBarFilled.setPosition(x, y);
 	mHpBarEmpty.setPosition(x, y);
+	mLight.setPosition(x, y);
+	mShadow.setPosition(x, y + mHpBarFilled.getGlobalBounds().height - mShadow.getGlobalBounds().height);
 }
 
 void HealthBar::UpdateBar(float ratio)

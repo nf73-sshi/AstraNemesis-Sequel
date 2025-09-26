@@ -3,8 +3,8 @@
 UI::UI()
 {
 	mDestroy = false;
-	mDrawPriority = 8;
-	CreateSprite("UI", 0, 0, 150, 540);
+	mDrawPriority = 7;
+	CreateSprite("UI");
 }
 
 void UI::Update(float delta)

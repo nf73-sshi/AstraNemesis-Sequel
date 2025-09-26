@@ -134,6 +134,7 @@
     <ClCompile Include="..\..\..\src\shootemup\Skills\Skill.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Skills\SkillBallX2.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Skills\SkillHeal.cpp" />
+    <ClCompile Include="..\..\..\src\shootemup\Skills\UI_Skills.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Sprites\Background.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Sprites\Title.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Sprites\UI.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="..\..\..\src\shootemup\Skills\Skill.h" />
     <ClInclude Include="..\..\..\src\shootemup\Skills\SkillBallX2.h" />
     <ClInclude Include="..\..\..\src\shootemup\Skills\SkillHeal.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Skills\UI_Skills.h" />
     <ClInclude Include="..\..\..\src\shootemup\Sprites\Background.h" />
     <ClInclude Include="..\..\..\src\shootemup\Sprites\Title.h" />
     <ClInclude Include="..\..\..\src\shootemup\Sprites\UI.h" />

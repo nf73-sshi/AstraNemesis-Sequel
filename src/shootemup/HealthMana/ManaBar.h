@@ -6,6 +6,8 @@ class ManaBar : public Entity
 protected:
 	sf::RectangleShape mManaBarFilled;
 	sf::RectangleShape mManaBarEmpty;
+	sf::RectangleShape mLight; // Decoration
+	sf::RectangleShape mShadow; // Decoration
 
 	float mLength = 0;
 	float mWidth = 0;

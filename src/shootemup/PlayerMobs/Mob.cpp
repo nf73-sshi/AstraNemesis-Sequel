@@ -16,7 +16,18 @@ void Mob::Update(float delta)
 	mTimerShoot += delta;
 	mTimerDelay += delta;
 
-	Shoot();
+	if (mHB)
+	{
+		sf::Vector2f spriteSize = GetSpriteSize();
+
+		mHB->UpdateBar(Health::GetRatioHP());
+		mHB->SetBarPosition(getPosition().x - spriteSize.x * 0.75f * 0.5f, getPosition().y - spriteSize.y * 0.5f);
+		std::cout << spriteSize.x << std::endl; 
+	}
+	else
+	{
+		SetLifeBar();
+	}
 
 	if (Health::IsDead() == true)
 	{
@@ -31,6 +42,15 @@ void Mob::Update(float delta)
 		mDestroy = true;
 		return;
 	}
+}
+
+void Mob::SetLifeBar()
+{
+	sf::Vector2f spriteSize = GetSpriteSize();
+	HealthBar* pMobHB = new HealthBar(spriteSize.x * 0.75f, 10.f);
+	mHB = pMobHB;
+	mHB->fading = false;
+	GameManager::Get()->GetCurrentScene()->addEntity(mHB);
 }
 
 Hitbox Mob::GetHitbox()

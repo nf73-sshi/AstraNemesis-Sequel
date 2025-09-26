@@ -12,7 +12,12 @@ void Entity::CreateSprite(const char* alias, int x, int y, int sizeX, int sizeY)
     {
         texture = *tmpTexture;
         sprite.setTexture(texture);
-        sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
+
+        if (x == y && sizeX == sizeY && x + y + sizeX + sizeY == -4)
+        {
+        }
+        else
+            sprite.setTextureRect(sf::IntRect(x, y, sizeX, sizeY));
 
         sf::FloatRect bounds = sprite.getGlobalBounds();
 
@@ -74,5 +79,5 @@ sf::Vector2f Entity::GetSpriteSize()
 {
     sf::FloatRect rect = sprite.getGlobalBounds();
 
-    return sf::Vector2f(rect.width, rect.height);
+    return sf::Vector2f(rect.width * getScale().x, rect.height * getScale().y);
 }

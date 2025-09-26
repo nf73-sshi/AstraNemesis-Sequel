@@ -2,6 +2,8 @@
 #include "../PlayerMobs/Player.h"
 #include "../Important/GameManager.h"
 
+class Entity;
+
 class Skill
 {
 
@@ -12,6 +14,7 @@ protected:
 	float mDuration;
 	bool mSkillCanBeUsed;
 	bool mSkillUsed;
+
 public:
 	Skill(int lvl, int cost, float duration);
 

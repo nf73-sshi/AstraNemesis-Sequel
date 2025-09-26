@@ -103,7 +103,11 @@ void GameManager::InitTextures()
 	mAssetManager->LoadTexture("BackgroundSpace", "res/assets/Images/spaceHeavyLess.png");
 	mAssetManager->LoadTexture("Title", "res/assets/Menu/title.png");
 	mAssetManager->LoadTexture("BackButton", "res/assets/Rules/backButton.png");
+
+	//UI
 	mAssetManager->LoadTexture("UI", "res/assets/Interface/UI.png");
+	mAssetManager->LoadTexture("SkillHeal", "res/assets/Interface/skillHeal.png");
+	mAssetManager->LoadTexture("SkillBallX2", "res/assets/Interface/skillBallX2.png");
 }
 
 void GameManager::DebugMod()
@@ -157,12 +161,15 @@ void GameManager::Init()
 
 	std::cout << myText << std::endl;
 
+	// ALL SCENES
 	mSceneManager.AddScene("Menu", new Menu()); 
 	mSceneManager.AddScene("LevelSelect", new LevelSelect());
 	mSceneManager.AddScene("Rules", new Rules());
 	mSceneManager.AddScene("GameOver", new GameOver());
 	mSceneManager.AddScene("Lvl1", new Level1());
 	mSceneManager.ChangeScene("Menu");
+	//
+
 	mCurrentScene = mSceneManager.GetCurrentScene();
 }
 

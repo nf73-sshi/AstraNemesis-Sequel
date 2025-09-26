@@ -7,7 +7,7 @@ Background::Background()
 {
 	mDrawPriority = 0;
 
-	CreateSprite("BackgroundSpace", 0, 0, 1920, 2160);
+	CreateSprite("BackgroundSpace");
 
 	setPosition(WINDOW_WIDTH * 0.5, 0);
 }

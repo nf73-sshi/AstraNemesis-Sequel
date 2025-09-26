@@ -8,7 +8,6 @@ public:
 	void Update(float delta, Player* pPlayer) override;
 	void TriggerSkill(float delta, Player* pPlayer) override;
 	void OnActivaction(float delta, Player* pPlayer) override;
-
 	void SetValues(int lvl) override;
 };
 

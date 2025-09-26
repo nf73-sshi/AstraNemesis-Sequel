@@ -8,7 +8,7 @@ Mob1::Mob1() : Mob("Mob1", 30, 1, 300, 0.5)
 {
 	mDrawPriority = 6;
 	mTimerMove = 0;
-	CreateSprite("MobsTile", 0, 0, 64, 64);
+	CreateSprite("MobsTile", 20, 14, 43, 33);
 	mRdm = 0;
 
 	manaReward = 3;
@@ -17,6 +17,8 @@ Mob1::Mob1() : Mob("Mob1", 30, 1, 300, 0.5)
 
 void Mob1::Update(float delta)
 {
+	Mob::Update(delta);
+
 	if (mTimerInactive < 1.5)
 	{
 		this->move(0, 310 * delta);
@@ -24,8 +26,7 @@ void Mob1::Update(float delta)
 		return;
 	}
 
-	Mob::Update(delta);
-
+	Shoot();
 	Pattern1(delta);
 }
 
