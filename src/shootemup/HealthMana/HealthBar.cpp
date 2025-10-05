@@ -22,12 +22,15 @@ HealthBar::HealthBar(float length, float width)
 
 	mHpBarFilled.setFillColor(sf::Color::Green); 
 	mHpBarEmpty.setFillColor(sf::Color(60, 0, 136));
-	mLight.setFillColor(sf::Color(255, 255, 255));
+	mLight.setFillColor(sf::Color(255, 255, 255, 100));
 	mShadow.setFillColor(sf::Color(0, 0, 0, 100));
 }
 
 void HealthBar::Update(float delta)
 {
+	if (showAfterDying == true)
+		return;
+
 	if (mCurrentRatio <= 0.f)
 	{
 		if (fading == true && alpha > 0)
@@ -44,7 +47,7 @@ void HealthBar::Update(float delta)
 		}
 		else
 		{
-			SetMDestroy(true);
+				SetMDestroy(true);
 		}
 	}
 

@@ -14,7 +14,7 @@ ManaBar::ManaBar(float length, float width)
 
 	mManaBarFilled.setFillColor(sf::Color::Magenta);
 	mManaBarEmpty.setFillColor(sf::Color(162, 0, 255));
-	mLight.setFillColor(sf::Color(255, 255, 255));
+	mLight.setFillColor(sf::Color(255, 255, 255, 100));
 	mShadow.setFillColor(sf::Color(0, 0, 0, 100));
 }
 

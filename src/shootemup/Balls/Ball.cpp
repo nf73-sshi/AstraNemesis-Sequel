@@ -1,5 +1,6 @@
 #include "Ball.h"
 #include <iostream>
+#include "../Important/res.h"
 
 Ball::Ball(int damage, float speed, float scale, float xFactor, float yFactor)
 {
@@ -64,11 +65,12 @@ void Ball::SetDirection(float xFactor, float yFactor)
 void Ball::Update(float delta)
 {
 	sf::Vector2f pos = getPosition();
+	float radius = GetSprite().getGlobalBounds().width * mScale;
 
 	this->move(mXFactor * delta * mSpeed, mYFactor * delta * mSpeed); 
-	mCurrentTime += delta; 
+	mCurrentTime += delta;
 
-	if (getPosition().x < 0.f || getPosition().x > 1620.f || getPosition().y < 0.f || getPosition().y > 1080.f)
+	if (pos.x < - radius || pos.x > WINDOW_WIDTH - 300.f + radius || pos.y < 0.f - radius || pos.y > WINDOW_HEIGHT + radius)
 		mDestroy = true;
 
 }

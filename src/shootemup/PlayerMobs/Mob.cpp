@@ -4,12 +4,13 @@
 #include "Player.h"
 #include "../Important/GameManager.h"
 
+constexpr float BAR_FACTOR = 0.5f;
+
 Mob::Mob(const char* name, int hp, int damage, float speed, float shootingDelay) : Character(name, hp, damage, speed, shootingDelay)
 {
 	mVelocityX = mSpeed;
 	mVelocityY = mSpeed;
 }
-
 
 void Mob::Update(float delta)
 {
@@ -21,8 +22,7 @@ void Mob::Update(float delta)
 		sf::Vector2f spriteSize = GetSpriteSize();
 
 		mHB->UpdateBar(Health::GetRatioHP());
-		mHB->SetBarPosition(getPosition().x - spriteSize.x * 0.75f * 0.5f, getPosition().y - spriteSize.y * 0.5f);
-		std::cout << spriteSize.x << std::endl; 
+		mHB->SetBarPosition(getPosition().x - spriteSize.x * BAR_FACTOR * 0.5f, getPosition().y - 5 - spriteSize.y * 0.5f);
 	}
 	else
 	{
@@ -47,7 +47,7 @@ void Mob::Update(float delta)
 void Mob::SetLifeBar()
 {
 	sf::Vector2f spriteSize = GetSpriteSize();
-	HealthBar* pMobHB = new HealthBar(spriteSize.x * 0.75f, 10.f);
+	HealthBar* pMobHB = new HealthBar(spriteSize.x * BAR_FACTOR, 8.f);
 	mHB = pMobHB;
 	mHB->fading = false;
 	GameManager::Get()->GetCurrentScene()->addEntity(mHB);

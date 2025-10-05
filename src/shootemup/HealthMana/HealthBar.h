@@ -19,6 +19,7 @@ protected:
 	float varColor2;
 public:
 	bool fading = true;
+	bool showAfterDying = false;
 
 	HealthBar(float length, float width);
 

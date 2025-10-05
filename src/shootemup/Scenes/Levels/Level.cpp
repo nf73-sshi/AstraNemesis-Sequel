@@ -52,7 +52,7 @@ void Level::InitUI()
 	HealthBar* pPlayerHB = new HealthBar(200.f, 30.f);
 	pCurrentPlayer->SetLifeBar(pPlayerHB);
 	pPlayerHB->SetBarPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 60);
-	pPlayerHB->fading = false;
+	pPlayerHB->showAfterDying = true;
 	addEntity(pPlayerHB);
 
 	ManaBar* pManaB = new ManaBar(220.f, 30.f);
