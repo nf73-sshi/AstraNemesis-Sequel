@@ -14,6 +14,18 @@ class GameManager
 
 	float dt;
 
+public: // Debbuging
+	void Log(std::string type, std::string message, std::string source = "")
+	{
+		std::cerr << type << " : " << message << " | source : " << source << std::endl;
+	}
+
+	void Error(std::string message, std::string source = "")
+	{
+		std::cerr << "Error : " << message << " | source : " << source << std::endl;
+		system("pause");
+	}
+
 protected:
 	static GameManager* mInstance;
 	SceneManager mSceneManager;
@@ -24,7 +36,7 @@ protected:
 
 	AssetManager* mAssetManager = AssetManager::Get(); 
 
-	bool debugMod;
+	bool debugMod = false;
 
 	void DebugMod();
 
@@ -50,6 +62,8 @@ public:
 	Scene* GetCurrentScene();
 
 	void InitAssets();
+
+	void InitScenes();
 
 	bool GetIsDebugMod();
 

@@ -15,8 +15,6 @@ public:
 	virtual void Init() = 0;
 	void Clear();
 	virtual void Update(float delta);
-
-	void DrawText(std::string text, float x, float y, int size, sf::Color color);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void addEntity(Entity* e);
 

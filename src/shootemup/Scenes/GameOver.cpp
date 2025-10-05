@@ -45,8 +45,7 @@ void GameOver::Init()
 
 	auto am = AssetManager::Get();
 
-	am->StopAllMusics();
-	am->GetMusic("Calm Space")->play();
+	am->PlayMusic("Calm Space");
 }
 
 void GameOver::Update(float delta)

@@ -15,7 +15,7 @@ void Lvl2Button::Update(float delta)
 	Button::Update(delta);
 
 	if (Button::IsClicked())
-		GameManager::Get()->GetCurrentSceneManager().ChangeScene("Lvl1");
+		GameManager::Get()->GetCurrentSceneManager().ChangeScene("Lvl2");
 }
 
 Lvl1Button::Lvl1Button() : Button()

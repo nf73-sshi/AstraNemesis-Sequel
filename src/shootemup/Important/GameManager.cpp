@@ -10,72 +10,46 @@
 #include "../Scenes/Rules.h"
 #include "../Others/Entity.h"
 #include "../PlayerMobs/Player.h"
+#include "Debug.h"
+
 #include "../Scenes/Levels/Level1.h"
+#include "../Scenes/Levels/Level2.h"
 #include "../Scenes/Menu.h"
 #include "../Scenes/LevelSelect.h"
 #include "../Scenes/GameOver.h"
 #include "../Important/res.h"
 
-const float VOL = 1.f;
+const float VOL = 1.f; // Intensity of volume
 const int changeWindowDelay = 2;
 
 GameManager* GameManager::mInstance = nullptr;
 
 void GameManager::InitMusics()
 {
-	mAssetManager->LoadMusic("Calm Space", "res/assets/Musics/calm_space.wav");
-	mAssetManager->LoadMusic("Dynamic Music1", "res/assets/Musics/dynamic_music1.wav");
-	mAssetManager->LoadMusic("Dynamic Music2", "res/assets/Musics/dynamic_music2.wav");
-	mAssetManager->LoadMusic("Menu1", "res/assets/Musics/menu1.wav");
-
-	mAssetManager->GetMusic("Calm Space")->setLoop(true);
-	mAssetManager->GetMusic("Calm Space")->setVolume(35 * VOL);
-
-	mAssetManager->GetMusic("Dynamic Music1")->setLoop(true);
-	mAssetManager->GetMusic("Dynamic Music1")->setVolume(50 * VOL); 
-
-	mAssetManager->GetMusic("Dynamic Music2")->setLoop(true);
-	mAssetManager->GetMusic("Dynamic Music2")->setVolume(55 * VOL); 
-
-	mAssetManager->GetMusic("Menu1")->setLoop(true);
-	mAssetManager->GetMusic("Menu1")->setVolume(35 * VOL);
+	mAssetManager->InitMusic("Calm Space", "res/assets/Musics/calm_space.wav", 35 * VOL);
+	mAssetManager->InitMusic("Dynamic Music1", "res/assets/Musics/dynamic_music1.wav", 50 * VOL);
+	mAssetManager->InitMusic("Dynamic Music2", "res/assets/Musics/dynamic_music2.wav", 55 * VOL);
+	mAssetManager->InitMusic("Menu1", "res/assets/Musics/menu1.wav", 35 * VOL);
 }
 
 void GameManager::InitSFX()
 {
-	mAssetManager->LoadSound("Beep", "res/assets/SFX/beep.wav");
-	mAssetManager->LoadSound("Applause", "res/assets/SFX/applause.wav");
-	mAssetManager->LoadSound("Boost1", "res/assets/SFX/boost1.wav");
-	mAssetManager->LoadSound("Boost2", "res/assets/SFX/boost2.wav");
-	mAssetManager->LoadSound("Die1", "res/assets/SFX/die1.wav");
-	mAssetManager->LoadSound("Epic Intro", "res/assets/SFX/epic_intro.wav");
-	mAssetManager->LoadSound("Explosion1", "res/assets/SFX/explosion1.wav");
-	mAssetManager->LoadSound("Game Over", "res/assets/SFX/game_over.wav");
-	mAssetManager->LoadSound("Heal1", "res/assets/SFX/heal1.wav");
-	mAssetManager->LoadSound("Heal2", "res/assets/SFX/heal2.wav");
-	mAssetManager->LoadSound("Hit1", "res/assets/SFX/hit1.wav");
-	mAssetManager->LoadSound("Hit2", "res/assets/SFX/hit2.wav");
-	mAssetManager->LoadSound("Laser1", "res/assets/SFX/laser1.wav");
-	mAssetManager->LoadSound("Laser2", "res/assets/SFX/laser2.wav");
-	mAssetManager->LoadSound("Laser3", "res/assets/SFX/laser3.wav");
-	mAssetManager->LoadSound("Winning", "res/assets/SFX/winning_jingle.wav");
-
-	mAssetManager->GetSound("Beep")->setVolume(100 * VOL);
-	mAssetManager->GetSound("Applause")->setVolume(100 * VOL);
-	mAssetManager->GetSound("Boost1")->setVolume(10 * VOL);
-	mAssetManager->GetSound("Boost2")->setVolume(100 * VOL);
-	mAssetManager->GetSound("Die1")->setVolume(35 * VOL);
-	mAssetManager->GetSound("Epic Intro")->setVolume(100 * VOL);
-	mAssetManager->GetSound("Explosion1")->setVolume(75 * VOL);
-	mAssetManager->GetSound("Game Over")->setVolume(100 * VOL);
-	mAssetManager->GetSound("Heal1")->setVolume(80 * VOL);
-	mAssetManager->GetSound("Heal2")->setVolume(100 * VOL);
-	mAssetManager->GetSound("Hit1")->setVolume(100 * VOL);
-	mAssetManager->GetSound("Hit2")->setVolume(50 * VOL);
-	mAssetManager->GetSound("Laser1")->setVolume(45 * VOL);
-	mAssetManager->GetSound("Laser2")->setVolume(45 * VOL);
-	mAssetManager->GetSound("Laser3")->setVolume(45 * VOL);
-	mAssetManager->GetSound("Winning")->setVolume(50 * VOL); 
+	mAssetManager->InitSound("Beep", "res/assets/SFX/beep.wav", 100 * VOL);
+	mAssetManager->InitSound("Applause", "res/assets/SFX/applause.wav", 100 * VOL);
+	mAssetManager->InitSound("Boost1", "res/assets/SFX/boost1.wav", 10 * VOL);
+	mAssetManager->InitSound("Boost2", "res/assets/SFX/boost2.wav", 100 * VOL);
+	mAssetManager->InitSound("Die1", "res/assets/SFX/die1.wav", 35 * VOL);
+	mAssetManager->InitSound("Epic Intro", "res/assets/SFX/epic_intro.wav", 100 * VOL);
+	mAssetManager->InitSound("Explosion1", "res/assets/SFX/explosion1.wav", 75 * VOL);
+	mAssetManager->InitSound("Game Over", "res/assets/SFX/game_over.wav", 100 * VOL);
+	mAssetManager->InitSound("Heal1", "res/assets/SFX/heal1.wav", 80 * VOL);
+	mAssetManager->InitSound("Heal2", "res/assets/SFX/heal2.wav", 100 * VOL);
+	mAssetManager->InitSound("Hit1", "res/assets/SFX/hit1.wav", 100 * VOL);
+	mAssetManager->InitSound("Hit2", "res/assets/SFX/hit2.wav", 50 * VOL);
+	mAssetManager->InitSound("Laser1", "res/assets/SFX/laser1.wav", 45 * VOL);
+	mAssetManager->InitSound("Laser2", "res/assets/SFX/laser2.wav", 45 * VOL);
+	mAssetManager->InitSound("Laser3", "res/assets/SFX/laser3.wav", 45 * VOL);
+	mAssetManager->InitSound("Winning", "res/assets/SFX/winning_jingle.wav", 50 * VOL);
 }
 
 void GameManager::InitTextures()
@@ -113,16 +87,32 @@ void GameManager::InitTextures()
 void GameManager::DebugMod()
 {
 	if (debugMod == true)
-		return;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		Debug::DrawText("Debug mode", 10, WINDOW_HEIGHT - 10, 18, sf::Color::White, 0, 1);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
-				std::cout << "Debug Mod Activated !\n";
-				debugMod = true;
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+				{
+					std::cout << "Debug Mod Desactived !\n";
+					debugMod = false;
+				}
+			}
+		}
+	}
+	else
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+				{
+					std::cout << "Debug Mod Activated !\n";
+					debugMod = true;
+				}
 			}
 		}
 	}
@@ -152,24 +142,13 @@ void GameManager::Init()
 		}
 	}
 
-	debugMod = false;
-
 	std::fstream Data("../../../res/const_data.txt");
 
 	std::string myText;
 	std::getline(Data, myText);
-
 	std::cout << myText << std::endl;
 
-	// ALL SCENES
-	mSceneManager.AddScene("Menu", new Menu()); 
-	mSceneManager.AddScene("LevelSelect", new LevelSelect());
-	mSceneManager.AddScene("Rules", new Rules());
-	mSceneManager.AddScene("GameOver", new GameOver());
-	mSceneManager.AddScene("Lvl1", new Level1());
-	mSceneManager.ChangeScene("Menu");
-	//
-
+	InitScenes();
 	mCurrentScene = mSceneManager.GetCurrentScene();
 }
 
@@ -219,10 +198,11 @@ void GameManager::RunGame()
 			continue;
 
 		Update();
-		mSceneManager.GetCurrentScene()->Update(dt);
+
+		mCurrentScene->Update(dt);
 
 		window.clear();
-		window.draw(*mSceneManager.GetCurrentScene());
+		window.draw(*mCurrentScene);
 		window.display();
 
 		if (windowResizeTimer <= 0)
@@ -270,6 +250,17 @@ void GameManager::InitAssets()
 	InitTextures();
 	InitSFX();
 	InitMusics();
+}
+
+void GameManager::InitScenes()
+{
+	mSceneManager.AddScene("Menu", new Menu());
+	mSceneManager.AddScene("LevelSelect", new LevelSelect());
+	mSceneManager.AddScene("Rules", new Rules());
+	mSceneManager.AddScene("GameOver", new GameOver());
+	mSceneManager.AddScene("Lvl1", new Level1());
+	mSceneManager.AddScene("Lvl2", new Level2());
+	mSceneManager.ChangeScene("Menu");
 }
 
 bool GameManager::GetIsDebugMod()

@@ -114,6 +114,7 @@
     <ClCompile Include="..\..\..\src\shootemup\HealthMana\Mana.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\HealthMana\ManaBar.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Important\AssetManager.cpp" />
+    <ClCompile Include="..\..\..\src\shootemup\Important\Debug.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Important\GameManager.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Important\main.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Important\Stats.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="..\..\..\src\shootemup\Scenes\Levels\Level.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Scenes\Levels\Level1.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Scenes\LevelSelect.cpp" />
+    <ClCompile Include="..\..\..\src\shootemup\Scenes\Levels\Level2.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Scenes\Menu.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Scenes\Rules.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Scenes\Scene.cpp" />
@@ -152,6 +154,7 @@
     <ClInclude Include="..\..\..\src\shootemup\HealthMana\Mana.h" />
     <ClInclude Include="..\..\..\src\shootemup\HealthMana\ManaBar.h" />
     <ClInclude Include="..\..\..\src\shootemup\Important\AssetManager.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Important\Debug.h" />
     <ClInclude Include="..\..\..\src\shootemup\Important\GameManager.h" />
     <ClInclude Include="..\..\..\src\shootemup\Important\main.h" />
     <ClInclude Include="..\..\..\src\shootemup\Important\res.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="..\..\..\src\shootemup\Scenes\Levels\Level.h" />
     <ClInclude Include="..\..\..\src\shootemup\Scenes\Levels\Level1.h" />
     <ClInclude Include="..\..\..\src\shootemup\Scenes\LevelSelect.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Scenes\Levels\Level2.h" />
     <ClInclude Include="..\..\..\src\shootemup\Scenes\Menu.h" />
     <ClInclude Include="..\..\..\src\shootemup\Scenes\Rules.h" />
     <ClInclude Include="..\..\..\src\shootemup\Scenes\Scene.h" />

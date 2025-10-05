@@ -11,6 +11,8 @@ protected:
 	bool mIsWon;
 	Player* pCurrentPlayer;
 public:
+	bool infinite = false;
+
 	virtual void Init();
 	void InitUI();
 	virtual void Update(float delta);

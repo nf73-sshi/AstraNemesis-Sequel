@@ -1,15 +1,19 @@
 #include "Level1.h"
+#include <iostream>
 #include "../../Important/res.h"
 #include "../../HealthMana/HealthBar.h"
+#include "../../Important/AssetManager.h"
 #include "../../Bosses/Boss1.h"
 #include "../../PlayerMobs/Mob.h"
-#include "../../Important/AssetManager.h"
-#include <iostream>
 
 
 void Level1::Init()
 {
 	Level::Init();
+
+	auto am = AssetManager::Get();
+
+	am->PlayMusic("Dynamic Music2");
 
 	ABoss* pBoss = new Boss1();
 	pBoss->scale(2, 1);
@@ -21,11 +25,4 @@ void Level1::Init()
 
 	addEntity(pBoss); 
 	addEntity(pBossHB);
-
-	InitUI();
-
-	auto am = AssetManager::Get();
-
-	am->StopAllMusics();
-	am->GetMusic("Dynamic Music2")->play();
 }

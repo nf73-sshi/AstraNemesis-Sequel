@@ -329,6 +329,12 @@
     <ClCompile Include="..\..\..\src\shootemup\Skills\UI_Skills.cpp">
       <Filter>source\Skills</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\shootemup\Scenes\Levels\Level2.cpp">
+      <Filter>source\Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\shootemup\Important\Debug.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob.h">
@@ -339,6 +345,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\shootemup\Skills\UI_Skills.h">
       <Filter>header\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Scenes\Levels\Level2.h">
+      <Filter>header\Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Important\Debug.h">
+      <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,6 +16,7 @@ class AssetManager
 	std::map<std::string, std::unique_ptr<sf::Music>> mMusics;
 
 public:
+	// VITAL
 	~AssetManager();
 	static AssetManager* Get();
 
@@ -26,11 +27,19 @@ public:
 	sf::Texture* GetTexture(std::string alias);
 	sf::Sound* GetSound(std::string alias);
 	sf::Music* GetMusic(std::string alias);
+	//
+
 
 	void StopAllSounds();
 	void StopAllMusics();
 
 	void PauseOrDePauseAll();
 	void ResetPitchAllMusic();
+
+	void PlayMusic(std::string alias);
+	void PlayMusicIfNotAlreadyPlayed(std::string alias);
+
+	void InitMusic(std::string alias, std::string path, float volume, bool loop = true); 
+	void InitSound(std::string alias, std::string path, float volume); 
 };
 

@@ -20,7 +20,7 @@ public:
 
 	void SetLifeBar();
 
-	Hitbox GetHitbox() override;
+	virtual Hitbox GetHitbox() = 0;
 	void OnCollide(Entity* e) override;
 };
 

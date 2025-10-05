@@ -27,6 +27,8 @@ void Level::Init()
 
 	addEntity(pBG);
 	addEntity(pCurrentPlayer);
+
+	InitUI();
 }
 
 void Level::InitUI()
@@ -76,6 +78,9 @@ void Level::Update(float delta)
 			GameManager::Get()->GetCurrentSceneManager().ChangeScene("GameOver");
 		}
 	}
+
+	if (infinite)
+		return;
 
 	if (Scene::GetAll<ABoss>().size() + Scene::GetAll<Mob>().size() <= 0 && pCurrentPlayer->Health::IsDead() == false)
 	{

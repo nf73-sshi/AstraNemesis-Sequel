@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "../Others/Collide.h"
 #include "../Important/GameManager.h"
+#include "../Important/Debug.h"
 #include <iostream>
 #include <map>
 
@@ -12,8 +13,11 @@ void Scene::Update(float delta)
 	{
 		arrayEntity[i]->Update(delta);
 		Collide* c = dynamic_cast<Collide*>(arrayEntity[i]);
+
 		if (c)
 		{
+			c->GetHitbox().Draw();
+
 			for (int j = 0; j < arrayEntity.size(); ++j)
 			{
 				Collide* other = dynamic_cast<Collide*>(arrayEntity[j]);
@@ -52,20 +56,6 @@ void Scene::Update(float delta)
 			++it;
 		}
 	}
-}
-
-void Scene::DrawText(std::string text, float x, float y, int size, sf::Color color)
-{
-	sf::Text* textToDisplay = new sf::Text();
-
-	textToDisplay->setFont(GameManager::Get()->mFont);
-
-	textToDisplay->setString(text);
-	textToDisplay->setPosition(x, y);
-	textToDisplay->setCharacterSize(size);
-	textToDisplay->setFillColor(color);
-
-	arrayTextes.push_back(textToDisplay);
 }
 
 Scene::~Scene()
@@ -112,6 +102,8 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		}
 	}
 
+	Debug::Get()->DrawAll(target, states);
+
 	for (sf::Text* t : arrayTextes)
 	{
 		target.draw(*t, states);
@@ -124,4 +116,3 @@ void Scene::addEntity(Entity* e)
 {
 	arrayEntity.push_back(e);
 }
-

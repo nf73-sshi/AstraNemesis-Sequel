@@ -64,3 +64,11 @@ void Mob1::Shoot()
 
 	return;
 }
+
+Hitbox Mob1::GetHitbox()
+{
+	Hitbox h;
+	h.position = getPosition();
+	h.radius = 65;
+	return h;
+}

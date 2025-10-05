@@ -149,12 +149,7 @@ void Menu::Init()
 
 	AssetManager::Get()->ResetPitchAllMusic();
 
-	auto menuMusic = AssetManager::Get()->GetMusic("Menu1"); 
-	if (menuMusic->getStatus() == sf::Sound::Stopped)
-	{
-		AssetManager::Get()->StopAllMusics(); 
-		menuMusic->play(); 
-	}
+	AssetManager::Get()->PlayMusicIfNotAlreadyPlayed("Menu1");
 
 	/////////////////////////////// SUPPRIMER §§§§§§§!
 }

@@ -1,15 +1,11 @@
 #include "Collide.h"
 #include "../Important/GameManager.h"
+#include "../Important/Debug.h"
 
 bool Collide::CheckCollision(Collide* other)
 {
 	Hitbox hitbox = GetHitbox();
 	Hitbox hitboxOther = other->GetHitbox(); 
-
-	/*sf::CircleShape hitboxSprite;
-	hitboxSprite.setPosition(hitbox.position);
-	hitboxSprite.setRadius(hitbox.radius);
-	hitboxSprite.setFillColor(sf::Color(255, 0, 0, 200));*/
 
 	float d = sqrt(pow(hitboxOther.position.x - hitbox.position.x, 2) + pow(hitboxOther.position.y - hitbox.position.y, 2));
 
@@ -19,4 +15,10 @@ bool Collide::CheckCollision(Collide* other)
 	}
 
 	return false;
+}
+
+void Hitbox::Draw()
+{
+	if(GameManager::Get()->GetIsDebugMod())
+		Debug::DrawFilledCircle(this->position, this->radius, sf::Color(255, 0, 0, 150));
 }

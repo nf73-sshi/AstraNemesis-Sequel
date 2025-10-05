@@ -183,3 +183,33 @@ void AssetManager::ResetPitchAllMusic()
         it->second.get()->setPitch(1);
     }
 }
+
+void AssetManager::PlayMusic(std::string alias)
+{
+    StopAllMusics();
+    GetMusic(alias)->play();
+}
+
+void AssetManager::PlayMusicIfNotAlreadyPlayed(std::string alias)
+{
+    sf::Music* music = GetMusic(alias);
+
+    if (music->getStatus() == sf::Music::Stopped)
+    {
+        PlayMusic(alias);
+    }
+}
+
+void AssetManager::InitMusic(std::string alias, std::string path, float volume, bool loop)
+{
+    LoadMusic(alias, path);
+    GetMusic(alias)->setVolume(volume);
+    GetMusic(alias)->setLoop(loop);
+}
+
+void AssetManager::InitSound(std::string alias, std::string path, float volume)
+{
+    LoadSound(alias, path);
+    GetSound(alias)->setVolume(volume);
+}
+

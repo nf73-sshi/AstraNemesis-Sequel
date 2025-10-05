@@ -21,7 +21,7 @@ Player::Player() : Character("Ship", GameManager::Get()->GetStats().GetPlayerMax
 {
 	mDrawPriority = 5;
 
-	mHitboxSize = 8.f;
+	mHitboxSize = 11.f;
 
 	mTimerInactive = 0;
 	mTimerInvincible = 0;
@@ -228,7 +228,8 @@ void Player::SkillManager()
 Hitbox Player::GetHitbox()
 {
 	Hitbox h;
-	h.position = getPosition();
+	h.position.x = getPosition().x;
+	h.position.y = getPosition().y + 9;
 	h.radius = mHitboxSize;
 
 	return h;

@@ -53,14 +53,6 @@ void Mob::SetLifeBar()
 	GameManager::Get()->GetCurrentScene()->addEntity(mHB);
 }
 
-Hitbox Mob::GetHitbox()
-{
-	Hitbox h;
-	h.position = getPosition();
-	h.radius = 75;
-	return h;
-}
-
 void Mob::OnCollide(Entity* e)
 {
 	if (mTimerDelay < 0.01)
