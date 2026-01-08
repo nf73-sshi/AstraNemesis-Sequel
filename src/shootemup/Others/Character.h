@@ -12,8 +12,6 @@ protected:
 	int mDamage;
 	float mShootingDelay;
 
-	float mHitboxSize;
-
 	float mTimerShoot;
 	float mTimerInactive;
 	float mTimerDelay;

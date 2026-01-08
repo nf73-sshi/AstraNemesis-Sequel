@@ -4,14 +4,28 @@
 
 bool Collide::CheckCollision(Collide* other)
 {
-	Hitbox hitbox = GetHitbox();
-	Hitbox hitboxOther = other->GetHitbox(); 
+	if (!other)
+		return false;
 
-	float d = sqrt(pow(hitboxOther.position.x - hitbox.position.x, 2) + pow(hitboxOther.position.y - hitbox.position.y, 2));
+	auto hitboxes = GetHitboxes();
+	auto hitboxesOther = other->GetHitboxes();
 
-	if (d <= hitbox.radius + hitboxOther.radius)
+	for (const Hitbox& h : hitboxes)
 	{
-		return true;
+		for (const Hitbox& hOther : hitboxesOther)
+		{
+			float dx = hOther.position.x - h.position.x;
+			float dy = hOther.position.y - h.position.y;
+
+			float sqrDist = dx * dx + dy * dy;
+
+			float sumRadius = h.radius + hOther.radius;
+
+			if (sqrDist <= sumRadius * sumRadius)
+			{
+				return true;
+			}
+		}
 	}
 
 	return false;

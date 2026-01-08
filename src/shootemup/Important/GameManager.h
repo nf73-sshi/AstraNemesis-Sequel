@@ -36,7 +36,7 @@ protected:
 
 	AssetManager* mAssetManager = AssetManager::Get(); 
 
-	bool debugMod = false;
+	bool debugMod = true;
 
 	void DebugMod();
 

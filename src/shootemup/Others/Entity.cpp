@@ -81,3 +81,27 @@ sf::Vector2f Entity::GetSpriteSize()
 
     return sf::Vector2f(rect.width * getScale().x, rect.height * getScale().y);
 }
+
+float Entity::GetSpecificScale(bool includeX, bool includeY)
+{
+    if (includeX == false && includeY == false)
+        return 0.f;
+
+    sf::Vector2f scale = getScale();
+
+    if (includeX == false)
+        return scale.y;
+
+    if (includeY == false)
+        return scale.x;
+
+    return (scale.x + scale.y) * 0.5f;
+}
+
+float Entity::GetMaxScale(bool state)
+{
+    if (state)
+        return std::max(getScale().x, getScale().y);
+    else
+        return std::min(getScale().x, getScale().y);
+}

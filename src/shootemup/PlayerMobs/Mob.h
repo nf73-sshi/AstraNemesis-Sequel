@@ -19,8 +19,6 @@ public:
 	virtual void Update(float delta);
 
 	void SetLifeBar();
-
-	virtual Hitbox GetHitbox() = 0;
 	void OnCollide(Entity* e) override;
 };
 

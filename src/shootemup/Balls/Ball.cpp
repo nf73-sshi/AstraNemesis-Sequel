@@ -75,12 +75,9 @@ void Ball::Update(float delta)
 
 }
 
-Hitbox Ball::GetHitbox()
+std::vector<Hitbox> Ball::GetHitboxes()
 {
-	Hitbox h;
-	h.position = getPosition();
-	h.radius = 8.5f * mScale;
-	return h; 
+	return { Hitbox(getPosition(), 8.5f * mScale) };
 }
 
 void Ball::OnCollide(Entity*)

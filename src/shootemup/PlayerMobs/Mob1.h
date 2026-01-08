@@ -12,7 +12,7 @@ public:
 	void Shoot() override;
 
 	void Update(float delta) override;
-	Hitbox GetHitbox() override;
+	std::vector<Hitbox> GetHitboxes() override;
 	void Pattern1(float delta);
 };
 

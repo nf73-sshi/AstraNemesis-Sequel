@@ -33,5 +33,7 @@ public:
     virtual void Update(float delta) = 0;
 
     sf::Vector2f GetSpriteSize();
+    float GetSpecificScale(bool includeX, bool includeY); // if true true -> average
+    float GetMaxScale(bool state = true); // if true -> return the greater scale between x y
 };
 

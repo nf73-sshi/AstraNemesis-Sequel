@@ -55,7 +55,7 @@ public:
 
 	Skill* GetSkill(const char* name) { return skillArray[name]; }
 
-	Hitbox GetHitbox() override;
+	std::vector<Hitbox> GetHitboxes() override;
 
 	void OnCollide(Entity* e) override;
 

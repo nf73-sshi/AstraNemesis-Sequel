@@ -16,7 +16,15 @@ void Scene::Update(float delta)
 
 		if (c)
 		{
-			c->GetHitbox().Draw();
+			auto hitboxes = c->GetHitboxes();
+
+			if (hitboxes.empty() == false)
+			{
+				for (Hitbox h : hitboxes)
+				{
+					h.Draw();
+				}
+			}
 
 			for (int j = 0; j < arrayEntity.size(); ++j)
 			{

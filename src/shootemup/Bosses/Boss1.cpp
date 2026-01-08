@@ -12,7 +12,7 @@
 
 Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 {
-	mHitboxSize = 127.5f;
+	mHitboxSize = 64.f;
 
 	mTimerPattern1 = 0;
 	mTimerPattern2 = 0;
@@ -23,7 +23,7 @@ Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 	mSpeedBoost = 0;
 
 	mVelocityX = mSpeed;
-	mVelocityY = mSpeed * 2.5;
+	mVelocityY = mSpeed * 2.5f;
 	CreateSprite("Boss1", 0, 0, 533, 255);
 }
 
@@ -238,10 +238,29 @@ void Boss1::Pattern5(float delta)
 
 Hitbox Boss1::GetHitbox()
 {
-	Hitbox h;
-	h.position = getPosition();
-	h.radius = mHitboxSize;
+	Hitbox h(getPosition(), mHitboxSize * GetMaxScale());
+
 	return h;
+}
+
+std::vector<Hitbox> Boss1::GetHitboxes()
+{
+	std::vector<Hitbox> hitboxes;
+
+	sf::Vector2f pos = getPosition();
+
+	float realSize = mHitboxSize;
+
+	Hitbox main(pos, mHitboxSize * GetMaxScale());
+
+	float offsetX = 150.f * GetMaxScale();
+
+	Hitbox leftWing(pos, mHitboxSize, {-offsetX, 0.f});
+	Hitbox rightWing(pos, mHitboxSize, {offsetX, 0.f});
+
+	hitboxes = { main, leftWing, rightWing };
+
+	return hitboxes;
 }
 
 void Boss1::OnCollide(Entity* e)

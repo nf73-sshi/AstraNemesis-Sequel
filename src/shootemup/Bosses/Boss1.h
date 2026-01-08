@@ -36,6 +36,7 @@ public:
 
 	// Hérité via Collide
 	Hitbox GetHitbox() override;
+	std::vector<Hitbox>GetHitboxes() override;
 	void OnCollide(Entity* e) override;
 };
 

@@ -32,7 +32,7 @@ public:
 	void Update(float delta) override;
 
 	// Hérité via Collide
-	Hitbox GetHitbox() override;
+	std::vector<Hitbox> GetHitboxes() override;
 	virtual void OnCollide(Entity*);
 };
 

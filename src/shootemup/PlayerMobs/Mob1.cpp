@@ -6,6 +6,8 @@
 
 Mob1::Mob1() : Mob("Mob1", 30, 1, 300, 0.5)
 {
+	mHitboxSize = 22.f;
+
 	mDrawPriority = 6;
 	mTimerMove = 0;
 	CreateSprite("MobsTile", 20, 14, 43, 33);
@@ -65,10 +67,7 @@ void Mob1::Shoot()
 	return;
 }
 
-Hitbox Mob1::GetHitbox()
+std::vector<Hitbox> Mob1::GetHitboxes()
 {
-	Hitbox h;
-	h.position = getPosition();
-	h.radius = 65;
-	return h;
+	return { Hitbox(getPosition(), mHitboxSize * GetMaxScale()) };
 }

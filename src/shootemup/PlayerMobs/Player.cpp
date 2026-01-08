@@ -21,7 +21,7 @@ Player::Player() : Character("Ship", GameManager::Get()->GetStats().GetPlayerMax
 {
 	mDrawPriority = 5;
 
-	mHitboxSize = 11.f;
+	mHitboxSize = 10.f;
 
 	mTimerInactive = 0;
 	mTimerInvincible = 0;
@@ -225,14 +225,9 @@ void Player::SkillManager()
 
 }
 
-Hitbox Player::GetHitbox()
+std::vector<Hitbox> Player::GetHitboxes()
 {
-	Hitbox h;
-	h.position.x = getPosition().x;
-	h.position.y = getPosition().y + 9;
-	h.radius = mHitboxSize;
-
-	return h;
+	return { Hitbox(getPosition(), mHitboxSize * GetMaxScale(), {0, 7.f * GetMaxScale()}) };
 }
 
 void Player::OnCollide(Entity* e)
