@@ -1,5 +1,5 @@
 #include "AllyBall.h"
-#include "../Bosses/Boss1.h"
+#include "../Bosses/ABoss.h"
 #include "../PlayerMobs/Mob1.h"
 
 AllyBall::AllyBall(int damage, float speed, float scale, float xFactor, float yFactor) : Ball(damage, speed, scale, xFactor, yFactor)  
@@ -14,17 +14,11 @@ int AllyBall::GetDamage()
 
 void AllyBall::OnCollide(Entity* e)
 {
-	if (typeid(*e) == typeid(Boss1))
-	{
-		if(e->IsDead() == false)
-			mDestroy = true;
-	}
-	
-	if (typeid(*e) == typeid(Mob1))
-	{
-		if (e->IsDead() == false) 
-			mDestroy = true;
-	}
+	if (ABoss* boss = dynamic_cast<ABoss*>(e))
+		mDestroy = true;
+
+	if (Mob* target = dynamic_cast<Mob*>(e))
+		mDestroy = true;
 
 	return;
 }

@@ -59,6 +59,7 @@ void GameManager::InitTextures()
 	mAssetManager->LoadTexture("MobsTile", "res/assets/Images/mobs.png");
 	mAssetManager->LoadTexture("Player", "res/assets/Images/vaisseau.png");
 	mAssetManager->LoadTexture("Boss1", "res/assets/Images/Boss1.png");
+	mAssetManager->LoadTexture("Boss2", "res/assets/Images/Boss2.png");
 
 	//Levels
 	mAssetManager->LoadTexture("lvl1Button", "res/assets/LevelSelection/lvl1Button_v2.png");

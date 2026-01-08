@@ -7,6 +7,9 @@ class HealthBar;
 class ABoss : public Character, public Collide
 {
 protected:
+	float mVelocityX;
+	float mVelocityY;
+
 	int mRandomizer;
 	HealthBar* mHB;
 
@@ -23,8 +26,6 @@ public:
 	void Randomize();
 
 	void SetLifeBar(HealthBar* pHB);
-
-	virtual Hitbox GetHitbox() = 0;
 	virtual void OnCollide(Entity* e);
 };
 

@@ -16,6 +16,13 @@ ABoss::ABoss(const char* name, int hp, int damage, float speed, float shootingDe
 void ABoss::Update(float delta)
 {
 	mHB->UpdateBar(Health::GetRatioHP());
+
+	if (Health::IsDead())
+	{
+		AssetManager::Get()->GetSound("Explosion1")->play();
+		mDestroy = true;
+		return;
+	}
 }
 
 void ABoss::Randomize()

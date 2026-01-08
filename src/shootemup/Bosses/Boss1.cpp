@@ -6,11 +6,9 @@
 #include "../Important/GameManager.h"
 #include <iostream>
 #include <typeinfo>
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
 #include "../Important/AssetManager.h"
 
-Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
+Boss1::Boss1() : ABoss("Boss1", 4000, 1, 400, 0.5f, 2.f, 1.5f)
 {
 	mHitboxSize = 64.f;
 
@@ -27,28 +25,28 @@ Boss1::Boss1() : ABoss("Boss1", 2000, 1, 400, 0.35, 2.f, 1.5f)
 	CreateSprite("Boss1", 0, 0, 533, 255);
 }
 
-void Boss1::Update(float delta)  
+void Boss1::Update(float dt)  
 {
-	ABoss::Update(delta);
+	ABoss::Update(dt);
 
 	auto linkedMusic = AssetManager::Get()->GetMusic("Dynamic Music2");
 
 	if (mTimerInactive < 2)
 	{
-		mTimerInactive += delta;
+		mTimerInactive += dt;
 		return;
 	}
 
 	if (mHP <= mHPMax * 0.66 && mHP > mHPMax * 0.33)
 	{
 		this->sprite.setColor(sf::Color(255, 120, 120, 255));
-		mShootingDelay = 0.25;
+		mShootingDelay = 0.3f;
 		mAtkSpeed = 1.5f;
 		mSpeedBoost = 100;
 
 		if (mRandomizer <= 30)
 		{
-			Pattern5(delta);
+			PatternTripleBall(dt);
 			Randomize();
 		}
 
@@ -62,13 +60,13 @@ void Boss1::Update(float delta)
 	else if (mHP <= mHPMax * 0.33)
 	{
 		this->sprite.setColor(sf::Color(255, 50, 50, 255));
-		mShootingDelay = 0.2;
+		mShootingDelay = 0.4f;
 		mAtkSpeed = 1.f;
 		mSpeedBoost = 250;
 
 		if (mRandomizer <= 50)
 		{
-			Pattern5(delta);
+			PatternTripleBall(dt);
 			Randomize();
 		}
 
@@ -85,22 +83,12 @@ void Boss1::Update(float delta)
 			linkedMusic->setPitch(1.f);
 	}
 
-	if (Health::IsDead())
-	{
-		AssetManager::Get()->GetSound("Explosion1")->play(); 
-		mDestroy = true;
-		return;
-	}
-
-	mTimerDelay += delta;
-	mTimerShoot += delta;
-	mTimerPattern1 += delta; 
+	mTimerDelay += dt;
+	mTimerShoot += dt;
+	mTimerPattern1 += dt; 
 
 	if (mTimerPattern1 <= mAtkSpeed)
-	{
-		Pattern1(delta);
-		Shoot();
-	}
+		PatternGlobal(dt);
 
 	const int P1 = 60; // 60
 	const int P2 = 90;  // 90
@@ -108,11 +96,11 @@ void Boss1::Update(float delta)
 	if (mTimerPattern1 > mAtkSpeed)
 	{
 		if(mRandomizer < P1)
-			Pattern2(delta);
+			PatternSweepBall(dt);
 		if (mRandomizer >= P1 && mRandomizer < P2)
-			Pattern3(delta); 
+			PatternBigBall(dt); 
 		if (mRandomizer >= P2)
-			Pattern4(delta);
+			PatternSpawnMobs(dt);
 	}
 }
 
@@ -120,9 +108,16 @@ void Boss1::Shoot()
 {
 	if (mTimerShoot > mShootingDelay)
 	{
-		EnemyBall* b = new EnemyBall(1, 1, mScaleBall, 0, 800);
+		EnemyBall* b = new EnemyBall(1, 800.f, mScaleBall, 0, 0);
     
 		b->setPosition(getPosition());
+
+		if (Player* pPlayer = GameManager::Get()->GetCurrentScene()->GetFirst<Player>())
+		{
+			sf::Vector2f vect = pPlayer->getPosition() - b->getPosition();
+			b->SetDirection(vect.x, vect.y);
+		}
+
 		GameManager::Get()->GetCurrentScene()->addEntity(b);
 		mTimerShoot = 0;
 	}
@@ -130,18 +125,22 @@ void Boss1::Shoot()
 	return;
 }
 
-void Boss1::Pattern1(float delta)
+void Boss1::PatternGlobal(float delta)
 {
-	if (getPosition().x < 100)
+	float realSize = mHitboxSize * GetMaxScale();
+
+	if (getPosition().x < realSize)
 		mVelocityX = mSpeed + mSpeedBoost;
 
-	if (getPosition().x > 1550)
+	if (getPosition().x > WINDOW_WIDTH - 300.f - realSize)
 		mVelocityX = -mSpeed - mSpeedBoost;
 
 	this->move(mVelocityX * delta, 0);
+
+	Shoot();
 }
 
-void Boss1::Pattern2(float delta)
+void Boss1::PatternSweepBall(float delta)
 {
 	mTimerPattern2 += delta;
 
@@ -165,7 +164,7 @@ void Boss1::Pattern2(float delta)
 
 }
 
-void Boss1::Pattern3(float delta)
+void Boss1::PatternBigBall(float delta)
 {
 	mTimerPattern3 += delta;
 
@@ -187,7 +186,7 @@ void Boss1::Pattern3(float delta)
 	}
 }
 
-void Boss1::Pattern4(float delta)
+void Boss1::PatternSpawnMobs(float delta)
 {
 	if (GameManager::Get()->GetCurrentScene()->GetAll<Mob1>().size() >= 4)
 	{
@@ -215,7 +214,7 @@ void Boss1::Pattern4(float delta)
 
 }
 
-void Boss1::Pattern5(float delta)
+void Boss1::PatternTripleBall(float delta)
 {
 	mTimerPattern5 += delta;
 
@@ -236,29 +235,26 @@ void Boss1::Pattern5(float delta)
 	
 }
 
-Hitbox Boss1::GetHitbox()
-{
-	Hitbox h(getPosition(), mHitboxSize * GetMaxScale());
-
-	return h;
-}
-
 std::vector<Hitbox> Boss1::GetHitboxes()
 {
 	std::vector<Hitbox> hitboxes;
 
 	sf::Vector2f pos = getPosition();
 
-	float realSize = mHitboxSize;
+	float realSize = mHitboxSize * GetMaxScale();
 
-	Hitbox main(pos, mHitboxSize * GetMaxScale());
+	Hitbox main(pos, realSize);
 
-	float offsetX = 150.f * GetMaxScale();
+	float offsetX = 200.f * GetMaxScale();
+	float offsetY = -50.f * GetMaxScale(false);
 
-	Hitbox leftWing(pos, mHitboxSize, {-offsetX, 0.f});
-	Hitbox rightWing(pos, mHitboxSize, {offsetX, 0.f});
+	Hitbox leftWing(pos, realSize * 0.7f, {-offsetX, offsetY});
+	Hitbox rightWing(pos, realSize * 0.7f, {offsetX, offsetY});
 
-	hitboxes = { main, leftWing, rightWing };
+	Hitbox leftShoulder(pos, realSize * 0.9f, { -offsetX * 0.5f, offsetY * 0.5f});
+	Hitbox rightShoulder(pos, realSize * 0.9f, { offsetX * 0.5f, offsetY * 0.5f });
+
+	hitboxes = { main, leftWing, rightWing, leftShoulder, rightShoulder };
 
 	return hitboxes;
 }

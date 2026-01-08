@@ -129,7 +129,7 @@ void Player::ScreenCollision()
 	if (this->getPosition().x < halfSize)
 		this->setPosition(halfSize, this->getPosition().y);
 
-	if (this->getPosition().x > WINDOW_WIDTH - halfSize - 300) // 150 = size of the UI
+	if (this->getPosition().x > WINDOW_WIDTH - halfSize - 300) // 300 = size of the UI
 		this->setPosition(WINDOW_WIDTH - halfSize - 300, this->getPosition().y);
 
 	if (this->getPosition().y < halfSize + 40.f) // 40 = size of the HP Bar of the Boss

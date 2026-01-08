@@ -107,6 +107,7 @@
     <ClCompile Include="..\..\..\src\shootemup\Balls\EnemyBall.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Bosses\ABoss.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Bosses\Boss1.cpp" />
+    <ClCompile Include="..\..\..\src\shootemup\Bosses\Boss2.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Buttons\BackButton.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Buttons\Button.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\HealthMana\Health.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="..\..\..\src\shootemup\Balls\EnemyBall.h" />
     <ClInclude Include="..\..\..\src\shootemup\Bosses\ABoss.h" />
     <ClInclude Include="..\..\..\src\shootemup\Bosses\Boss1.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Bosses\Boss2.h" />
     <ClInclude Include="..\..\..\src\shootemup\Buttons\BackButton.h" />
     <ClInclude Include="..\..\..\src\shootemup\Buttons\Button.h" />
     <ClInclude Include="..\..\..\src\shootemup\HealthMana\Health.h" />
