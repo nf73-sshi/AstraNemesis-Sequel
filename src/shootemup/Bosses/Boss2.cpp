@@ -8,14 +8,22 @@
 #include <typeinfo>
 #include "../Important/AssetManager.h"
 
-Boss2::Boss2() : ABoss("Boss2", 2000, 1, 700.f, 0.4f, 2.f, 1.5f)
+#include "../Actions/ActionsBoss2.h"
+
+Boss2::Boss2() : ABoss("Boss2", 2000, 1, 500.f, 0.4f, 2.f, 1.5f), m_SM(this)
 {
 	mVelocityX = mSpeed;
-	mVelocityY = mSpeed;
+	mVelocityY = mSpeed * 1.5f;
 
 	mHitboxSize = 63.f;
 
 	CreateSprite("Boss2", 0, 0, 236, 236);
+
+	m_SM.AddAction(PATTERNGLOBAL, new ActionPatternGlobal(3.f));
+	m_SM.AddAction(PATTERN1, new ActionPattern1(3.f));
+	m_SM.AddAction(PATTERN2, new ActionPattern2(2.f));
+
+	m_SM.ChangeState(PATTERNGLOBAL);
 }
 
 void Boss2::Update(float dt)
@@ -33,7 +41,7 @@ void Boss2::Update(float dt)
 	mTimerDelay += dt;
 	mTimerShoot += dt;
 
-	PatternGlobal(dt);
+	m_SM.Update();
 }
 
 void Boss2::Shoot()
@@ -47,30 +55,21 @@ void Boss2::Shoot()
 
 		for (int i = -1; i < 2; i += 2)
 		{
-			EnemyBall* b = new EnemyBall(1, 800.f, mScaleBall, 0, 1);
-
 			sf::Vector2f pos = getPosition();
 			pos.x += i * 95.f * GetMaxScale();
 
-			b->setPosition(pos);
-
-			GameManager::Get()->GetCurrentScene()->addEntity(b);
+			SpawnBall(0, 800.f, 0.8f, pos, { 0, 1 });
 		}
 
 		if (currentCount >= shootBeforeBig)
 		{
-			EnemyBall* b = new EnemyBall(1, 1000.f, mScaleBall * 4.f, 0, 1);
-
-			sf::Vector2f pos = getPosition();
-			b->setPosition(pos);
+			EnemyBall* b = SpawnBall(0, 1000.f, 1, getPosition(), { 0, 0 });
 
 			if (Player* pPlayer = GameManager::Get()->GetCurrentScene()->GetFirst<Player>())
 			{
 				sf::Vector2f vect = pPlayer->getPosition() - b->getPosition();
 				b->SetDirection(vect.x, vect.y);
 			}
-
-			GameManager::Get()->GetCurrentScene()->addEntity(b);
 
 			currentCount = 0;
 		}
@@ -100,7 +99,35 @@ std::vector<Hitbox> Boss2::GetHitboxes()
 	return hitboxes;
 }
 
-void Boss2::PatternGlobal(float dt)
+bool Boss2::DashForward(float dt, float maxPos)
+{
+	if (getPosition().y >= maxPos)
+	{
+		SetPosition(getPosition().x, maxPos);
+		return false;
+	}
+
+	this->move(0, mVelocityY * dt);
+
+	return true;
+}
+
+bool Boss2::DashBackward(float dt)
+{
+	float defaultPosY = GetDefaultPosition().y;
+
+	if (getPosition().y <= defaultPosY)
+	{
+		SetPosition(getPosition().x, defaultPosY);
+		return false;
+	}
+
+	this->move(0, -mVelocityY * dt);
+
+	return true;
+}
+
+void Boss2::Slide(float dt)
 {
 	float realSize = mHitboxSize * GetMaxScale();
 
@@ -111,6 +138,4 @@ void Boss2::PatternGlobal(float dt)
 		mVelocityX = -mSpeed;
 
 	this->move(mVelocityX * dt, 0);
-
-	Shoot();
 }

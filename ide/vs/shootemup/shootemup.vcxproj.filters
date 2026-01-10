@@ -105,6 +105,12 @@
       <UniqueIdentifier>{5888B1E2-77D4-4929-8292-AF6655C23327}</UniqueIdentifier>
       <Extensions>cpp;c</Extensions>
     </Filter>
+    <Filter Include="header\Actions">
+      <UniqueIdentifier>{e78afd3c-7cd3-4c4c-a81a-de30020fa2f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Actions">
+      <UniqueIdentifier>{94f51f78-2eda-400b-9862-5848d3f4cd83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\shootemup\Balls\AllyBall.cpp">
@@ -335,6 +341,18 @@
     <ClCompile Include="..\..\..\src\shootemup\Important\Debug.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\shootemup\Actions\ActionsBoss2.cpp">
+      <Filter>source\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\shootemup\Important\StateMachine.cpp">
+      <Filter>source\Important</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\shootemup\Actions\Action.cpp">
+      <Filter>source\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\shootemup\Bosses\Boss2.cpp">
+      <Filter>source\Bosses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob.h">
@@ -351,6 +369,21 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\shootemup\Important\Debug.h">
       <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Others\Tag.h">
+      <Filter>header\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Actions\ActionsBoss2.h">
+      <Filter>header\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Important\StateMachine.h">
+      <Filter>header\Important</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Actions\Action.h">
+      <Filter>header\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\shootemup\Bosses\Boss2.h">
+      <Filter>header\Bosses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

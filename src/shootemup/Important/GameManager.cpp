@@ -19,7 +19,7 @@
 #include "../Scenes/GameOver.h"
 #include "../Important/res.h"
 
-const float VOL = 1.f; // Intensity of volume
+const float VOL = 0.1f; // Intensity of volume
 const int changeWindowDelay = 2;
 
 GameManager* GameManager::mInstance = nullptr;

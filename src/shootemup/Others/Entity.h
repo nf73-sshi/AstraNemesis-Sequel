@@ -5,6 +5,8 @@ class Entity : public sf::Drawable, public sf::Transformable
 {
 
 protected:
+    sf::Vector2f defaultPos;
+
     sf::Texture texture;
     sf::Sprite sprite;
     bool mDestroy = false;
@@ -26,6 +28,9 @@ public:
     void SetPosition(sf::Vector2f pos);
     void SetPosition(float x, float y);
 
+    const sf::Vector2f& GetDefaultPosition() const { return defaultPos; }
+
+    void SetDefaultPosition(sf::Vector2f pos) { defaultPos = pos; }
     void SetMDestroy(bool value); 
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

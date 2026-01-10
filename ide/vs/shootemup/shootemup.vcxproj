@@ -102,6 +102,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\shootemup\Actions\Action.cpp" />
+    <ClCompile Include="..\..\..\src\shootemup\Actions\ActionsBoss2.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Balls\AllyBall.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Balls\Ball.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Balls\EnemyBall.cpp" />
@@ -118,6 +120,7 @@
     <ClCompile Include="..\..\..\src\shootemup\Important\Debug.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Important\GameManager.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Important\main.cpp" />
+    <ClCompile Include="..\..\..\src\shootemup\Important\StateMachine.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Important\Stats.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Others\Character.cpp" />
     <ClCompile Include="..\..\..\src\shootemup\Others\Collide.cpp" />
@@ -143,6 +146,8 @@
     <ClCompile Include="..\..\..\src\shootemup\Sprites\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\src\shootemup\Actions\Action.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Actions\ActionsBoss2.h" />
     <ClInclude Include="..\..\..\src\shootemup\Balls\AllyBall.h" />
     <ClInclude Include="..\..\..\src\shootemup\Balls\Ball.h" />
     <ClInclude Include="..\..\..\src\shootemup\Balls\EnemyBall.h" />
@@ -160,11 +165,13 @@
     <ClInclude Include="..\..\..\src\shootemup\Important\GameManager.h" />
     <ClInclude Include="..\..\..\src\shootemup\Important\main.h" />
     <ClInclude Include="..\..\..\src\shootemup\Important\res.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Important\StateMachine.h" />
     <ClInclude Include="..\..\..\src\shootemup\Important\Stats.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Character.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Collide.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Convert.h" />
     <ClInclude Include="..\..\..\src\shootemup\Others\Entity.h" />
+    <ClInclude Include="..\..\..\src\shootemup\Others\Tag.h" />
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob.h" />
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Mob1.h" />
     <ClInclude Include="..\..\..\src\shootemup\PlayerMobs\Player.h" />

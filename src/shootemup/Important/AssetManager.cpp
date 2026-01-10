@@ -9,7 +9,7 @@ AssetManager::~AssetManager()
 {
     if (mTextures.size() > 0)
     {
-        for (std::map<std::string, sf::Texture*>::iterator it = mTextures.begin(); it != mTextures.end(); it++)
+        for (std::unordered_map<std::string, sf::Texture*>::iterator it = mTextures.begin(); it != mTextures.end(); it++)
         {
             delete it->second;
         }

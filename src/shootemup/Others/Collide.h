@@ -19,6 +19,7 @@ protected:
 	float mHitboxSize = -1;
 
 public:
+	const float& GetHitboxSize() const { return mHitboxSize; }
 	virtual std::vector<Hitbox> GetHitboxes() = 0;
 	virtual void OnCollide(Entity* e) = 0;
 	bool CheckCollision(Collide* other);

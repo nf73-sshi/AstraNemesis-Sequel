@@ -8,7 +8,7 @@
 #include "../Skills/Skill.h"
 
 #include "../Important/res.h"
-#include <map>
+#include <unordered_map>
 
 class Mana; 
 
@@ -26,7 +26,7 @@ protected:
 	HealthBar* mHB;
 	ManaBar* mManaBar;
 
-	std::map<const char*, Skill*> skillArray;
+	std::unordered_map<const char*, Skill*> skillArray;
 public:
 	Player();
 

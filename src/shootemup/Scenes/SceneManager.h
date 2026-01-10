@@ -1,12 +1,13 @@
 #pragma once
 #include "Scene.h"
 #include <string>
+#include <unordered_map>
 
 class SceneManager
 {
 
 protected:
-	std::map<std::string, Scene*> map;
+	std::unordered_map<std::string, Scene*> map;
 	Scene* mCurrentScene;
 
 public:

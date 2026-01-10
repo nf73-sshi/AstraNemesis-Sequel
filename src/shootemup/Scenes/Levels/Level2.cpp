@@ -17,6 +17,7 @@ void Level2::Init()
 	ABoss* pBoss = new Boss2();
 	pBoss->scale(2, 1);
 	pBoss->setPosition(WINDOW_WIDTH * 0.4, 127.5);
+	pBoss->SetDefaultPosition(pBoss->getPosition());
 
 	HealthBar* pBossHB = new HealthBar(1500.f, 20.f);
 	pBoss->SetLifeBar(pBossHB);

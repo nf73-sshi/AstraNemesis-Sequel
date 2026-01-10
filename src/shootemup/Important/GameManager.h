@@ -59,6 +59,8 @@ public:
 
 	float GetDeltaTime() { return dt; }
 
+	static const float& DeltaTime() { return mInstance->dt; }
+
 	Scene* GetCurrentScene();
 
 	void InitAssets();

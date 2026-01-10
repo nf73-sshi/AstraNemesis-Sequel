@@ -4,16 +4,17 @@
 #include <SFML/Audio.hpp>
 #include <string>
 #include <iostream>
+#include <unordered_map>
 
 class AssetManager
 {
 	static AssetManager* instance;
 
 	//Stock avec les noms
-	std::map<std::string, sf::Texture*> mTextures;
-	std::map<std::string, sf::SoundBuffer> mSoundBuffers;
-	std::map<std::string, sf::Sound> mSounds;
-	std::map<std::string, std::unique_ptr<sf::Music>> mMusics;
+	std::unordered_map<std::string, sf::Texture*> mTextures;
+	std::unordered_map<std::string, sf::SoundBuffer> mSoundBuffers;
+	std::unordered_map<std::string, sf::Sound> mSounds;
+	std::unordered_map<std::string, std::unique_ptr<sf::Music>> mMusics;
 
 public:
 	// VITAL
@@ -27,8 +28,6 @@ public:
 	sf::Texture* GetTexture(std::string alias);
 	sf::Sound* GetSound(std::string alias);
 	sf::Music* GetMusic(std::string alias);
-	//
-
 
 	void StopAllSounds();
 	void StopAllMusics();
